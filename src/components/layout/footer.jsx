@@ -1,0 +1,101 @@
+import { Link } from "react-router-dom";
+import reparvLogo from "../../assets/newFooterlogo.png";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+
+export default function Footer() {
+  return (
+    <footer className="w-full bg-[#0D1321] text-white pt-14 pb-10">
+      <div className="max-w-[1350px] mx-auto px-6 md:px-8">
+        
+        {/* TOP FOOTER ROW */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 pb-12 border-b border-white/10">
+          
+          {/* LOGO + DESCRIPTION */}
+          <div className="space-y-5">
+            <img
+              src={reparvLogo}
+              alt="Reparv Logo"
+              className="w-[140px] md:w-[160px]"
+            />
+
+            <p className="text-sm leading-6 text-white/70">
+              Empowering businesses with innovative  
+              <br /> solutions  
+              <br /> and insights.
+            </p>
+          </div>
+<div
+  className="
+    md:col-span-3
+    grid
+    grid-cols-2       /* mobile: 2 columns */
+    sm:grid-cols-2    /* tablet: 2 columns */
+    md:grid-cols-3    /* laptop: 3 columns */
+    lg:grid-cols-3    /* large desktop: 3 columns */
+    gap-8
+  "
+>
+
+
+          {/* COMPANY */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-white text-lg">Company</h3>
+            <ul className="flex flex-col gap-3 text-white/70 text-sm">
+              <li><Link to="/about-us">About Us</Link></li>
+              <li><Link to="/careers">Careers</Link></li>
+              <li><Link to="/press">Press</Link></li>
+              <li><Link to="/blog">Blog</Link></li>
+            </ul>
+          </div>
+
+          {/* RESOURCES */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-white text-lg">Resources</h3>
+            <ul className="flex flex-col gap-3 text-white/70 text-sm">
+              <li><Link to="/documentation">Documentation</Link></li>
+              <li><Link to="/help-center">Help Center</Link></li>
+              <li><Link to="/community">Community</Link></li>
+              <li><Link to="/contact-us">Contact Us</Link></li>
+            </ul>
+          </div>
+
+          {/* LEGAL */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-white text-lg">Legal</h3>
+            <ul className="flex flex-col gap-3 text-white/70 text-sm">
+              <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+              <li><Link to="/terms-of-service">Terms of Service</Link></li>
+              <li><Link to="/cookie-policy">Cookie Policy</Link></li>
+              <li><Link to="/disclaimer">Disclaimer</Link></li>
+            </ul>
+          </div>
+</div>
+        </div>
+
+        {/* BOTTOM ROW */}
+        <div className="flex flex-col md:flex-row justify-between items-center mt-8 gap-5">
+          <p className="text-white/60 text-sm">
+            © 2025 Reparv. All rights reserved.
+          </p>
+
+          {/* SOCIAL ICONS */}
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
+              <FaFacebookF className="text-white text-sm" />
+            </div>
+            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
+              <FaTwitter className="text-white text-sm" />
+            </div>
+            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
+              <FaLinkedinIn className="text-white text-sm" />
+            </div>
+            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
+              <FaInstagram className="text-white text-sm" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  );
+}

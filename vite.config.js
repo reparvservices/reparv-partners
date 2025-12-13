@@ -6,7 +6,9 @@ export default defineConfig({
   plugins: [tailwindcss(), react()],
   
   base: '/', // Ensures correct base path for routing
-  
+  server: {
+    allowedHosts: true,
+  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
