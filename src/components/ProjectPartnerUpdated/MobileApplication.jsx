@@ -6,7 +6,7 @@ import android from "../../assets/company/android.png";
 
 const MobileAppSection = () => {
   return (
-    <section className="relative mt-[-140px] bg-[#5E23DC] text-white py-16 px-4 md:px-12 lg:px-24 flex flex-col items-center">
+    <section className="relative lg:mt-[-140px] bg-[#5E23DC] text-white py-16 px-4 md:px-12 lg:px-24 flex flex-col items-center">
      <span className="bg-white text-[#5E23DC] text-xs px-3 py-1 rounded-full mb-4 animate-[fadeUp_0.8s_ease-out_forwards]">
   Mobile App
 </span>

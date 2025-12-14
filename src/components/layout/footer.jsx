@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import reparvLogo from "../../assets/newFooterlogo.png";
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -80,18 +80,18 @@ export default function Footer() {
 
           {/* SOCIAL ICONS */}
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
+            <a href="https://www.facebook.com/reparv/" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
               <FaFacebookF className="text-white text-sm" />
-            </div>
-            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
-              <FaTwitter className="text-white text-sm" />
-            </div>
-            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
+            </a>
+            <a href="https://www.linkedin.com/company/105339179" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
               <FaLinkedinIn className="text-white text-sm" />
-            </div>
-            <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
+            </a>
+            <a href="https://www.instagram.com/reparv.official/" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
               <FaInstagram className="text-white text-sm" />
-            </div>
+            </a>
+            <a href="https://www.youtube.com/@reparv" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 cursor-pointer">
+              <FaYoutube className="text-white text-sm" />
+            </a>
           </div>
         </div>
 

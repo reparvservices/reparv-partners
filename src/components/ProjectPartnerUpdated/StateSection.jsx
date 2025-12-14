@@ -122,18 +122,27 @@ const StatsAndBenefits = () => {
   return (
     <div className="bg-white">
       {/* Stats Section */}
-   <div className="bg-[#5E23DC] text-white py-8">
+ <div className="bg-[#5E23DC] text-white py-8">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex flex-col md:flex-row flex-wrap justify-center md:justify-between items-center gap-6 md:gap-0">
+    <div
+      className="
+        grid grid-cols-2 gap-y-6 gap-x-4
+        md:flex md:flex-row md:justify-between md:items-center md:gap-0
+      "
+    >
       {stats.map((stat, idx) => (
         <React.Fragment key={idx}>
           {/* Stat */}
-          <div className="text-center px-4 md:px-6">
-            <div className="text-2xl sm:text-3xl font-bold">{stat.value}</div>
-            <div className="text-sm sm:text-base mt-1">{stat.label}</div>
+          <div className="text-center">
+            <div className="text-2xl sm:text-3xl font-bold">
+              {stat.value}
+            </div>
+            <div className="text-sm sm:text-base mt-1">
+              {stat.label}
+            </div>
           </div>
 
-          {/* Divider */}
+          {/* Divider – desktop only */}
           {idx !== stats.length - 1 && (
             <div className="hidden md:block w-[1px] h-16 bg-[#360E8C]" />
           )}
@@ -145,8 +154,9 @@ const StatsAndBenefits = () => {
 
 
 
+
       {/* Heading Section */}
-      <div className="text-center py-16 px-4">
+      <div className="text-center py-10 px-4">
         <span className="bg-[#5E23DC] text-white px-4 py-1 rounded-full text-xs md:text-sm">Exclusive Benefits</span>
         <h2 className="text-2xl md:text-4xl font-bold mt-4">Why Partner with Us?</h2>
         <p className="text-gray-500 mt-2 max-w-xl mx-auto">
@@ -154,7 +164,7 @@ const StatsAndBenefits = () => {
         </p>
       </div>
 
-      {/* Benefits Grid */}
+     
 {/* Benefits Grid */}
 <div className="max-w-7xl mx-auto px-4 pb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
   {benefits.map((item, idx) => (
@@ -170,6 +180,8 @@ const StatsAndBenefits = () => {
         transition-transform duration-300 
         hover:scale-105 
         hover:shadow-lg
+           active:scale-105 
+        active:shadow-lg
         ${item.popular ? "shadow-[0px_4px_18.6px_rgba(94,35,220,0.28),0px_1px_4px_rgba(12,12,13,0.05)]" : "hover:shadow-[0px_4px_18.6px_rgba(0,0,0,0.1),0px_1px_4px_rgba(12,12,13,0.05)]"}
       `}
     >

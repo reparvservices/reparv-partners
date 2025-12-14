@@ -215,7 +215,7 @@ export default function ProjectPartnerSection() {
     <div className="w-full px-0">
       <div className="w-full bg-white py-10 px-4 md:px-8 lg:px-20">
         {/* Heading */}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-[#111827] leading-tight">
+      <h2 className="text-3xl px-10 sm:text-4xl md:text-5xl font-bold text-center text-[#111827] leading-tight">
   What is a Project 
   <br className="block md:hidden" />  {/* mobile break */}
   <span className="md:whitespace-nowrap">Partner?</span>

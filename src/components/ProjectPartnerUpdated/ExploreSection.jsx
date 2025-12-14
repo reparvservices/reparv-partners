@@ -192,6 +192,11 @@ const Card = ({ icon: Icon, title, desc, active, color, svg }) => (
       hover:bg-[rgba(94,35,220,0.08)]
       hover:shadow-[0px_4px_18.6px_rgba(94,35,220,0.28),0px_1px_4px_rgba(12,12,13,0.05)]
       hover:-translate-y-2
+        active:border-[5px] active:border-white
+      active:bg-[rgba(94,35,220,0.08)]
+      active:shadow-[0px_4px_18.6px_rgba(94,35,220,0.28),0px_1px_4px_rgba(12,12,13,0.05)]
+      active:-translate-y-2
+
      w-full sm:w-[300px] md:w-[320px] lg:w-[345px]
       min-h-[190px]
     `}
@@ -219,8 +224,8 @@ const Card = ({ icon: Icon, title, desc, active, color, svg }) => (
 
 export default function ProjectPartnerSection() {
   return (
-    <div className="w-full bg-white mb-10">
-      <section className="w-full bg-white py-16 px-2 sm:px-8 lg:px-25">
+    <div className="w-full bg-white px-4  ">
+      <section className="w-full bg-white mt-5 lg:py-10 px-2 sm:px-8 lg:px-25">
         <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 items-start">
           {/* LEFT CONTENT */}
           <div>
@@ -300,7 +305,7 @@ export default function ProjectPartnerSection() {
       `}</style>
       </section>
       {/* Stats Section */}
-      <StatsSection/>
+   
     </div>
   );
 }

@@ -42,7 +42,7 @@ function LayoutTwo() {
 </Link>
 
           {/* Location */}
-         <div className="hidden md:flex items-center gap-2 text-[#2b2b2b] font-medium cursor-pointer">
+         <div className="hidden items-center gap-2 text-[#2b2b2b] font-medium cursor-pointer">
   <IoLocationOutline className="text-xl" />
 
   <span>Nagpur</span>
@@ -63,7 +63,7 @@ function LayoutTwo() {
 
           {/* Nav Links – Desktop */}
           <div className="hidden md:flex items-center gap-10 text-[16px] font-medium">
-            <NavLink to="/" className={getNavLinkClass("/")}>Home</NavLink>
+            {/* <NavLink to="/" className={getNavLinkClass("/")}>Home</NavLink>
 
             <NavLink to="https://www.reparv.in/properties" className={getNavLinkClass("/properties")}>
               Properties
@@ -75,14 +75,30 @@ function LayoutTwo() {
 
             <NavLink to="https://www.reparv.in/contact-us" className={getNavLinkClass("/contact")}>
               Contact Us
-            </NavLink>
+            </NavLink> */}
 
-            <Link
-              to=""
-              className="bg-[#5E23DC] text-white px-5 py-2 rounded-lg font-semibold hover:bg-[#064f00] transition"
-            >
-              Login
-            </Link>
+           <Link
+  to=""
+  className="
+    bg-[#5E23DC] 
+    text-white 
+    px-6 py-3 
+    rounded-lg 
+    font-semibold 
+    shadow-lg 
+    transform 
+    transition 
+    duration-300 
+    ease-in-out
+    hover:bg-[#4a0db8] 
+    hover:scale-105 
+    hover:shadow-2xl
+    active:scale-95
+  "
+>
+  Login As Partner
+</Link>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,7 +111,7 @@ function LayoutTwo() {
         </div>
       </div>
 
-      {/* ========= MOBILE SIDEBAR ========= */}
+      ========= MOBILE SIDEBAR =========
       {showSidebar && (
         <div className="sidebar w-full fixed md:hidden top-0 right-0 z-30 bg-white flex flex-col items-end gap-5 pb-8 shadow-[0px_1px_3px_1px_#00000026]">
           
@@ -117,7 +133,7 @@ function LayoutTwo() {
 
           {/* Sidebar Links */}
           <div className="w-full flex flex-col gap-4 px-10 font-semibold text-[#110229] text-[18px]">
-            <NavLink
+            {/* <NavLink
               to="/"
               onClick={() => setShowSidebar(false)}
               className={getNavLinkClass("/")}
@@ -147,7 +163,7 @@ function LayoutTwo() {
               className={getNavLinkClass("/contact")}
             >
               Contact Us
-            </NavLink>
+            </NavLink> */}
 
             <Link
               to=""

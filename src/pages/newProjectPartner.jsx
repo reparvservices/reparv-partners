@@ -21,6 +21,7 @@ const NewProjectPartner = () => {
 
         <ProjectPartnerSection />
       </Reveal>
+         <StatsAndBenefits/>
 
       
       <Reveal className="[animation-duration:1.2s]">

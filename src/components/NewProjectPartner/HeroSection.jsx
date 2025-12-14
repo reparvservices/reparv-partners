@@ -339,7 +339,7 @@ import { FaUsers } from "react-icons/fa";
 
 const HeroSection = () => {
   return (
-    <section className="relative bg-[#5A1EDC] text-white overflow-hidden py-5 md:py-20 lg:py-20  md:px-16 lg:px-24">
+    <section className="relative bg-[#5A1EDC] text-white overflow-hidden py-1 md:py-20 lg:py-20  md:px-16 lg:px-24">
        <div
     className="absolute inset-0"
     style={{
@@ -377,7 +377,12 @@ const HeroSection = () => {
 
         {/* Buttons */}
         <div className="flex items-center gap-4 mt-8 flex-wrap">
-          <button className="bg-white text-[#5A1EDC] font-semibold px-8 py-3 rounded-lg shadow hover:bg-white/90 transition flex items-center gap-2">
+          <button onClick={() =>
+    document.getElementById("pricing")?.scrollIntoView({
+      behavior: "smooth",
+    })
+    
+  } className="bg-white text-[#5A1EDC] font-semibold px-8 py-3 rounded-lg shadow hover:bg-white/90 transition flex items-center gap-2">
   JOIN AS PARTNER
   <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M0 14L6 8L0 2L2 0L10 8L2 16L0 14Z" fill="#5E23DC"/>
@@ -440,7 +445,7 @@ const HeroSection = () => {
     absolute
     right-[26%]
     bottom-[38%]
-    hidden md:block
+    hidden  xl:block
   z-20
   "
 >

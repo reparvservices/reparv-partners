@@ -379,7 +379,7 @@ const logos = [
 
 export default function TrustedSection() {
   return (
-  <section className="bg-[#5E23DC] mx-auto text-white w-[90%] rounded-[48px] overflow-hidden">
+  <section className="bg-[#5E23DC] mx-auto text-white w-[100%] lg:w-[90%] lg:rounded-[48px] overflow-hidden">
   {/* Top Content */}
   <div className="max-w-7xl mx-auto px-4 sm:px-8 py-20">
     {/* Heading + Logos Row */}
@@ -434,7 +434,7 @@ export default function TrustedSection() {
       "
     />
 
-    <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 ml-0 md:ml-[40%]">
+    <div className="max-w-5xl mx-auto px-2  grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 ml-0 md:ml-[40%]">
       <Stat icon={handSheck} value="495+" label="Active Partners" />
       <Stat icon={building} value="44+" label="Enterprise Clients" />
       <Stat icon={user} value="18+" label="Cities Covered" />
