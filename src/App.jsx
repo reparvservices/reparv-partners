@@ -33,28 +33,25 @@ function App() {
           <Route path="/sales-partner" element={<SalesPartner />} />
           <Route path="/territory-partner" element={<TerritoryPartner />} />
           <Route path="/project-partner" element={<ProjectPartner />} />
-          <Route path="/account-cancellation" element={<AccountCancellation />} />
+          <Route
+            path="/account-cancellation"
+            element={<AccountCancellation />}
+          />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route
+            path="/terms-and-conditions"
+            element={<TermsAndConditions />}
+          />
           <Route path="/cancellation-policy" element={<RefundPolicy />} />
         </Route>
 
         {/* Route with LayoutTwo */}
         <Route path="" element={<LayoutTwo />}>
-             <Route
-          path="/newpartner"
-          element={
-           
-              <NewProjectPartner />
-         
-          }
-        />
+          <Route path="/newpartner" element={<NewProjectPartner />} />
         </Route>
-    
       </Routes>
     </BrowserRouter>
   );
 }
-
 
 export default App;
