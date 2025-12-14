@@ -37,7 +37,7 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="lg:py-20 bg-[#F9FAFB] w-full mt-10">
+    <section className="lg:py-20 bg-white w-full mt-10">
       {/* Heading */}
       <div className="text-center mb-16 px-4">
         <h2 className="lg:text-[40px] md:text-[40px] text-[26px] font-semibold text-[#101828]">

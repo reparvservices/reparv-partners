@@ -339,8 +339,8 @@ import { FaUsers } from "react-icons/fa";
 
 const HeroSection = () => {
   return (
-    <section className="relative bg-[#5A1EDC] text-white overflow-hidden py-6 md:py-20 lg:py-20  md:px-16 lg:px-24">
-<div
+    <section className="relative bg-[#5A1EDC] text-white overflow-hidden py-5 md:py-20 lg:py-20  md:px-16 lg:px-24">
+       <div
     className="absolute inset-0"
     style={{
       background: `
@@ -434,24 +434,79 @@ const HeroSection = () => {
 
        
       </div>
+{/* Floating Dashboard Card */}
+<div
+  className="
+    absolute
+    right-[26%]
+    bottom-[38%]
+    hidden md:block
+  z-20
+  "
+>
+   <div className="w-[414px] rounded-[48px] bg-white/20 backdrop-blur-xl p-8 shadow-xl">
+      {/* Top Row */}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-[35px] h-[35px] rounded-full bg-white flex items-center justify-center">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.73939 16.0222C12.7616 16.0222 16.0222 12.7616 16.0222 8.73939C16.0222 4.71719 12.7616 1.45654 8.73939 1.45654C4.71719 1.45654 1.45654 4.71719 1.45654 8.73939C1.45654 12.7616 4.71719 16.0222 8.73939 16.0222Z" stroke="#5E23DC" stroke-width="1.45657" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6.55469 8.73941L8.01126 10.196L10.9244 7.28284" stroke="#5E23DC" stroke-width="1.45657" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
 
+        </div>
+
+        <div>
+          <p className="text-white text-[11.6px] font-semibold">
+            Partner Dashboard
+          </p>
+          <p className="text-white/80 text-[10.2px]">
+            Track your earnings
+          </p>
+        </div>
+      </div>
+
+      {/* Stats */}
+      <div className="flex gap-3 mb-4">
+        <div className="flex-1 bg-[#E5D9FF] rounded-[6.6px] p-3">
+          <p className="text-[#5E23DC] text-[17.5px] font-bold">₹2.5L</p>
+          <p className="text-[#4A5565] text-[10.2px]">Avg. Monthly</p>
+        </div>
+
+        <div className="flex-1 bg-white rounded-[6.6px] p-3">
+          <p className="text-[#5E23DC] text-[17.5px] font-bold">98%</p>
+          <p className="text-[#4A5565] text-[10.2px]">Satisfaction</p>
+        </div>
+      </div>
+
+      {/* Progress */}
+      <div className="w-full h-[6px] bg-white rounded-full overflow-hidden">
+        <div className="h-full w-[75%] bg-[#5E23DC]" />
+      </div>
+    </div>
+</div>
       {/* Right Image - Positioned from bottom for Figma style */}
-      <img
-        src={bg}
-        alt="Partner"
-        className="
-          absolute 
-          right-0 
-          bottom-0            
-          w-[80%]            
-          md:w-[45%]          
-          lg:w-[50%]          
-          max-w-[765px] max-h-[746px]  /* maintain max size */
-          object-contain 
-          pointer-events-none 
-          select-none
-        "
-      />
+     <img
+  src={bg}
+  alt="Partner"
+  className="
+    absolute
+    hidden md:block
+    lg:block
+    right-0
+    bottom-[-140px]           /* crop lower body like Figma */
+    w-[95%]     
+    right-[-90px]             /* zoomed in */
+    md:w-[52%]
+    lg:w-[62%]
+    max-w-[900px]
+    object-cover             /* important for Figma crop */
+    object-top               /* keeps face visible */
+    pointer-events-none
+    select-none
+    z-10
+  "
+/>
+
     </section>
   );
 };

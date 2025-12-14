@@ -68,7 +68,7 @@ const toggleFeatures = (id) => {
         name: item.planName,
         description: `${item.planDuration} Months`,
 
-        monthlyPrice: `₹${monthlyPrice}`,
+        monthlyPrice: `₹${item.totalPrice}`,
         yearlyPrice: `₹${yearlyPrice}`,
         billPrice: `₹${item.totalPrice}`,
 
@@ -131,7 +131,7 @@ const toggleFeatures = (id) => {
         </p>
 
         {/* Toggle */}
-        <div className="mt-8 inline-flex items-center bg-white shadow-md rounded-full p-1">
+        {/* <div className="mt-8 inline-flex items-center bg-white shadow-md rounded-full p-1">
           <button
             onClick={() => setBilling("monthly")}
             className={`px-6 py-2 rounded-full text-sm font-medium ${
@@ -156,18 +156,23 @@ const toggleFeatures = (id) => {
               Save 17%
             </span>
           </button>
-        </div>
+        </div> */}
 
         {/* Cards */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
           {plans.map((plan, i) => (
             <div
               key={plan.id}
-              className={`relative rounded-2xl shadow-lg p-8 border flex flex-col ${
-                plan.mostPopular
-                  ? "border-2 border-[#5E23DC] shadow-2xl"
-                  : "border-gray-200"
-              }`}
+           className={`relative rounded-2xl p-8 border flex flex-col
+  transition-all duration-300 ease-out
+  hover:-translate-y-2 hover:shadow-2xl
+  ${
+    plan.mostPopular
+      ? "border-2 border-[#5E23DC] shadow-xl hover:shadow-[#5E23DC]/40"
+      : "border-gray-200 hover:border-[#5E23DC]/40"
+  }
+`}
+
             >
               {plan.mostPopular && (
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#5E23DC] to-[#854DFB] text-white px-6 py-2 rounded-full text-sm">
@@ -242,7 +247,7 @@ const toggleFeatures = (id) => {
           Need a custom plan for your organization?
         </p>
      <a
-  href="#"
+  href="https://www.reparv.in/contact-us"
   className="
   mt-3
     inline-flex items-center justify-center

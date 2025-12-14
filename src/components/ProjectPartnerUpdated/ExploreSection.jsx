@@ -195,11 +195,12 @@ const Card = ({ icon: Icon, title, desc, active, color, svg }) => (
      w-full sm:w-[300px] md:w-[320px] lg:w-[345px]
       min-h-[190px]
     `}
-    
   >
     {/* ICON BADGE – CENTERED ON TOP BORDER */}
     <div className="absolute -top-6 left-8">
-      <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}>
+      <div
+        className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}
+      >
         {svg ? svg : <Icon className="w-6 h-6" />}
       </div>
     </div>
@@ -215,9 +216,6 @@ const Card = ({ icon: Icon, title, desc, active, color, svg }) => (
     </div>
   </div>
 );
-
-
-
 
 export default function ProjectPartnerSection() {
   return (
@@ -235,11 +233,10 @@ export default function ProjectPartnerSection() {
             </p>
 
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-y-1 sm:gap-x-6 md:gap-x-10 lg:gap-x-60 xl:gap-x-40">
-  {cards.map((card, i) => (
-    <Card key={i} {...card} />
-  ))}
-</div>
-
+              {cards.map((card, i) => (
+                <Card key={i} {...card} />
+              ))}
+            </div>
           </div>
 
           {/* RIGHT IMAGES */}
@@ -303,9 +300,7 @@ export default function ProjectPartnerSection() {
       `}</style>
       </section>
       {/* Stats Section */}
-      <StatsSection />
-      <ServicesSection />
-     
+      <StatsSection/>
     </div>
   );
 }

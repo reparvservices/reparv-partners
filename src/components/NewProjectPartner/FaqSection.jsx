@@ -116,9 +116,9 @@ export default function FaqSection() {
                       {item.q}
                     </span>
                     {isOpen ? (
-                      <FiMinus className="text-[#009966]" size={22} />
+                      <FiMinus className="text-[#5E23DC]" size={22} />
                     ) : (
-                      <FiPlus className="text-[#009966]" size={22} />
+                      <FiPlus className="text-[#5E23DC]" size={22} />
                     )}
                   </button>
 

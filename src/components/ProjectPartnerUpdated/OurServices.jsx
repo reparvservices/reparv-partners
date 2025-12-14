@@ -59,7 +59,7 @@ const ServicesSection = () => {
             Can’t find what you’re looking for?
           </p>
 
-          <button className="bg-white text-purple-700 font-semibold px-6 py-2 rounded-lg shadow hover:bg-white/90 transition flex items-center gap-2 mx-auto">
+          <button onClick={()=>window.open('https://www.reparv.in/properties')} className="bg-white text-purple-700 font-semibold px-6 py-2 rounded-lg shadow hover:bg-white/90 transition flex items-center gap-2 mx-auto">
             View All Services <span className="text-xl">→</span>
           </button>
         </div>

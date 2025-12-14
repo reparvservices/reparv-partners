@@ -120,7 +120,7 @@ const benefits = [
 
 const StatsAndBenefits = () => {
   return (
-    <div>
+    <div className="bg-white">
       {/* Stats Section */}
    <div className="bg-[#5E23DC] text-white py-8">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
