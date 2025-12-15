@@ -21,18 +21,18 @@ const steps = [
 
 const JoinStepsSection = () => {
   return (
-  <section className="relative  w-full bg-white overflow-hidden lg:px-24 px-4 py-16 lg:py-24">
+  <section className="relative  w-full bg-white overflow-hidden lg:px-24 px-1 py-16 lg:py-24">
   <div className="max-w-3xl mx-auto relative">
     {/* DESKTOP IMAGE */}
     <div
       className="
         hidden lg:block
-        absolute left-60 bottom-0
+        absolute left-50 bottom-0
         w-[420px] h-[420px]
         sm:w-[600px] sm:h-[600px]
         md:w-[680px] md:h-[680px]
         lg:w-[720px] lg:h-[720px]
-        xl:w-[750px] xl:h-[800px]
+        xl:w-[750px] xl:h-[900px]
         z-0 pointer-events-none
       "
       style={{
@@ -43,16 +43,7 @@ const JoinStepsSection = () => {
       }}
     />
 
-    {/* MOBILE IMAGE */}
-    {/* <div
-      className="block lg:hidden w-full h-64 sm:h-80 mb-6"
-      style={{
-        backgroundImage: `url(${manImg})`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundSize: "contain",
-      }}
-    /> */}
+    
 
     {/* CARD */}
     <div
@@ -64,7 +55,7 @@ const JoinStepsSection = () => {
 
     /* Mobile */
     rounded-t-[28px]
-     rounded-b-[28px]
+    
     px-5 py-10
     border-[10px]
     shadow-xl

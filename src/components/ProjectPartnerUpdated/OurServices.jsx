@@ -34,38 +34,43 @@ const ServicesSection = () => {
         </p>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-4 sm:gap-x-8 gap-y-6 sm:gap-y-12">
-          {visibleServices.map((service, idx) => {
-            const IconComponent = service.icon;
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-3 sm:gap-x-8 gap-y-4 sm:gap-y-12">
+  {visibleServices.map((service, idx) => {
+    const IconComponent = service.icon;
 
-            return (
-              <div key={idx} className="flex flex-col items-center w-full">
-               <div
-  className="
-    bg-white
-    w-full  sm:max-w-[160px]
-    h-[90px] sm:h-[100px]
-    rounded-2xl
-    border border-gray-200
-    flex items-center justify-center
-    transition-all
-  "
->
-  <div className="flex mt-6 sm:mt-0 sm:items-center justify-center w-full h-full">
-    <div className="w-[50px] h-[30px] sm:w-[56px] sm:h-[56px]">
-      <IconComponent />
-    </div>
-  </div>
+    return (
+      <div key={idx} className="flex flex-col items-center w-full">
+
+        {/* CARD */}
+        <div
+          className="
+            bg-white
+            w-[90px] h-[70px]             
+            sm:w-full sm:max-w-[160px]     
+            sm:h-[100px]
+            rounded-xl sm:rounded-2xl
+            border border-gray-200
+            flex items-center justify-center
+            transition-all
+          "
+        >
+          <div className="flex items-center justify-center w-full h-full">
+       <div className="w-[42px] h-[42px] sm:w-[56px] sm:h-[56px] [&>svg]:!w-full [&>svg]:!h-full">
+  <IconComponent />
 </div>
 
 
-                <span className="mt-2 sm:mt-4 text-[12px] sm:text-[20px] font-medium text-white text-center">
-                  {service.title}
-                </span>
-              </div>
-            );
-          })}
+          </div>
         </div>
+
+        {/* TITLE */}
+        <span className="mt-1 sm:mt-4 text-[11px] sm:text-[20px] font-medium text-white text-center">
+          {service.title}
+        </span>
+      </div>
+    );
+  })}
+</div>
 
         {/* CTA */}
         <div className="mt-12">

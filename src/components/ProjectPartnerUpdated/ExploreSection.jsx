@@ -202,16 +202,25 @@ const Card = ({ icon: Icon, title, desc, active, color, svg }) => (
     `}
   >
     {/* ICON BADGE – CENTERED ON TOP BORDER */}
-    <div className="absolute -top-6 left-8">
-      <div
-        className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}
-      >
-        {svg ? svg : <Icon className="w-6 h-6" />}
-      </div>
-    </div>
+   {/* ICON BADGE */}
+<div
+  className="
+    relative sm:absolute
+    top-5 left-5
+    sm:-top-6 sm:left-8
+    mb-3 sm:mb-0
+  "
+>
+  <div
+    className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}
+  >
+    {svg ? svg : <Icon className="w-6 h-6" />}
+  </div>
+</div>
 
     {/* CONTENT */}
-    <div className="flex flex-col gap-2 px-5 pt-10 pb-4">
+  <div className="flex flex-col gap-2 px-5 pt-4 sm:pt-10 pb-4">
+
       <h3 className="font-['Segoe_UI'] font-semibold text-[17px] leading-[28px] text-[#101828]">
         {title}
       </h3>
@@ -224,7 +233,7 @@ const Card = ({ icon: Icon, title, desc, active, color, svg }) => (
 
 export default function ProjectPartnerSection() {
   return (
-    <div className="w-full bg-white px-4  ">
+    <div className="w-full bg-white px-1 sm:px-4 ">
       <section className="w-full bg-white mt-5 lg:py-10 px-2 sm:px-8 lg:px-25">
         <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 gap-1 items-start">
           {/* LEFT CONTENT */}

@@ -166,7 +166,7 @@ const StatsAndBenefits = () => {
 
      
 {/* Benefits Grid */}
-<div className="max-w-7xl mx-auto px-4 pb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div className="max-w-7xl mx-auto px-1 sm:px-4 pb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
   {benefits.map((item, idx) => (
     <div
       key={idx}
@@ -175,7 +175,7 @@ const StatsAndBenefits = () => {
         bg-white 
         border ${item.popular ? "border-[#5E23DC]" : "border-gray-200"} 
         rounded-2xl 
-        p-6 
+        p-5 sm:p-6 
         flex flex-col gap-4
         transition-transform duration-300 
         hover:scale-105 
@@ -192,18 +192,32 @@ const StatsAndBenefits = () => {
         </span>
       )}
 
-      {/* Heading + Icon Row */}
-      <div className="flex items-center gap-4">
-        <img 
-          src={item.icon} 
-          alt={item.title} 
-          className="w-24 h-24 object-cover rounded-lg" 
-        />
-        <h3 className="text-lg w-[140px] font-semibold text-[#101828]">{item.title}</h3>
-      </div>
+    
+  {/* Heading + Icon */}
+<div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
+  
+  {/* ICON — FIRST ON MOBILE */}
+  <img 
+    src={item.icon} 
+    alt={item.title} 
+    className="
+     w-[54px] h-[54px] sm:w-24 sm:h-24 object-cover rounded-lg
+      mx-auto sm:mx-0
+      order-1 sm:order-none
+    "
+  />
+
+  {/* TITLE — SECOND ON MOBILE */}
+  <h3 className="text-[18px] sm:text-lg font-semibold text-[#101828] order-2">
+    {item.title}
+  </h3>
+</div>
+
+
+
 
       {/* Description */}
-      <p className="text-gray-500 text-sm leading-[1.625]">
+      <p className="text-gray-500 text-[12px] sm:text-sm leading-[1.625]">
         {item.desc}
       </p>
     </div>

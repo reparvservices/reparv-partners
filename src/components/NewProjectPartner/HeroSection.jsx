@@ -353,7 +353,7 @@ const HeroSection = () => {
       pointerEvents: "none",
     }}
   ></div>
-      <div className="max-w-[1350px] mx-auto px-6 md:px-10 pt-20 pb-24 relative z-10">
+      <div className="max-w-[1350px] mx-auto px-3 sm:px-6 md:px-10 pt-20  relative z-10">
 
         {/* Top Badge */}
        <div className="bg-white text-black px-5 py-2 rounded-full inline-flex items-center gap-2 backdrop-blur-md  border border-white/30">
@@ -370,38 +370,82 @@ const HeroSection = () => {
         </h1>
 
         {/* Description */}
-        <p className="mt-6 text-lg leading-relaxed max-w-xl text-white/90">
+        <p className="mt-6 text-sm sm:text-lg leading-relaxed max-w-xl text-white/90">
           Connect with premium projects, grow your business, and earn more with
           India's most trusted partner network.
         </p>
 
         {/* Buttons */}
-        <div className="flex items-center gap-4 mt-8 flex-wrap">
-          <button onClick={() =>
-    document.getElementById("pricing")?.scrollIntoView({
-      behavior: "smooth",
-    })
-    
-  } className="bg-white text-[#5A1EDC] font-semibold px-8 py-3 rounded-lg shadow hover:bg-white/90 transition flex items-center gap-2">
-  JOIN AS PARTNER
-  <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 14L6 8L0 2L2 0L10 8L2 16L0 14Z" fill="#5E23DC"/>
-  </svg>
-</button>
-
-
-          <button className="border border-white/30 text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/10 transition flex items-center gap-2">
-            Learn More <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z" stroke="#F4F8F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.5 7L13 10L8.5 13V7Z" stroke="#F4F8F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <div className="mt-8 flex flex-row gap-1 sm:gap-4 sm:flex-row sm:items-center">
+  {/* JOIN BUTTON */}
+  <button
+    onClick={() =>
+      document.getElementById("pricing")?.scrollIntoView({
+        behavior: "smooth",
+      })
+    }
+    className="
+      w-full sm:w-auto
+      bg-white text-[#5A1EDC]
+      text-[13px] sm:text-base
+      whitespace-nowrap
+      font-semibold px-3 py-3 sm:px-8 sm:py-3
+      rounded-lg shadow
+      hover:bg-white/90 transition
+      flex items-center justify-center gap-2
+    "
+  >
+    JOIN AS PARTNER
+   <svg
+  viewBox="0 0 10 16"
+  fill="none"
+  className="w-[6px] h-[16px] sm:w-[16px]"
+>
+  <path
+    fillRule="evenodd"
+    clipRule="evenodd"
+    d="M0 14L6 8L0 2L2 0L10 8L2 16L0 14Z"
+    fill="#5E23DC"
+  />
 </svg>
 
-          </button>
-        </div>
+  </button>
+
+  {/* LEARN MORE BUTTON */}
+  <button
+    className="
+      w-full sm:w-auto
+      border border-white/30
+       text-[13px]  sm:text-base text-white font-semibold
+      sm:px-8 sm:py-3 rounded-lg
+      hover:bg-white/10 transition
+      flex items-center justify-center gap-2
+    "
+  >
+    Learn More
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path
+        d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z"
+        stroke="#F4F8F5"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.5 7L13 10L8.5 13V7Z"
+        stroke="#F4F8F5"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </button>
+</div>
+
 
          <div
   className="
-    flex flex-wrap gap-6 mt-14 pt-8 border-t
+    flex flex-wrap gap-6 mt-5 sm:mt-14 pt-8 border-t
     sm:gap-10 max-w-lg
   "
   style={{ borderColor: "rgba(255, 255, 255, 0.2)" }}
@@ -439,6 +483,54 @@ const HeroSection = () => {
 
        
       </div>
+      <div
+  className="
+   mt-10
+      sm:hidden 
+  z-20
+  pb-10
+  "
+>
+   <div className="w-[98%] mx-auto rounded-[28px] bg-white/20 backdrop-blur-xl p-8 shadow-xl">
+      {/* Top Row */}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-[35px] h-[35px] rounded-full bg-white flex items-center justify-center">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.73939 16.0222C12.7616 16.0222 16.0222 12.7616 16.0222 8.73939C16.0222 4.71719 12.7616 1.45654 8.73939 1.45654C4.71719 1.45654 1.45654 4.71719 1.45654 8.73939C1.45654 12.7616 4.71719 16.0222 8.73939 16.0222Z" stroke="#5E23DC" stroke-width="1.45657" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6.55469 8.73941L8.01126 10.196L10.9244 7.28284" stroke="#5E23DC" stroke-width="1.45657" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+        </div>
+
+        <div>
+          <p className="text-white text-[11.6px] font-semibold">
+            Partner Dashboard
+          </p>
+          <p className="text-white/80 text-[10.2px]">
+            Track your earnings
+          </p>
+        </div>
+      </div>
+
+      {/* Stats */}
+      <div className="flex gap-3 mb-4">
+        <div className="flex-1 bg-[#E5D9FF] rounded-[6.6px] p-3">
+          <p className="text-[#5E23DC] text-[17.5px] font-bold">₹2.5L</p>
+          <p className="text-[#4A5565] text-[10.2px]">Avg. Monthly</p>
+        </div>
+
+        <div className="flex-1 bg-white rounded-[6.6px] p-3">
+          <p className="text-[#5E23DC] text-[17.5px] font-bold">98%</p>
+          <p className="text-[#4A5565] text-[10.2px]">Satisfaction</p>
+        </div>
+      </div>
+
+      {/* Progress */}
+      <div className="w-full h-[6px] bg-white rounded-full overflow-hidden">
+        <div className="h-full w-[75%] bg-[#5E23DC]" />
+      </div>
+    </div>
+</div>
 {/* Floating Dashboard Card */}
 <div
   className="
