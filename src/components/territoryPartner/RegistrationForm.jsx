@@ -12,6 +12,7 @@ const RegistrationForm = ({ plan }) => {
     fullname: "",
     contact: "",
     email: "",
+    username: "",
     password: "",
     state: "",
     city: "",
@@ -143,6 +144,7 @@ const RegistrationForm = ({ plan }) => {
             fullname: "",
             contact: "",
             email: "",
+            username: "",
             password: "",
             state: "",
             city: "",
@@ -275,30 +277,45 @@ const RegistrationForm = ({ plan }) => {
           />
         </div>
 
-        {/* Password Input */}
-        <div className="group w-full flex items-center rounded-lg px-4 mb-2 sm:mb-4  border border-black/20 focus-within:border-2 focus-within:border-[#0BB501]">
-          <input
-            value={newPartner.password}
-            onChange={(e) =>
-              setNewPartner({ ...newPartner, password: e.target.value })
-            }
-            type={isPasswordShow ? "text" : "password"}
-            minLength={6}
-            required
-            placeholder="Password"
-            className="w-full bg-white text-sm sm:text-base font-medium py-3 border-none rounded-lg focus:outline-none focus:ring-none"
-          />
-          {isPasswordShow ? (
-            <IoMdEyeOff
-              onClick={() => setIsPasswordShow(false)}
-              className="text-black/20 text-[20px] ml-[10px] cursor-pointer"
+        <div className="w-full flex flex-col lg:flex-row gap-2 sm:gap-4 items-center justify-between mb-2 sm:mb-4">
+          <div className="w-full lg:w-[300px]">
+            <input
+              type="text"
+              required
+              placeholder="Username"
+              value={newPartner.username}
+              onChange={(e) =>
+                setNewPartner({ ...newPartner, username: e.target.value })
+              }
+              className="w-full bg-white text-sm sm:text-base font-medium px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
             />
-          ) : (
-            <IoEye
-              onClick={() => setIsPasswordShow(true)}
-              className="text-black/20 text-[20px] ml-[10px] cursor-pointer"
+          </div>
+
+          {/* Password Input */}
+          <div className="group w-full lg:w-[300px] flex items-center rounded-lg px-4 border border-black/20 focus-within:border-2 focus-within:border-[#0BB501]">
+            <input
+              value={newPartner.password}
+              onChange={(e) =>
+                setNewPartner({ ...newPartner, password: e.target.value })
+              }
+              type={isPasswordShow ? "text" : "password"}
+              minLength={6}
+              required
+              placeholder="Password"
+              className="w-full bg-white text-sm sm:text-base font-medium py-3 border-none rounded-lg focus:outline-none focus:ring-none"
             />
-          )}
+            {isPasswordShow ? (
+              <IoMdEyeOff
+                onClick={() => setIsPasswordShow(false)}
+                className="text-black/20 text-[20px] ml-[10px] cursor-pointer"
+              />
+            ) : (
+              <IoEye
+                onClick={() => setIsPasswordShow(true)}
+                className="text-black/20 text-[20px] ml-[10px] cursor-pointer"
+              />
+            )}
+          </div>
         </div>
 
         <div className="w-full mb-5">
