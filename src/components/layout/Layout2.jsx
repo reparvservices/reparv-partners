@@ -111,7 +111,7 @@ function LayoutTwo() {
         </div>
       </div>
 
-      ========= MOBILE SIDEBAR =========
+      {/* ========= MOBILE SIDEBAR ========= */}
       {showSidebar && (
         <div className="sidebar w-full fixed md:hidden top-0 right-0 z-30 bg-white flex flex-col items-end gap-5 pb-8 shadow-[0px_1px_3px_1px_#00000026]">
           

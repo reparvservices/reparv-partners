@@ -149,12 +149,16 @@ export default function FaqSection() {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             {/* Contact Support */}
-            <button className="px-6 py-3 rounded-xl bg-[#5E23DC] text-white font-medium shadow-md hover:opacity-90">
+            <button onClick={()=>{
+              window.open("https://www.reparv.in/contact-us")
+            }} className="px-6 py-3 rounded-xl bg-[#5E23DC] text-white font-medium shadow-md hover:opacity-90">
               Contact Support
             </button>
 
             {/* Schedule Demo */}
-            <button className="px-6 py-3 rounded-xl border border-[#5E23DC] text-[#5E23DC] font-medium bg-white shadow-md hover:bg-[#F0FFF8]">
+            <button onClick={()=>{
+              window.open("https://www.reparv.in/contact-us")
+            }}  className="px-6 py-3 rounded-xl border border-[#5E23DC] text-[#5E23DC] font-medium bg-white shadow-md hover:bg-[#F0FFF8]">
               Schedule a Demo
             </button>
           </div>

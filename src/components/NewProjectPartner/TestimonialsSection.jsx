@@ -108,6 +108,17 @@ export default function TestimonialsSection() {
         </p>
 
         <button
+       onClick={() => {
+    const el = document.getElementById("pricing");
+    if (!el) return;
+
+    const y = el.getBoundingClientRect().top + window.pageYOffset;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
+    });
+  }}
           className="
             mt-6 bg-[#5E23DC]
             text-white text-[15px] lg:text-lg
