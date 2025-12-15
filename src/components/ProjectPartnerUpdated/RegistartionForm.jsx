@@ -87,12 +87,12 @@ const RegistrationForm = ({ plan }) => {
     e.preventDefault();
 
     // Free plan: ensure username & password
-    if (parseFloat(registrationPrice) === 0) {
+ 
       if (!newPartner.username || !newPartner.password) {
         alert("Please provide username and password for free plan");
         return;
       }
-    }
+    
 
     try {
       // Submit registration data first
@@ -324,6 +324,35 @@ const RegistrationForm = ({ plan }) => {
             </div>
           </div>
 
+          {/* FREE PLAN: USERNAME & PASSWORD */}
+         
+            <div className="space-y-4">
+              <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide">
+                Account Credentials
+              </h4>
+
+              <input
+                type="text"
+                required
+                placeholder="Choose Username"
+                value={newPartner.username}
+                onChange={(e) =>
+                  setNewPartner({ ...newPartner, username: e.target.value })
+                }
+                className={inputClass}
+              />
+
+              <input
+                type="password"
+                required
+                placeholder="Create Password"
+                value={newPartner.password}
+                onChange={(e) =>
+                  setNewPartner({ ...newPartner, password: e.target.value })
+                }
+                className={inputClass}
+              />
+            </div>
           {/* INTENT */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide">
@@ -370,36 +399,7 @@ const RegistrationForm = ({ plan }) => {
             />
           </div>
 
-          {/* FREE PLAN: USERNAME & PASSWORD */}
-          {parseFloat(registrationPrice) === 0 && (
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-slate-500 uppercase tracking-wide">
-                Account Credentials
-              </h4>
-
-              <input
-                type="text"
-                required
-                placeholder="Choose Username"
-                value={newPartner.username}
-                onChange={(e) =>
-                  setNewPartner({ ...newPartner, username: e.target.value })
-                }
-                className={inputClass}
-              />
-
-              <input
-                type="password"
-                required
-                placeholder="Create Password"
-                value={newPartner.password}
-                onChange={(e) =>
-                  setNewPartner({ ...newPartner, password: e.target.value })
-                }
-                className={inputClass}
-              />
-            </div>
-          )}
+        
 
           {/* CTA */}
           <div className="flex flex-col items-center gap-4 pt-6">
