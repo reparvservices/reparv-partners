@@ -144,7 +144,7 @@ setPlans(orderedPlans);
     <div
       className={`
       relative overflow-visible 
-      rounded-2xl p-8 border flex flex-col
+      rounded-2xl p-8 border  flex flex-col
       transition-all duration-300
       hover:-translate-y-2 hover:shadow-2xl
       ${

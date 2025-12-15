@@ -79,7 +79,7 @@ function LayoutTwo() {
             </NavLink> */}
 
             <Link
-              to=""
+              to="https://projectpartner.reparv.in/"
               className="
     bg-[#5E23DC] 
     text-white 
@@ -103,10 +103,28 @@ function LayoutTwo() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <RxHamburgerMenu
-              onClick={() => setShowSidebar(true)}
-              className="text-3xl cursor-pointer hover:text-[#5E23DC]"
-            />
+          
+            <Link
+              to="https://projectpartner.reparv.in/"
+              className="
+    bg-[#5E23DC] 
+    text-white 
+    px-6 py-2
+    rounded-lg 
+    font-semibold 
+    shadow-lg 
+    transform 
+    transition 
+    duration-300 
+    ease-in-out
+    hover:bg-[#4a0db8] 
+    hover:scale-105 
+    hover:shadow-2xl
+    active:scale-95
+  "
+            >
+              Login
+            </Link>
           </div>
         </div>
       </div>
