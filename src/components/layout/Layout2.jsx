@@ -27,39 +27,40 @@ function LayoutTwo() {
 
   return (
     <div className="layout w-full flex flex-col bg-white overflow-hidden ">
-     
       {/* ========= DESKTOP NAVBAR ========= */}
       <div className="w-full bg-white shadow-sm fixed top-0 left-0 z-20">
         <div className="max-w-[1350px] mx-auto px-6 py-2 flex items-center justify-between">
-
           {/* Left Logo */}
           <Link to="/" className="flex items-center">
-  <img
-    src={reparvLogo}
-    alt="Reparv Logo"
-    className="w-[95px] md:w-[120px] lg:w-[135px]"
-  />
-</Link>
+            <img
+              src={reparvLogo}
+              alt="Reparv Logo"
+              className="w-[95px] md:w-[120px] lg:w-[135px]"
+            />
+          </Link>
 
           {/* Location */}
-         <div className="hidden items-center gap-2 text-[#2b2b2b] font-medium cursor-pointer">
-  <IoLocationOutline className="text-xl" />
+          <div className="hidden items-center gap-2 text-[#2b2b2b] font-medium cursor-pointer">
+            <IoLocationOutline className="text-xl" />
 
-  <span>Nagpur</span>
+            <span>Nagpur</span>
 
-  {/* Down Arrow – Light Grey Like Figma */}
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-4 h-4 text-gray-400 mt-[1px]"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="2"
-    stroke="currentColor"
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
-  </svg>
-</div>
-
+            {/* Down Arrow – Light Grey Like Figma */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-4 h-4 text-gray-400 mt-[1px]"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 9l6 6 6-6"
+              />
+            </svg>
+          </div>
 
           {/* Nav Links – Desktop */}
           <div className="hidden md:flex items-center gap-10 text-[16px] font-medium">
@@ -77,9 +78,9 @@ function LayoutTwo() {
               Contact Us
             </NavLink> */}
 
-           <Link
-  to=""
-  className="
+            <Link
+              to=""
+              className="
     bg-[#5E23DC] 
     text-white 
     px-6 py-3 
@@ -95,10 +96,9 @@ function LayoutTwo() {
     hover:shadow-2xl
     active:scale-95
   "
->
-  Login As Partner
-</Link>
-
+            >
+              Login As Partner
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -114,15 +114,10 @@ function LayoutTwo() {
       {/* ========= MOBILE SIDEBAR ========= */}
       {showSidebar && (
         <div className="sidebar w-full fixed md:hidden top-0 right-0 z-30 bg-white flex flex-col items-end gap-5 pb-8 shadow-[0px_1px_3px_1px_#00000026]">
-          
           {/* Sidebar Header */}
           <div className="w-full flex items-center justify-between h-16 shadow-[0px_1px_3px_1px_#00000026] px-6">
             <Link to="/" onClick={() => setShowSidebar(false)}>
-              <img
-                src={reparvLogo}
-                alt="Reparv Logo"
-                className="w-[110px]"
-              />
+              <img src={reparvLogo} alt="Reparv Logo" className="w-[110px]" />
             </Link>
 
             <RxCross2
@@ -175,15 +170,14 @@ function LayoutTwo() {
           </div>
         </div>
       )}
-    
-  
+
       {/* container */}
       <div className="w-full  sm:bg-[#FAFAFA]">
         <Outlet />
       </div>
 
       {/* footer */}
-     <Footer/>
+      <Footer />
 
       {/* Show Success Screen */}
       {successScreen?.show && <SuccessScreen />}

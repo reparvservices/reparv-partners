@@ -137,6 +137,10 @@ const JoinStepsSection = () => {
 
   {/* CTA */}
   <button
+  onClick={() =>
+    document.getElementById("pricing")?.scrollIntoView({
+      behavior: "smooth",
+    })}
     className="
       mt-8 sm:mt-10
       w-full sm:w-auto

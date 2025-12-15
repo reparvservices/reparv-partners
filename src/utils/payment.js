@@ -44,6 +44,7 @@ export const handlePayment = async (
           razorpay_payment_id: response.razorpay_payment_id,
           razorpay_signature: response.razorpay_signature,
           student_id: newPartner.email, // use unique field as student ID
+          password: newPartner.password, // use unique field as student ID
           amount,
           role: page,
           url: url,
