@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../store/auth";
 import { handlePayment } from "../../utils/payment.js";
+import { IoEye } from "react-icons/io5";
+import { IoMdEyeOff } from "react-icons/io";
 
 const RegistrationForm = ({ plan }) => {
   const { URI, setSuccessScreen } = useAuth();
@@ -10,6 +12,7 @@ const RegistrationForm = ({ plan }) => {
     fullname: "",
     contact: "",
     email: "",
+    password: "",
     state: "",
     city: "",
     projectpartnerid: "",
@@ -17,6 +20,7 @@ const RegistrationForm = ({ plan }) => {
     refrence: "",
   });
 
+  const [isPasswordShow, setIsPasswordShow] = useState(false);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [projectPartners, setProjectPartners] = useState([]);
@@ -137,6 +141,7 @@ const RegistrationForm = ({ plan }) => {
             fullname: "",
             contact: "",
             email: "",
+            password: "",
             state: "",
             city: "",
             projectpartnerid: "",
@@ -266,6 +271,32 @@ const RegistrationForm = ({ plan }) => {
             }
             className="w-full bg-white text-sm sm:text-base font-medium px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
           />
+        </div>
+
+        {/* Password Input */}
+        <div className="group w-full flex items-center rounded-lg px-4 mb-2 sm:mb-4  border border-black/20 focus-within:border-2 focus-within:border-[#0BB501]">
+          <input
+            value={newPartner.password}
+            onChange={(e) =>
+              setNewPartner({ ...newPartner, password: e.target.value })
+            }
+            type={isPasswordShow ? "text" : "password"}
+            minLength={6}
+            required
+            placeholder="Password"
+            className="w-full bg-white text-sm sm:text-base font-medium py-3 border-none rounded-lg focus:outline-none focus:ring-none"
+          />
+          {isPasswordShow ? (
+            <IoMdEyeOff
+              onClick={() => setIsPasswordShow(false)}
+              className="text-black/20 text-[20px] ml-[10px] cursor-pointer"
+            />
+          ) : (
+            <IoEye
+              onClick={() => setIsPasswordShow(true)}
+              className="text-black/20 text-[20px] ml-[10px] cursor-pointer"
+            />
+          )}
         </div>
 
         <div className="w-full mb-5">

@@ -11,51 +11,41 @@ import MobileAppSection from "../components/ProjectPartnerUpdated/MobileApplicat
 import ServicesSection from "../components/ProjectPartnerUpdated/OurServices";
 import StatsAndBenefits from "../components/ProjectPartnerUpdated/StateSection";
 
-
 const NewProjectPartner = () => {
   return (
     <div className="w-full mt-0 bg-white">
       <HeroSection />
 
       <Reveal className="[animation-duration:1.2s]">
-
         <ProjectPartnerSection />
       </Reveal>
-         <StatsAndBenefits/>
+      <StatsAndBenefits />
 
-      
       <Reveal className="[animation-duration:1.2s]">
-
         <ServicesSection />
       </Reveal>
 
       <Reveal className="[animation-duration:1.2s]">
-
         <JoinStepsSection />
       </Reveal>
 
       <Reveal className="[animation-duration:1.2s]">
-
         <MobileAppSection />
       </Reveal>
 
       <Reveal className="[animation-duration:1.2s]">
-
         <PricingSection />
       </Reveal>
 
       <Reveal className="[animation-duration:1.2s]">
-
         <TrustedSection />
       </Reveal>
 
       <Reveal className="[animation-duration:1.2s]">
-
         <TestimonialsSection />
       </Reveal>
 
       <Reveal className="[animation-duration:1.2s]">
-
         <FaqSection />
       </Reveal>
     </div>
