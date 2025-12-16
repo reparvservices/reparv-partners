@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaHeadphones, FaUserCheck, FaUsers } from "react-icons/fa";
 import { TbLayoutDashboard } from "react-icons/tb";
 import Ex1 from "../../assets/projectpartner/ex1.png";
@@ -232,6 +232,29 @@ const Card = ({ icon: Icon, title, desc, active, color, svg }) => (
 );
 
 export default function ProjectPartnerSection() {
+  const sliderRef = useRef(null);
+const [activeIndex, setActiveIndex] = useState(0);
+useEffect(() => {
+  if (!sliderRef.current) return;
+
+  const interval = setInterval(() => {
+    const slider = sliderRef.current;
+    const slideWidth = slider.offsetWidth;
+
+    let nextIndex = activeIndex + 1;
+    if (nextIndex >= cards.length) nextIndex = 0;
+
+    slider.scrollTo({
+      left: slideWidth * nextIndex,
+      behavior: "smooth",
+    });
+
+    setActiveIndex(nextIndex);
+  }, 3000); // ⏱ 3 seconds
+
+  return () => clearInterval(interval);
+}, [activeIndex, cards.length]);
+
   return (
     <div className="w-full bg-white px-1 sm:px-4 ">
       <section className="w-full bg-white mt-5 lg:py-10 px-2 sm:px-8 lg:px-25">
@@ -246,11 +269,65 @@ export default function ProjectPartnerSection() {
               across India
             </p>
 
-            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-y-1 sm:gap-x-6 md:gap-x-10 lg:gap-x-60 xl:gap-x-40">
-              {cards.map((card, i) => (
-                <Card key={i} {...card} />
-              ))}
-            </div>
+        {/* CARDS */}
+<div className="mt-10">
+
+  {/*MOBILE SLIDER */}
+ <div
+  ref={sliderRef}
+  onScroll={(e) => {
+    const scrollLeft = e.target.scrollLeft;
+    const width = e.target.offsetWidth;
+    setActiveIndex(Math.round(scrollLeft / width));
+  }}
+  className="
+    flex sm:hidden
+    overflow-x-auto
+    snap-x snap-mandatory
+    gap-4
+    scrollbar-hide
+  "
+>
+  {cards.map((card, i) => (
+    <div key={i} className="min-w-full snap-center px-1">
+      <Card {...card} />
+    </div>
+  ))}
+</div>
+
+  {/*  DOTS (Mobile Only) */}
+  <div className="flex sm:hidden justify-center gap-2 mb-4">
+    {cards.map((_, i) => (
+      <span
+        key={i}
+        className={`h-2 w-2 rounded-full transition-all duration-300 ${
+          activeIndex === i
+            ? "bg-[#5A1EDC] w-4"
+            : "bg-gray-300"
+        }`}
+      />
+    ))}
+  </div>
+
+  {/* 💻 DESKTOP GRID (UNCHANGED) */}
+  <div
+    className="
+      hidden sm:grid
+      grid-cols-2
+      gap-y-1
+      sm:gap-x-6
+      md:gap-x-10
+      lg:gap-x-60
+      xl:gap-x-40
+    "
+  >
+    {cards.map((card, i) => (
+      <Card key={i} {...card} />
+    ))}
+  </div>
+
+</div>
+
           </div>
 
           {/* RIGHT IMAGES */}
@@ -313,8 +390,7 @@ export default function ProjectPartnerSection() {
         }
       `}</style>
       </section>
-      {/* Stats Section */}
-   
+     
     </div>
   );
 }

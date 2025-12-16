@@ -19,6 +19,7 @@ import RefundPolicy from "./pages/RefundPolicy";
 import Promoter from "./pages/Promoter";
 import LayoutTwo from "./components/layout/Layout2";
 import NewProjectPartner from "./pages/newProjectPartner";
+import PartnerRegistrationPage from "./components/ProjectPartnerUpdated/PartnerRegistrationModal";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         {/* Route with LayoutTwo */}
         <Route path="" element={<LayoutTwo />}>
           <Route path="/newpartner" element={<NewProjectPartner />} />
+          <Route path="/newpartner/joinPartner" element={<PartnerRegistrationPage/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

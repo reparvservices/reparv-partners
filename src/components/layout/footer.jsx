@@ -42,7 +42,7 @@ export default function Footer() {
             <h3 className="font-semibold text-white text-lg">Company</h3>
             <ul className="flex flex-col gap-3 text-white/70 text-sm">
               <li><Link to="/about-us">About Us</Link></li>
-              <li><Link to="/careers">Careers</Link></li>
+             
               <li><Link to="/press">Press</Link></li>
               <li><Link to="/blog">Blog</Link></li>
             </ul>
