@@ -405,34 +405,53 @@ const HeroSection = () => {
           </button>
 
           {/* LEARN MORE BUTTON */}
-          <button
-            className="
-      w-full sm:w-auto
-      border border-white/30
-       text-[13px]  sm:text-base text-white font-semibold
-      sm:px-8 sm:py-3 rounded-lg
-      hover:bg-white/10 transition
-      flex items-center justify-center gap-2
-    "
-          >
-            Learn More
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path
-                d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z"
-                stroke="#F4F8F5"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M8.5 7L13 10L8.5 13V7Z"
-                stroke="#F4F8F5"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+         <button
+  onClick={() =>
+    window.open("https://www.youtube.com/watch?v=hl8MF7-LlCc", "_blank")
+  }
+  className="
+    group
+    w-full sm:w-auto
+    border border-white/30
+    text-[13px] sm:text-base text-white font-semibold
+     sm:px-8 py-2.5 sm:py-3
+    rounded-lg
+    flex items-center justify-center gap-2
+    transition-all duration-300 ease-out
+    hover:border-white/60
+    hover:bg-white/10
+    hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]
+    active:scale-95
+  "
+>
+  <span className="transition-transform duration-300 group-hover:translate-x-1">
+    Learn More
+  </span>
+
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    className="transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110"
+  >
+    <path
+      d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z"
+      stroke="#F4F8F5"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M8.5 7L13 10L8.5 13V7Z"
+      stroke="#F4F8F5"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+</button>
+
         </div>
 
         <div
@@ -539,8 +558,8 @@ const HeroSection = () => {
       <div
         className="
     absolute
-    right-[28%]
-    bottom-[45%]
+    right-[25%]
+    bottom-[35%]
     hidden  xl:block
   z-20
   "
@@ -606,14 +625,15 @@ const HeroSection = () => {
         alt="Partner"
         className="
     absolute
-    hidden md:block
+    hidden
     lg:block
     right-0
+    top-13
     bottom-[-140px]           /* crop lower body like Figma */
     w-[95%]     
     right-[-90px]             /* zoomed in */
     md:w-[52%]
-    lg:w-[62%]
+    lg:w-[55%]
     max-w-[900px]
     object-cover             /* important for Figma crop */
     object-top               /* keeps face visible */

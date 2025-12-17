@@ -17,9 +17,10 @@ export default function PricingCard({
       className={`
       relative overflow-visible 
       rounded-2xl p-8 border flex flex-col
-      transition-all duration-300
+      transition-all duration-300 
+      border-0.5 border-[#5E23DC]
       hover:-translate-y-2 hover:shadow-2xl
-      ${plan.mostPopular ? "border-2 border-[#5E23DC] shadow-xl" : "border-gray-200"}
+      ${plan.mostPopular ? "border-2 border-[#5E23DC] shadow-xl" : ""}
     `}
     >
       {/* MOST POPULAR BADGE */}

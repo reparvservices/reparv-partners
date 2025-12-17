@@ -26,9 +26,9 @@ function LayoutTwo() {
   };
 
   return (
-    <div className="layout w-full flex flex-col bg-white overflow-hidden ">
-      {/* ========= DESKTOP NAVBAR ========= */}
-      <div className="w-full bg-white shadow-sm fixed top-0 left-0 z-20">
+   <div className="layout w-full flex flex-col bg-white z-20 overflow-hidden ">
+  {/* ========= DESKTOP NAVBAR ========= */}
+  <div className="w-full bg-white shadow-sm fixed top-0 left-0 z-50 sm:h-[72px]">
         <div className="max-w-[1350px] mx-auto px-6 py-2 flex items-center justify-between">
           {/* Left Logo */}
           <Link to="/" className="flex items-center">

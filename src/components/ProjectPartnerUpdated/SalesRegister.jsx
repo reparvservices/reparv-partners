@@ -3,7 +3,9 @@ import { useAuth } from "../../store/auth";
 import { handlePayment } from "../../utils/payment.js";
 
 const RegistrationForm = ({ plan }) => {
-  const { URI } = useAuth();
+  const { URI,setSuccessScreen ,currentProjectPartner} = useAuth();
+  console.log(currentProjectPartner,"currentProjectPartner");
+  
   const registrationPrice = plan?.totalPrice;
 
   const [newPartner, setNewPartner] = useState({
@@ -14,7 +16,7 @@ const RegistrationForm = ({ plan }) => {
     password: "",
     state: "",
     city: "",
-    projectpartnerid: "",
+    projectpartnerid: currentProjectPartner || "",
     intrest: "",
     refrence: "",
   });
@@ -57,6 +59,7 @@ const RegistrationForm = ({ plan }) => {
     //    alert("Failed to load Razorpay. Please check your internet.");
     //    return;
     //  }
+    setNewPartner({...newPartner,projectpartnerid:currentProjectPartner || ""});
      try {
        const response = await fetch(`${URI}/admin/salespersons/add`, {
          method: "POST",
@@ -105,6 +108,7 @@ const RegistrationForm = ({ plan }) => {
         //    console.error("Payment Error:", paymentError.message);
         //    alert("Payment failed. Please contact support.");
         //  }
+
        } else {
          const errorRes = await response.json();
          console.error("Submission Error:", errorRes);
@@ -118,7 +122,7 @@ const RegistrationForm = ({ plan }) => {
  
 
   return (
-    <div className="w-full max-h-[80vh] overflow-y-auto px-1">
+    <div className="w-full  overflow-y-auto">
       <form
         onSubmit={handleSubmit}
         className="bg-white rounded-3xl shadow-xl border border-purple-100"
@@ -133,7 +137,7 @@ const RegistrationForm = ({ plan }) => {
           </p>
         </div>
 
-        <div className="p-6 sm:p-8 space-y-6">
+        <div className="p-0 sm:p-6 sm:p-8 space-y-6">
           {/* PERSONAL */}
           <Section title="Personal Information">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -206,6 +210,8 @@ const RegistrationForm = ({ plan }) => {
             />
           </Section>
 
+ 
+
           {/* OTHER */}
           <Section title="Additional Information">
             <Select
@@ -217,7 +223,12 @@ const RegistrationForm = ({ plan }) => {
               options={[
                 "Passion for Real Estate Industry",
                 "Learning & Career Growth",
+                "Opportunity to Work with a Growing Company",
+                "Strong Communication & Negotiation Skills",
+                "Local Market Knowledge",
                 "Interest in Marketing & Sales",
+                "Financial Rewards & Performance-Driven Role",
+                "Helping People Make Life-Changing Decisions",
                 "Financial Rewards",
               ]}
             />
@@ -255,7 +266,7 @@ const RegistrationForm = ({ plan }) => {
 /* ================= UI COMPONENTS ================= */
 
 const Section = ({ title, children }) => (
-  <div className="bg-purple-50/50 border border-purple-100 rounded-2xl p-5 space-y-4">
+  <div className="bg-purple-50/50 border border-purple-100 sm:rounded-2xl p-3 sm:p-5 space-y-4">
     <h4 className="text-sm font-semibold text-purple-700">
       {title}
     </h4>

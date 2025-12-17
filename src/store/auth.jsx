@@ -6,6 +6,8 @@ export const AuthProvider = ({children}) => {
 
 const [loading, setLoading] = useState(false);
 const [isActive, setIsActive] = useState(false);
+const [projectPartner,setProjectPartners]=useState([]);
+const [currentProjectPartner, setCurrentProjectPartner] = useState(null);
 const [successScreen, setSuccessScreen] = useState({
     show: false,
     label: "Thank You For Registering!",
@@ -22,7 +24,7 @@ return <AuthContext.Provider
         isActive, setIsActive,
         successScreen, setSuccessScreen,
         showInquiryForm, setShowInquiryForm,
-        URI, loading, setLoading,
+        URI, loading, setLoading,currentProjectPartner, setCurrentProjectPartner,projectPartner,setProjectPartners
 
     }
 }>

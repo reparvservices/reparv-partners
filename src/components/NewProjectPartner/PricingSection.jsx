@@ -110,9 +110,24 @@ export default function PricingSection({ auth }) {
         yearlyPrice: "Free",
         billPrice: "0",
         features: [
+          "Minimum 300 Leads",
+          "15–20 Site Visits",
+
+          "Common Relationship Manager",
+          "Marketing Material",
+          "1 Social Media Post / Month",
           "Access all basic features",
           "No payment required",
           "Try before subscribing",
+          "1 Social Media Video Reel",
+          "Follow-up Tracker",
+          "Digital Broker System",
+          "Daily Work Tracker",
+          "Lead Management System",
+          "Digital Profile",
+          "Team Management Support",    
+          "Personalised Landing Page",
+          "Business Community Access"
         ],
         mostPopular: false,
         iconBg: "linear-gradient(135deg, #AD46FF 0%, #9810FA 100%)",
@@ -188,7 +203,7 @@ export default function PricingSection({ auth }) {
       const res = await axios.post(
         `${URI}/projectpartner/subscription/validate`,
         {
-      user_id: userId,
+          user_id: userId,
           code: code.trim(),
           planid: plan.id,
         }

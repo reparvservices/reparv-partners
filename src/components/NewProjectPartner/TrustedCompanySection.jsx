@@ -1,12 +1,5 @@
-import React, { useState } from "react";
-import amcor from "../../assets/company/c1.png";
-import amgen from "../../assets/company/c2.png";
-import davita from "../../assets/company/c3.png";
-import dover from "../../assets/company/c4.png";
-import bxp from "../../assets/company/c5.png";
-import aes from "../../assets/company/c6.png";
-import capitalOne from "../../assets/company/c7.png";
-import alliant from "../../assets/company/c7.png";
+import React, { useEffect, useState } from "react";
+import dlogo from "../../assets/company/logo.png";
 import person from "../../assets/company/person.png";
 import handSheck from "../../assets/company/handsheck.png";
 import user from "../../assets/company/user.png";
@@ -15,24 +8,68 @@ import like from "../../assets/company/like.png";
 import { FaHandshake, FaBuilding, FaCity, FaStar } from "react-icons/fa";
 import PartnerRegistrationModal from "../ProjectPartnerUpdated/PartnerRegistrationModal";
 import { Link } from "react-router-dom";
-
-const logos = [
-  amcor,
-  amgen,
-  davita,
-  dover,
-  bxp,
-  aes,
-  capitalOne,
-  alliant,
-  amcor,
-  amgen,
-  davita,
-  dover,
-];
+import { BiRightArrow } from "react-icons/bi";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import { useAuth } from "../../store/auth";
 
 export default function TrustedSection() {
+  const { currentProjectPartner, setCurrentProjectPartner ,URI,setProjectPartners} = useAuth();
   const [openModal, setOpenModal] = useState(false);
+  const [partners, setPartner] = useState([]);
+  async function fetchProjectPartnerLogos() {
+    try {
+      const response = await fetch(
+        `${URI}/projectpartnerRoute/user/`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+
+      const data = await response.json();
+
+      // Extract only id and businessLogo
+      return data.map((user) => ({
+        id: user.id,
+        name:user.fullname,
+        businessLogo: user.businessLogo,
+      }));
+    } catch (error) {
+      console.error("Error fetching project partner users:", error);
+      return [];
+    }
+  }
+  const chunkArray = (arr, size) => {
+    const chunks = [];
+    for (let i = 0; i < arr.length; i += size) {
+      chunks.push(arr.slice(i, i + size));
+    }
+    return chunks;
+  };
+
+  useEffect(() => {
+    async function getLogos() {
+      const logos = await fetchProjectPartnerLogos();
+      setPartner(logos);
+    }
+    getLogos();
+  }, []);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = chunkArray(partners, 12);
+
+ const prevSlide = () => {
+  setCurrentSlide((prev) =>
+    prev === 0 ? slides.length - 1 : prev - 1
+  );
+};
+
+const nextSlide = () => {
+  setCurrentSlide((prev) =>
+    prev === slides.length - 1 ? 0 : prev + 1
+  );
+};
+
+
   return (
     <section className="bg-[#5E23DC] mx-auto text-white w-[100%] lg:w-[90%] lg:rounded-[48px] overflow-hidden">
       {/* Top Content */}
@@ -50,45 +87,96 @@ export default function TrustedSection() {
           </div>
 
           {/* RIGHT : Logos */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
-            {logos.map((logo, i) => (
-              <Link
-                key={i}
-                to="/newpartner/joinPartner"
-                className="
-    w-full
-    sm:w-[120px]
-    md:w-[140px]
-    h-[64px]
-    sm:h-[72px]
-    md:h-[76px]
-    rounded-[10px]
-    bg-[linear-gradient(135deg,#ECFDF5_0%,#E5E7EB_100%)]
-    flex items-center justify-center
-    transition
-    hover:scale-[1.03]
-    hover:shadow-md
-    active:scale-95
-  "
-              >
-                <img
-                  src={logo}
-                  alt="logo"
-                  className="
-      w-[80px]
-      sm:w-[88px]
-      md:w-[92px]
-      h-auto
-      object-contain
-    "
-                  style={{
-                    filter:
-                      "brightness(0) saturate(100%) invert(19%) sepia(83%) saturate(2636%) hue-rotate(252deg) brightness(92%) contrast(101%)",
-                  }}
-                />
-              </Link>
-            ))}
-          </div>
+       <div className="relative overflow-hidden">
+
+  {/* SLIDER */}
+  <div
+    className="flex transition-transform duration-700 ease-in-out"
+    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+  >
+    {slides.map((group, slideIndex) => (
+      <div key={slideIndex} className="w-full flex-shrink-0">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
+          {group.map((logo, i) => (
+            <Link
+              key={i}
+              onClick={()=>{setCurrentProjectPartner(logo?.id);
+                 setProjectPartners(logo?.name)}}
+              to="/newpartner/joinPartner"
+              className="
+                w-full
+                sm:w-[120px]
+                md:w-[140px]
+                h-[64px]
+                sm:h-[72px]
+                md:h-[76px]
+                rounded-[10px]
+                bg-[linear-gradient(135deg,#ECFDF5_0%,#E5E7EB_100%)]
+                flex items-center justify-center
+                transition
+                hover:scale-[1.03]
+                hover:shadow-md
+                active:scale-95
+              "
+            >
+              <img
+                src={
+                  logo?.businessLogo
+                    ? `${URI}/${logo.businessLogo.replace(/^\/+/, "")}`
+                    : dlogo
+                }
+                alt="Business Logo"
+                className="sm:h-15 sm:w-22 h-12 w-23 object-contain rounded"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = dlogo;
+                }}
+              />
+            </Link>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* LEFT ARROW */}
+  {slides.length > 1 && (
+    <button
+      onClick={prevSlide}
+      className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-[#5E23DC] rounded-full w-8 h-8 flex items-center justify-center shadow"
+    >
+      <FiArrowLeft/>
+    </button>
+  )}
+
+  {/* RIGHT ARROW */}
+  {slides.length > 1 && (
+    <button
+      onClick={nextSlide}
+      className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-[#5E23DC] rounded-full w-8 h-8 flex items-center justify-center shadow"
+    >
+  <FiArrowRight/>
+    </button>
+  )}
+
+  {/* DOTS */}
+  {slides.length > 1 && (
+    <div className="flex justify-center gap-2 mt-6">
+      {slides.map((_, index) => (
+        <button
+          key={index}
+          onClick={() => setCurrentSlide(index)}
+          className={`h-2 w-2 rounded-full transition ${
+            index === currentSlide
+              ? "bg-white"
+              : "bg-white/40"
+          }`}
+        />
+      ))}
+    </div>
+  )}
+</div>
+
         </div>
       </div>
 
@@ -99,7 +187,7 @@ export default function TrustedSection() {
           src={person}
           alt="Happy Client"
           className="
-        hidden md:block
+        hidden lg:block
         absolute -top-58 left-10
         w-130 z-10
       "
