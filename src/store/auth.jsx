@@ -16,7 +16,7 @@ const [successScreen, setSuccessScreen] = useState({
 const [showInquiryForm, setShowInquiryForm] = useState(false);
 const [role,setRole]=useState("sales");
 const URI = "https://api.reparv.in";
-//const URI="http://localhost:3000";
+//const URI="https://api.reparv.in";
 
 return <AuthContext.Provider
  value={

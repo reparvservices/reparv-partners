@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import ReactDOM from "react-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useAuth } from "../store/auth";
 
 const ContactForm = ({ onClose }) => {
+    const {URI}=useAuth();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -52,7 +54,7 @@ const ContactForm = ({ onClose }) => {
     try {
       setLoading(true);
       await axios.post(
-        "http://localhost:3000/project-partner/profile/contact",
+        `${URI}/project-partner/profile/contact`,
         formData
       );
       alert("Message sent successfully!");

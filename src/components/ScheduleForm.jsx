@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import ReactDOM from "react-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useAuth } from "../store/auth";
 
 const ScheduleForm = ({ onClose }) => {
+    const {URI}=useAuth();
   const [formData, setFormData] = useState({
     fullName: "",
     contact: "",
@@ -51,7 +53,8 @@ const ScheduleForm = ({ onClose }) => {
     try {
       setLoading(true);
       await axios.post(
-        "http://localhost:3000/project-partner/profile/schedule",
+        `${URI}/project-partner/profile/schedule`,
+        
         formData
       );
 
