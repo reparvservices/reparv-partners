@@ -41,10 +41,10 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="font-semibold text-white text-lg">Company</h3>
             <ul className="flex flex-col gap-3 text-white/70 text-sm">
-              <li><Link to="/about-us">About Us</Link></li>
+              <li><Link to="https://www.reparv.in/about-us">About Us</Link></li>
              
-              <li><Link to="/press">Press</Link></li>
-              <li><Link to="/blog">Blog</Link></li>
+              <li><Link to="https://www.reparv.in/properties">Properties</Link></li>
+              <li><Link to="https://www.reparv.in/blogs">Blog</Link></li>
             </ul>
           </div>
 
@@ -52,10 +52,10 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="font-semibold text-white text-lg">Resources</h3>
             <ul className="flex flex-col gap-3 text-white/70 text-sm">
-              <li><Link to="/documentation">Documentation</Link></li>
-              <li><Link to="/help-center">Help Center</Link></li>
-              <li><Link to="/community">Community</Link></li>
-              <li><Link to="/contact-us">Contact Us</Link></li>
+              <li><Link to="/">Documentation</Link></li>
+              <li><Link to="/">Help Center</Link></li>
+              <li><Link to="/">Community</Link></li>
+              <li><Link to="https://www.reparv.in/contact-us">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -63,9 +63,9 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="font-semibold text-white text-lg">Legal</h3>
             <ul className="flex flex-col gap-3 text-white/70 text-sm">
-              <li><Link to="/privacy-policy">Privacy Policy</Link></li>
-              <li><Link to="/terms-of-service">Terms of Service</Link></li>
-              <li><Link to="/cookie-policy">Cookie Policy</Link></li>
+              <li><Link to="https://partners.reparv.in/privacy-policy">Privacy Policy</Link></li>
+              <li><Link to="https://partners.reparv.in/terms-and-conditions">Terms of Service</Link></li>
+              <li><Link to="https://partners.reparv.in/cancellation-policy">Cancellation Policy</Link></li>
               <li><Link to="/disclaimer">Disclaimer</Link></li>
             </ul>
           </div>

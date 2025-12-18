@@ -20,6 +20,7 @@ import Promoter from "./pages/Promoter";
 import LayoutTwo from "./components/layout/Layout2";
 import NewProjectPartner from "./pages/newProjectPartner";
 import PartnerRegistrationPage from "./components/ProjectPartnerUpdated/PartnerRegistrationModal";
+import PartnersPage from "./components/ProjectPartnerUpdated/PartnersPage";
 
 function App() {
   return (
@@ -50,6 +51,8 @@ function App() {
         <Route path="" element={<LayoutTwo />}>
           <Route path="/newpartner" element={<NewProjectPartner />} />
           <Route path="/newpartner/joinPartner" element={<PartnerRegistrationPage/>}/>
+          <Route path="/partners" element={<PartnersPage/>} />
+
         </Route>
       </Routes>
     </BrowserRouter>

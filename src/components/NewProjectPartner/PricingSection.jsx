@@ -5,6 +5,9 @@ import RegistrationForm from "../ProjectPartnerUpdated/RegistartionForm";
 import { planIcons } from "../../utils";
 import PricingCard from "../ProjectPartnerUpdated/PricingCard";
 import { useAuth } from "../../store/auth";
+import PartnerRegistrationModal from "../ProjectPartnerUpdated/PartnerModel";
+import RegistrationSuccessModal from "../RegisterSuccess";
+import ContactForm from "../ContactForm";
 
 export default function PricingSection({ auth }) {
   const { URI, setSuccessScreen } = useAuth();
@@ -15,6 +18,8 @@ export default function PricingSection({ auth }) {
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [couponState, setCouponState] = useState({});
   const [redeemConfirm, setRedeemConfirm] = useState(null);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [showScheduleForm, setShowScheduleForm] = useState(false);
   // structure: { plan, code, discount }
 
   const sliderRef = useRef(null);
@@ -125,9 +130,9 @@ export default function PricingSection({ auth }) {
           "Daily Work Tracker",
           "Lead Management System",
           "Digital Profile",
-          "Team Management Support",    
+          "Team Management Support",
           "Personalised Landing Page",
-          "Business Community Access"
+          "Business Community Access",
         ],
         mostPopular: false,
         iconBg: "linear-gradient(135deg, #AD46FF 0%, #9810FA 100%)",
@@ -475,13 +480,18 @@ export default function PricingSection({ auth }) {
         <p className="mt-12 text-gray-700 text-sm">
           Need a custom plan for your organization?
         </p>
-        <a
-          href="https://www.reparv.in/contact-us"
+        <button
+          onClick={() => {
+            setShowContactForm(true);
+          }}
           className="mt-3 inline-flex items-center justify-center w-[295px] h-[46px] bg-[#5E23DC] rounded-[11px] text-white font-semibold hover:bg-[#4b1bb4]"
         >
           Contact Reparv Sales →
-        </a>
+        </button>
       </div>
+      {showContactForm && <ContactForm onClose={()=>setShowContactForm(false)} />}
+      
+         
     </section>
   );
 }

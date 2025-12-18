@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FiPlus, FiMinus } from "react-icons/fi";
+import ContactForm from "../ContactForm";
+import ScheduleForm from "../ScheduleForm";
 
 const FAQ_DATA = [
   {
@@ -65,11 +67,14 @@ export default function FaqSection() {
     group: null,
     item: null,
   });
-
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [showScheduleForm, setShowScheduleForm] = useState(false);
   const toggleFAQ = (groupIndex, itemIndex) => {
     setOpenIndex((prev) => ({
       group:
-        prev.group === groupIndex && prev.item === itemIndex ? null : groupIndex,
+        prev.group === groupIndex && prev.item === itemIndex
+          ? null
+          : groupIndex,
       item:
         prev.group === groupIndex && prev.item === itemIndex ? null : itemIndex,
     }));
@@ -103,8 +108,7 @@ export default function FaqSection() {
             {/* FAQ Items */}
             {group.items.map((item, itemIndex) => {
               const isOpen =
-                openIndex.group === groupIndex &&
-                openIndex.item === itemIndex;
+                openIndex.group === groupIndex && openIndex.item === itemIndex;
 
               return (
                 <div key={itemIndex} className="mb-3">
@@ -135,7 +139,8 @@ export default function FaqSection() {
         ))}
 
         {/* STILL HAVE QUESTIONS (Gradient Box) */}
-        <div className="w-full mt-16 rounded-[24px] px-6 md:px-12 py-10 text-center"
+        <div
+          className="w-full mt-16 rounded-[24px] px-6 md:px-12 py-10 text-center"
           style={{
             background: "linear-gradient(90deg, #5E23DC47 0%, #5E23DC47 100%)",
           }}
@@ -149,21 +154,28 @@ export default function FaqSection() {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             {/* Contact Support */}
-            <button onClick={()=>{
-              window.open("https://www.reparv.in/contact-us")
-            }} className="px-6 py-3 rounded-xl bg-[#5E23DC] text-white font-medium shadow-md hover:opacity-90">
+            <button
+              onClick={() => setShowContactForm(true)}
+              className="px-6 py-3 rounded-xl bg-[#5E23DC] text-white font-medium shadow-md hover:opacity-90"
+            >
               Contact Support
             </button>
 
             {/* Schedule Demo */}
-            <button onClick={()=>{
-              window.open("https://www.reparv.in/contact-us")
-            }}  className="px-6 py-3 rounded-xl border border-[#5E23DC] text-[#5E23DC] font-medium bg-white shadow-md hover:bg-[#F0FFF8]">
+            <button
+              onClick={() => setShowScheduleForm(true)}
+              className="px-6 py-3 rounded-xl border border-[#5E23DC] text-[#5E23DC] font-medium bg-white shadow-md hover:bg-[#F0FFF8]"
+            >
               Schedule a Demo
             </button>
           </div>
         </div>
       </div>
+      {showContactForm && <ContactForm onClose={()=>setShowContactForm(false)} />}
+
+      {showScheduleForm && (
+        <ScheduleForm onClose={() => setShowScheduleForm(false)} />
+      )}
     </section>
   );
 }
