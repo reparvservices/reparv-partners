@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import bg from "../../assets/company/man.png";
 import backgroundimage from "../../assets/company/bg.png";
@@ -9,7 +7,7 @@ import { GoLocation } from "react-icons/go";
 import { FaUsers } from "react-icons/fa";
 
 const HeroSection = () => {
-    const [showVideo, setShowVideo] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
 
   return (
     <section className="relative bg-[#5A1EDC] text-white overflow-hidden py-1 md:py-20 lg:py-20  md:px-16 lg:px-24">
@@ -37,7 +35,7 @@ const HeroSection = () => {
 
         {/* Heading */}
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-extrabold leading-tight mt-6 max-w-2xl  font-['Segoe_UI']
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] mt-6 max-w-2xl  font-['Segoe_UI']
     font-black
     text-white
     leading-[75px]"
@@ -87,10 +85,9 @@ const HeroSection = () => {
           </button>
 
           {/* LEARN MORE BUTTON */}
-         <button
-  onClick={() => setShowVideo(true)}
-
-  className="
+          <button
+            onClick={() => setShowVideo(true)}
+            className="
     group
     w-full sm:w-auto
     border border-white/30
@@ -104,35 +101,34 @@ const HeroSection = () => {
     hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]
     active:scale-95
   "
->
-  <span className="transition-transform duration-300 group-hover:translate-x-1">
-    Learn More
-  </span>
+          >
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              Learn More
+            </span>
 
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    fill="none"
-    className="transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110"
-  >
-    <path
-      d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z"
-      stroke="#F4F8F5"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M8.5 7L13 10L8.5 13V7Z"
-      stroke="#F4F8F5"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-</button>
-
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              className="transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110"
+            >
+              <path
+                d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z"
+                stroke="#F4F8F5"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M8.5 7L13 10L8.5 13V7Z"
+                stroke="#F4F8F5"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
         </div>
 
         <div
@@ -324,19 +320,19 @@ const HeroSection = () => {
   "
       />
       {/* VIDEO MODAL */}
-{showVideo && (
-  <div
-    className="
+      {showVideo && (
+        <div
+          className="
       fixed inset-0 z-[999]
       flex items-center justify-center
       bg-black/80 backdrop-blur-sm
       px-4
       animate-fadeIn
     "
-  >
-    {/* SCREEN FRAME */}
-    <div
-      className="
+        >
+          {/* SCREEN FRAME */}
+          <div
+            className="
         relative
         w-full max-w-4xl
         rounded-[28px]
@@ -344,42 +340,40 @@ const HeroSection = () => {
         shadow-[0_30px_80px_rgba(0,0,0,0.8)]
         animate-screenPop
       "
-    >
-      {/* TOP BAR (Laptop style) */}
-      <div className="flex items-center justify-between px-5 py-3 bg-[#111] rounded-t-[28px]">
-        <div className="flex gap-2">
-          <span className="w-3 h-3 bg-red-500 rounded-full" />
-          <span className="w-3 h-3 bg-yellow-400 rounded-full" />
-          <span className="w-3 h-3 bg-green-500 rounded-full" />
+          >
+            {/* TOP BAR (Laptop style) */}
+            <div className="flex items-center justify-between px-5 py-3 bg-[#111] rounded-t-[28px]">
+              <div className="flex gap-2">
+                <span className="w-3 h-3 bg-red-500 rounded-full" />
+                <span className="w-3 h-3 bg-yellow-400 rounded-full" />
+                <span className="w-3 h-3 bg-green-500 rounded-full" />
+              </div>
+
+              <button
+                onClick={() => setShowVideo(false)}
+                className="text-white/80 hover:text-white text-lg font-bold"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* VIDEO AREA */}
+            <div className="relative pt-[56.25%] bg-black rounded-b-[28px] overflow-hidden">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/hl8MF7-LlCc?autoplay=1"
+                title="Partner Program Video"
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              />
+            </div>
+
+            {/* GLOW */}
+            <div className="absolute inset-0 rounded-[28px] ring-1 ring-white/10 pointer-events-none" />
+          </div>
         </div>
-
-        <button
-          onClick={() => setShowVideo(false)}
-          className="text-white/80 hover:text-white text-lg font-bold"
-        >
-          ✕
-        </button>
-      </div>
-
-      {/* VIDEO AREA */}
-      <div className="relative pt-[56.25%] bg-black rounded-b-[28px] overflow-hidden">
-        <iframe
-          className="absolute inset-0 w-full h-full"
-          src="https://www.youtube.com/embed/hl8MF7-LlCc?autoplay=1"
-          title="Partner Program Video"
-          frameBorder="0"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-        />
-      </div>
-
-      {/* GLOW */}
-      <div className="absolute inset-0 rounded-[28px] ring-1 ring-white/10 pointer-events-none" />
-    </div>
-  </div>
-)}
-
-
+      )}
     </section>
   );
 };
