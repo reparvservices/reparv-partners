@@ -36,11 +36,13 @@ export default function TrustedSection() {
       const data = await response.json();
 
       // Extract only paid users with Success status
-      return data.filter((user)=>user.businessLogo!==null).map((user) => ({
-        id: user.id,
-        name: user.fullname,
-        businessLogo: user.businessLogo,
-      }));
+      return data
+        .filter((user) => user.businessLogo !== null)
+        .map((user) => ({
+          id: user.id,
+          name: user.fullname,
+          businessLogo: user.businessLogo,
+        }));
     } catch (error) {
       console.error("Error fetching project partner users:", error);
       return [];
@@ -148,12 +150,11 @@ export default function TrustedSection() {
               </div>
 
               {/* SEE MORE BUTTON */}
-            {partners.length > 12 && ( 
-
-              <Link
-                to="/partners"
-                onClick={(e) => e.stopPropagation()}
-                className="
+              {partners.length > 12 && (
+                <Link
+                  to="/partners"
+                  onClick={(e) => e.stopPropagation()}
+                  className="
     mt-8
     px-6 py-2
     rounded-full
@@ -171,11 +172,10 @@ export default function TrustedSection() {
 
     
   "
-              >
-                See more
-              </Link>
-
-            )}
+                >
+                  See more
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -183,7 +183,7 @@ export default function TrustedSection() {
         {/* Stats Bar */}
         <div
           className={`bg-white py-14  relative z-0 ${
-            visiblePartners.length <=4 ? "mt-20" : "mt-0"
+            visiblePartners.length <= 4 ? "mt-20" : "mt-0"
           }`}
         >
           {/* PERSON IMAGE – HIDE ON MOBILE  */}
@@ -253,7 +253,6 @@ export default function TrustedSection() {
         isOpen={successOpen}
         onClose={() => setSuccessOpen(false)}
       />
-   
     </div>
   );
 }
