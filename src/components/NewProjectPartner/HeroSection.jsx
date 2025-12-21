@@ -38,7 +38,8 @@ const HeroSection = () => {
           className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] mt-6 max-w-2xl  font-['Segoe_UI']
     font-black
     text-white
-    leading-[75px]"
+    leading-auto
+    sm:leading-[75px]"
         >
           Become a Project <br /> Partner Today
         </h1>
