@@ -81,10 +81,10 @@ import brandIcon from "../../assets/home/f5.png";
 import growthIcon from "../../assets/home/f6.png";
 
 const stats = [
-  { value: "500+", label: "Active Partners" },
-  { value: "10,000+", label: "Projects Completed" },
-  { value: "₹50Cr+", label: "Partner Earnings" },
-  { value: "4.8/5", label: "Partner Rating" },
+  { value: "100+", label: "Active Partners" },
+  { value: "50+", label: "Projects Completed" },
+  { value: "₹10Cr+", label: "Partner Earnings" },
+  // { value: "4.8/5", label: "Partner Rating" },
 ];
 
 const benefits = [

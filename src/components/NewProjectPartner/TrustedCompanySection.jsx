@@ -198,12 +198,14 @@ export default function TrustedSection() {
           />
 
           <div className="max-w-5xl mx-auto px-2  grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 ml-0 md:ml-[40%]">
-            <Stat icon={handSheck} value="495+" label="Active Partners" />
-            <Stat icon={building} value="44+" label="Enterprise Clients" />
+            <Stat icon={handSheck} value="100+" label="Active Partners" />
+            <Stat icon={building} value="50+" label="Project Completed" />
+              <Stat icon={like} value="₹10Cr+" label="Partner Earnings" />
             <Stat icon={user} value="18+" label="Cities Covered" />
-            <Stat icon={like} value="4.1" label="Average Rating" />
+          
           </div>
         </div>
+
 
         {/* Certifications */}
         <div className="py-14 text-center">

@@ -324,7 +324,7 @@ const MobileAppSection = () => {
         <img
           src={ios}
           alt="App Store"
-          className="h-12 cursor-pointer transition-transform hover:scale-110"
+          className="h-12 sm:h-15 cursor-pointer transition-transform hover:scale-110"
         />
         <a
           href="https://play.google.com/store/apps/details?id=com.reparvprojectpartner"
@@ -334,7 +334,7 @@ const MobileAppSection = () => {
           <img
             src={android}
             alt="Google Play"
-            className="h-12 cursor-pointer transition-transform hover:scale-110"
+            className="h-12 sm:h-15 cucursor-pointer transition-transform hover:scale-110"
           />
         </a>
       </div>

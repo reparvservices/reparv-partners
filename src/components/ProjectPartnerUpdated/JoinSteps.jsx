@@ -15,7 +15,7 @@ const steps = [
   {
     step: "STEP-3",
     title: "Start Earning",
-    desc: "Get verified and start receiving premium projects immediately",
+    desc: "List Your projects and start getting verified leads immediately",
   },
 ];
 

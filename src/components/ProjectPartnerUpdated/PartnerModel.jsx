@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import houseImage from "../../assets/company/house.png";
 import { useAuth } from "../../store/auth";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function PartnerRegistrationModal({
   isOpen,
@@ -30,10 +31,10 @@ export default function PartnerRegistrationModal({
     intrest: "Passion for Real Estate Industry",
     refrence: "",
   });
+  const [captchaToken, setCaptchaToken] = useState(null);
   const isValidEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
-
   const validateForm = () => {
     const { fullname, contact, email, password, state, city } = newPartner;
 
@@ -190,13 +191,32 @@ export default function PartnerRegistrationModal({
           ecosystem and unlock sustainable earning opportunities with Reparv.
         </p>
 
-        {/* IMAGE */}
-        <img
-          src={houseImage}
-          alt="House"
-          className="w-full sm:px-20 h-[220px] object-cover rounded-5xl mb-6 "
-        />
-
+        {/* VIDEO */}
+        <div className="w-full sm:px-20 h-[220px] mb-8">
+          <div
+            key={activeTab}
+            className="
+              relative w-full h-full
+              rounded-2xl overflow-hidden
+              bg-black
+              shadow-[0_0_50px_rgba(94,35,220,0.45)]
+              animate-tvOn
+            "
+          >
+            <iframe
+              className="w-full h-full"
+              src={
+                activeTab === "sales"
+                  ? "https://www.youtube.com/embed/vHwfBBpT9bA"
+                  : "https://www.youtube.com/embed/snlG3sFiGaI"
+              }
+              title="Partner Program Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
         {/* FORM */}
         <div
           className="
@@ -253,6 +273,18 @@ export default function PartnerRegistrationModal({
             type="password"
             required
           />
+
+          {/* <div className="flex justify-center">
+  <ReCAPTCHA
+    sitekey="YOUR_SITE_KEY_HERE"
+    onChange={(token) => setCaptchaToken(token)}
+  />
+</div>
+
+{errors.captcha && (
+  <p className="text-red-500 text-sm text-center">{errors.captcha}</p>
+)} */}
+
         </div>
 
         {/* CTA */}
