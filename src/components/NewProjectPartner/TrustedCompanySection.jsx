@@ -197,13 +197,13 @@ export default function TrustedSection() {
         w-130 z-10`}
           />
 
-          <div className="max-w-5xl mx-auto px-2  grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 ml-0 md:ml-[40%]">
-            <Stat icon={handSheck} value="100+" label="Active Partners" />
-            <Stat icon={building} value="50+" label="Project Completed" />
-              <Stat icon={like} value="₹10Cr+" label="Partner Earnings" />
-            <Stat icon={user} value="18+" label="Cities Covered" />
-          
-          </div>
+          <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 sm:grid-cols-2 sm:ml-[40%] md:grid-cols-4 gap-6 sm:gap-8">
+  <Stat icon={handSheck} value="100+" label="Active Partners" />
+  <Stat icon={building} value="50+" label="Projects Completed" />
+  <Stat icon={like} value="₹10Cr+" label="Partner Earnings" />
+  <Stat icon={user} value="18+" label="Cities Covered" />
+</div>
+
         </div>
 
 
@@ -261,13 +261,23 @@ export default function TrustedSection() {
 
 function Stat({ icon, value, label }) {
   return (
-    <div className="flex items-center gap-4 justify-center w-full">
-      <div className="p-3 bg-[#5E23DC] rounded-lg flex items-center justify-center text-xl">
-        <img src={icon} alt={label} className="w-9 h-9" />
+    <div className="flex items-center sm:items-start gap-4 sm:gap-2 justify-start sm:justify-center w-full">
+      
+      {/* ICON BOX (FIXED SIZE) */}
+      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#5E23DC] rounded-lg flex items-center justify-center flex-shrink-0">
+        <img
+          src={icon}
+          alt={label}
+          className="w-6 h-6 sm:w-7 sm:h-7 object-contain"
+        />
       </div>
-      <div>
-        <p className="text-3xl font-bold text-[#5E23DC]">{value}</p>
-        <p className="text-[12px] opacity-80 whitespace-normal  text-black">
+
+      {/* TEXT */}
+      <div className="text-left ">
+        <p className="text-xl sm:text-2xl font-bold text-[#5E23DC] leading-tight">
+          {value}
+        </p>
+        <p className="text-xs sm:text-sm text-black opacity-80">
           {label}
         </p>
       </div>
