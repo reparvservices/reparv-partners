@@ -215,11 +215,11 @@ export default function ProjectPartnerSection() {
     <div className="w-full px-0">
       <div className="w-full bg-white py-10 px-4 md:px-8 lg:px-20">
         {/* Heading */}
-      <h2 className="text-3xl px-10 sm:text-4xl md:text-5xl font-bold text-center text-[#111827] leading-tight">
-  What is a Project 
-  <br className="block md:hidden" />  {/* mobile break */}
-  <span className="md:whitespace-nowrap">Partner?</span>
-</h2>
+        <h2 className="text-3xl px-10 sm:text-4xl md:text-5xl font-bold text-center text-[#111827] leading-tight">
+          What is a Project
+          <br className="block md:hidden" /> {/* mobile break */}
+          <span className="md:whitespace-nowrap">Partner?</span>
+        </h2>
 
         <p className="text-center text-[14px] md:text-lg sm:text-lg  text-gray-500 mt-3 lg:text-lg">
           Join a network of trusted professionals delivering excellence across
@@ -275,8 +275,8 @@ export default function ProjectPartnerSection() {
         </div>
 
         {/* Stats Section */}
-      <div
-  className="
+        <div
+          className="
     mt-20 
     w-[100%] lg:w-[80%]  /* Adjust width for different screens */
     max-w-7xl             /* Optional: limit maximum width */
@@ -290,8 +290,8 @@ export default function ProjectPartnerSection() {
     text-center md:text-left
     mx-auto              /* Center the container horizontally */
   "
->
-  {/* Content */}
+        >
+          {/* Content */}
           {/* Background IMAGE with 20% opacity */}
           <div
             className="absolute inset-0"
@@ -499,26 +499,21 @@ export default function ProjectPartnerSection() {
         </div>
 
         {/* Bottom Section */}
-      <div className="mt-10 text-center flex flex-col items-center">
-  <p className="text-gray-500 mb-4">
-     Want to promote your services?
-  </p>
+        <div className="mt-10 text-center flex flex-col items-center">
+          <p className="text-gray-500 mb-4">Want to promote your services?</p>
 
-  <button
-    className="
+          <button
+            className="
       bg-gray-900 text-white px-6 py-3 rounded-lg font-medium
       hover:bg-gray-800 active:bg-gray-800
       transition-colors duration-300
       flex items-center gap-2
     "
-  >
-    Promote Now
-    <span className="text-xl">→</span>
-  </button>
-
- 
-</div>
-
+          >
+            Promote Now
+            <span className="text-xl">→</span>
+          </button>
+        </div>
       </div>
       <div className="w-full py-20 px-4 md:px-10 lg:px-20 bg-gradient-to-b from-[#ECFFF5] to-[#F5F9FF]">
         {/* Heading */}
@@ -779,12 +774,12 @@ export default function ProjectPartnerSection() {
         </div>
       </div>
 
-     <section className=" md:px-12 lg:px-32 xl:px-40 px-2 lg:py-16 bg-white w-full">
-  <div className="flex flex-col lg:flex-row items-center gap-16">
+      <section className=" md:px-12 lg:px-32 xl:px-40 px-2 lg:py-16 bg-white w-full">
+        <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* LEFT — IMAGE MOCKUP WITH BADGES */}
           <div className="flex-1 flex justify-center relative w-full">
-           <div
-  className="
+            <div
+              className="
     relative w-full            /* full width on mobile */
     max-w-full                 /* allow full width on mobile */
     sm:max-w-[480px]
@@ -792,14 +787,13 @@ export default function ProjectPartnerSection() {
     lg:max-w-[580px]
     xl:max-w-[620px]
   "
->
-  <img
-    src={MyAndroid}
-    alt="My Android"
-    className="w-full h-auto relative z-0 object-contain"
-  />
-</div>
-
+            >
+              <img
+                src={MyAndroid}
+                alt="My Android"
+                className="w-full h-auto relative z-0 object-contain"
+              />
+            </div>
           </div>
 
           {/* RIGHT — TEXT CONTENT */}

@@ -57,7 +57,7 @@ export default function PartnersPage() {
         </div>
 
         {/* Decorative blur */}
-        <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-white/10 blur-3xl rounded-full" />
+    <div className="absolute inset-0 pointer-events-none rounded-3xl ring-1 ring-transparent group-hover:ring-[#5E23DC]/40 transition" />
       </div>
 
       {/* 🧊 PARTNERS SECTION */}
@@ -112,25 +112,25 @@ export default function PartnersPage() {
 
               {/* CTA */}
               <button
+              type="button"
                 onClick={() => {
+
+                  
                   setCurrentProjectPartner(partner.id);
                   setProjectPartners(partner.name);
                   setOpenModal(true);
                 }}
-                className="
-                  mt-auto
-                  w-full
-                  py-2.5
-                  rounded-full
-                  bg-gradient-to-r from-[#5E23DC] to-[#7C3AED]
-                  text-white
-                  text-sm
-                  font-medium
-                  transition-all
-                  hover:shadow-lg
-                  hover:scale-[1.03]
-                  active:scale-95
-                "
+                 className="
+    relative z-10
+    mt-auto
+    w-full
+    py-2.5
+    rounded-full
+    bg-gradient-to-r from-[#5E23DC] to-[#7C3AED]
+    text-white
+    text-sm
+    font-medium
+  "
               >
                 Join as Partner
               </button>

@@ -28,9 +28,10 @@ function App() {
       <ScrollToTop />
       <Routes>
         {/* Routes with default Layout */}
-        <Route path="" element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
+        <Route path="" element={<LayoutTwo/>}>
+          <Route path="/" element={<NewProjectPartner />} />
+          <Route path="/home" element={<NewProjectPartner />} />
+           <Route path="/partners" element={<PartnersPage/>} />
           <Route path="/promoter" element={<Promoter />} />
           <Route path="/sales-partner" element={<SalesPartner />} />
           <Route path="/territory-partner" element={<TerritoryPartner />} />
@@ -48,12 +49,12 @@ function App() {
         </Route>
 
         {/* Route with LayoutTwo */}
-        <Route path="" element={<LayoutTwo />}>
+        {/* <Route path="" element={<LayoutTwo />}>
           <Route path="/newpartner" element={<NewProjectPartner />} />
           <Route path="/newpartner/joinPartner" element={<PartnerRegistrationPage/>}/>
           <Route path="/partners" element={<PartnersPage/>} />
 
-        </Route>
+        </Route> */}
       </Routes>
     </BrowserRouter>
   );
