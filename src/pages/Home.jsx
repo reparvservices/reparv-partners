@@ -43,7 +43,7 @@ export default function Home() {
         title="Become a Trusted Real Estate Partner with Reparv | Verified Listings & High Commission Opportunities"
         description="Start your real estate journey with the Reparv Partner Program. Work with verified properties, earn structured commissions, and join as a Sales, Onboarding, Territory, or Project Partner. Apply now and boost your income."
       />
-    <div className="min-h-screen bg-gradient-to-b from-green-50 via-white to-green-50 py-12 px-6">
+    <div className="min-h-screen from-green-50 via-white to-green-50 py-12 px-6">
       <div className="max-w-5xl mx-auto text-center mb-15">
         <h1 className="text-2xl md:text-4xl font-extrabold text-[#076506] mb-6">
           Join the Reparv Partner Network
@@ -59,7 +59,7 @@ export default function Home() {
         {partners.map((partner, index) => (
           <div
             key={index}
-            className={`bg-gradient-to-r ${partner.color} shadow-lg hover:shadow-2xl rounded-2xl py-15 px-12 flex flex-col sm:flex-row items-center justify-between transition-transform duration-300 hover:scale-[1.02]`}
+            className={`${partner.color} shadow-lg hover:shadow-2xl rounded-2xl py-15 px-12 flex flex-col sm:flex-row items-center justify-between transition-transform duration-300 hover:scale-[1.02]`}
           >
             <div className="flex items-center gap-8 sm:gap-10">
               <div className="bg-white shadow-md p-4 rounded-full">
@@ -74,7 +74,7 @@ export default function Home() {
             </div>
             <button
               onClick={() => navigate(partner.link)}
-              className="min-w-[180px] flex items-center justify-center text-base sm:text-lg mt-6 sm:mt-0 gap-2 bg-[#00b501] hover:bg-[#076506] text-white font-semibold px-6 py-4 rounded-lg shadow-md transition duration-200 cursor-pointer"
+              className="w-[180px] flex items-center justify-center text-base sm:text-lg mt-6 sm:mt-0 gap-2 bg-[#00b501] hover:bg-[#076506] text-white font-semibold px-6 py-4 rounded-lg shadow-md transition duration-200 cursor-pointer"
             >
               <span>Read More</span> <FaArrowRight />
             </button>
