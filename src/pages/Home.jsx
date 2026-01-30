@@ -74,7 +74,7 @@ export default function Home() {
             </div>
             <button
               onClick={() => navigate(partner.link)}
-              className="w-[180px] flex items-center justify-center text-base sm:text-lg mt-6 sm:mt-0 gap-2 bg-[#00b501] hover:bg-[#076506] text-white font-semibold px-6 py-4 rounded-lg shadow-md transition duration-200 cursor-pointer"
+              className="min-w-[180px] flex items-center justify-center text-base sm:text-lg mt-6 sm:mt-0 gap-2 bg-[#00b501] hover:bg-[#076506] text-white font-semibold px-6 py-4 rounded-lg shadow-md transition duration-200 cursor-pointer"
             >
               <span>Read More</span> <FaArrowRight />
             </button>
