@@ -291,6 +291,7 @@ export default function PricingSection({ auth }) {
     );
   }
 
+  
   return (
     <section id="pricing" className="w-full bg-[#F8FAFF] py-20 px-4">
       <div className="max-w-6xl mx-auto text-center">
