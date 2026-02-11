@@ -13,6 +13,9 @@ import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { useAuth } from "../../store/auth";
 import PartnerRegistrationModal from "../ProjectPartnerUpdated/PartnerModel";
 import RegistrationSuccessModal from "../RegisterSuccess";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
 export default function TrustedSection() {
   const {
@@ -23,6 +26,7 @@ export default function TrustedSection() {
   } = useAuth();
   const [openModal, setOpenModal] = useState(false);
   const [partners, setPartner] = useState([]);
+  const [centerIndex, setCenterIndex] = useState(0);
   const [successOpen, setSuccessOpen] = useState(false);
   const [role, setRole] = useState("sales");
   async function fetchProjectPartnerLogos() {
@@ -64,6 +68,16 @@ export default function TrustedSection() {
     getLogos();
   }, []);
 
+  useEffect(() => {
+    if (!partners.length) return;
+
+    const interval = setInterval(() => {
+      setCenterIndex((prev) => (prev + 1) % partners.length);
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, [partners]);
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = chunkArray(partners, 12);
 
@@ -92,90 +106,85 @@ export default function TrustedSection() {
 "
         >
           {/* Heading + Logos Row */}
-          <div className="grid grid-cols-1  lg:grid-cols-2 gap-16 items-start">
-            {/* LEFT : Heading */}
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-                Trusted by Leading <br /> Organizations
-              </h2>
-              <p className="text-white/80 text-lg max-w-md">
-                Join a network of industry leaders and innovators
-              </p>
-            </div>
 
-            {/* RIGHT : Logos */}
-            <div className="flex flex-col items-center">
-              {/* GRID : 3 rows × 4 columns */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
-                {visiblePartners.map((logo, i) => (
-                  <button
-                    key={i}
-                    onClick={() => {
-                      setOpenModal(true);
-                      setCurrentProjectPartner(logo?.id);
-                      setProjectPartners(logo?.name);
-                    }}
-                    // to="/newpartner/joinPartner"
-                    className="
-          w-full
-          sm:w-[120px]
-          md:w-[140px]
-          h-[64px]
-          sm:h-[72px]
-          md:h-[76px]
-          rounded-[10px]
-          bg-[linear-gradient(135deg,#ECFDF5_0%,#E5E7EB_100%)]
-          flex items-center justify-center
-          transition
-          hover:scale-[1.03]
-          hover:shadow-md
-          active:scale-95
-        "
-                  >
-                    <img
-                      src={
-                        logo?.businessLogo
-                          ? `${URI}/${logo.businessLogo.replace(/^\/+/, "")}`
-                          : dlogo
-                      }
-                      alt="Business Logo"
-                      className="sm:h-15 sm:w-22 h-12 w-23 object-contain rounded"
-                      onError={(e) => {
-                        e.currentTarget.onerror = null;
-                        e.currentTarget.src = dlogo;
-                      }}
-                    />
-                  </button>
-                ))}
-              </div>
+          <div className="flex flex-col items-center text-center">
+            {/* TITLE */}
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+              Trusted by Leading Organizations
+            </h2>
 
-              {/* SEE MORE BUTTON */}
-              {partners.length > 12 && (
-                <Link
-                  to="/partners"
-                  onClick={(e) => e.stopPropagation()}
-                  className="
-    mt-8
-    px-6 py-2
-    rounded-full
-    bg-white
-    text-[#5E23DC]
-    font-medium
-    shadow
-    transition-all duration-300 ease-out
+            {/* SUBTITLE */}
+            <p className="text-white/80 text-base md:text-lg mb-10 max-w-xl">
+              Join a network of industry leaders and innovators
+            </p>
 
-    hover:bg-gray-100
-    hover:shadow-lg
-    hover:-translate-y-1
-
-    active:scale-95
-
-    
-  "
+            {/* LOGO BLOCK */}
+            <div className="max-w-6xl overflow-x-hidden">
+              <div className="relative w-full max-w-5xl mx-auto py-6 overflow-visible">
+                <Swiper
+                  modules={[Autoplay]}
+                  autoplay={{ delay: 0, disableOnInteraction: false }}
+                  speed={2500}
+                  loop
+                  centeredSlides
+                  grabCursor
+                  slidesPerView={4}
+                  spaceBetween={32}
+                  className="logo-swiper"
+                  breakpoints={{
+                    0: { slidesPerView: 2.2 },
+                    640: { slidesPerView: 3.2 },
+                    1024: { slidesPerView: 4.2 },
+                  }}
                 >
-                  See more
-                </Link>
-              )}
+                  {partners.map((logo) => (
+                    <SwiperSlide key={logo.id}>
+                      <button
+                        onClick={() => {
+                          setOpenModal(true);
+                          setCurrentProjectPartner(logo.id);
+                          setProjectPartners(logo.name);
+                        }}
+                        className="
+            w-[140px] h-[100px]
+            flex items-center justify-center
+            rounded-xl
+            transition
+          "
+                      >
+                        <img
+                          src={
+                            logo?.businessLogo
+                              ? `${URI}/${logo.businessLogo.replace(/^\/+/, "")}`
+                              : dlogo
+                          }
+                          alt={logo.name}
+                          className="w-full h-full object-contain"
+                        />
+                      </button>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+
+                {/* Scoped styles */}
+                <style>{`
+  .logo-swiper {
+    padding: 40px 0;
+  }
+
+  .logo-swiper .swiper-slide {
+    opacity: 0.4;
+    transform: scale(0.85);
+    transition: all 0.4s ease;
+  }
+
+  .logo-swiper .swiper-slide-active {
+    opacity: 1;
+    transform: scale(1.55);
+    z-index: 10;
+  }
+`}</style>
+              </div>
             </div>
           </div>
         </div>
@@ -198,14 +207,12 @@ export default function TrustedSection() {
           />
 
           <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 sm:grid-cols-2 sm:ml-[40%] md:grid-cols-4 gap-6 sm:gap-8">
-  <Stat icon={handSheck} value="100+" label="Active Partners" />
-  <Stat icon={building} value="50+" label="Projects Completed" />
-  <Stat icon={like} value="₹10Cr+" label="Partner Earnings" />
-  <Stat icon={user} value="18+" label="Cities Covered" />
-</div>
-
+            <Stat icon={handSheck} value="100+" label="Active Partners" />
+            <Stat icon={building} value="50+" label="Projects Completed" />
+            <Stat icon={like} value="₹10Cr+" label="Partner Earnings" />
+            <Stat icon={user} value="18+" label="Cities Covered" />
+          </div>
         </div>
-
 
         {/* Certifications */}
         <div className="py-14 text-center">
@@ -262,7 +269,6 @@ export default function TrustedSection() {
 function Stat({ icon, value, label }) {
   return (
     <div className="flex items-center sm:items-start gap-4 sm:gap-2 justify-start sm:justify-center w-full">
-      
       {/* ICON BOX (FIXED SIZE) */}
       <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#5E23DC] rounded-lg flex items-center justify-center flex-shrink-0">
         <img
@@ -277,9 +283,7 @@ function Stat({ icon, value, label }) {
         <p className="text-xl sm:text-2xl font-bold text-[#5E23DC] leading-tight">
           {value}
         </p>
-        <p className="text-xs sm:text-sm text-black opacity-80">
-          {label}
-        </p>
+        <p className="text-xs sm:text-sm text-black opacity-80">{label}</p>
       </div>
     </div>
   );

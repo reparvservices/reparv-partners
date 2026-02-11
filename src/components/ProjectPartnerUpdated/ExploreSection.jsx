@@ -181,50 +181,93 @@ const cards = [
   },
 ];
 
-const Card = ({ icon: Icon, title, desc, active, color, svg }) => (
+const Card = ({ icon: Icon, title, desc, color, svg }) => (
   <div
-    className={`
+    className="
+      group
       relative mb-10 rounded-2xl cursor-pointer
       bg-[#FCFBFF]
       border border-[rgba(94,35,220,0.14)]
+
       transition-all duration-300 ease-out
-      hover:border-[5px] hover:border-white
-      hover:bg-[rgba(94,35,220,0.08)]
-      hover:shadow-[0px_4px_18.6px_rgba(94,35,220,0.28),0px_1px_4px_rgba(12,12,13,0.05)]
       hover:-translate-y-2
-        active:border-[5px] active:border-white
-      active:bg-[rgba(94,35,220,0.08)]
-      active:shadow-[0px_4px_18.6px_rgba(94,35,220,0.28),0px_1px_4px_rgba(12,12,13,0.05)]
       active:-translate-y-2
 
-     w-full sm:w-[300px] md:w-[320px] lg:w-[345px]
+      hover:shadow-[0px_1px_4px_0px_#0C0C0D0D,0px_4px_18.6px_0px_#5E23DC47]
+      active:shadow-[0px_1px_4px_0px_#0C0C0D0D,0px_4px_18.6px_0px_#5E23DC47]
+
+      w-full sm:w-[300px] md:w-[320px] lg:w-[345px]
       min-h-[190px]
-    `}
+    "
   >
-    {/* ICON BADGE – CENTERED ON TOP BORDER */}
-   {/* ICON BADGE */}
-<div
-  className="
-    relative sm:absolute
-    top-5 left-5
-    sm:-top-6 sm:left-8
-    mb-3 sm:mb-0
-  "
->
-  <div
-    className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}
-  >
-    {svg ? svg : <Icon className="w-6 h-6" />}
-  </div>
-</div>
+    {/* 🔒 CLIPPED LAYER (ONLY FOR CORNERS) */}
+    <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+      {/* TOP RIGHT CORNER */}
+      <div
+        className="
+          absolute
+          top-[2px]
+          right-[2px]
+          w-[68px]
+          h-[61px]
+          border-t-[6px]
+          border-r-[6px]
+          border-[#5E23DC]
+          rounded-tr-2xl
+
+          opacity-0
+          group-hover:opacity-100
+          group-active:opacity-100
+          transition-opacity
+          duration-300
+        "
+      />
+
+      {/* BOTTOM LEFT CORNER */}
+      <div
+        className="
+          absolute
+          bottom-[2px]
+          left-[2px]
+          w-[68px]
+          h-[61px]
+          border-b-[6px]
+          border-l-[6px]
+          border-[#5E23DC]
+          rounded-bl-2xl
+
+          opacity-0
+          group-hover:opacity-100
+          group-active:opacity-100
+          transition-opacity
+          duration-300
+        "
+      />
+    </div>
+
+    {/* ICON BADGE (NOT CLIPPED) */}
+    <div
+      className="
+        relative sm:absolute
+        top-5 left-5
+        sm:-top-6 sm:left-8
+        mb-3 sm:mb-0
+        z-10
+      "
+    >
+      <div
+        className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}
+      >
+        {svg ? svg : <Icon className="w-6 h-6" />}
+      </div>
+    </div>
 
     {/* CONTENT */}
-  <div className="flex flex-col gap-2 px-5 pt-4 sm:pt-10 pb-4">
-
-      <h3 className="font-['Segoe_UI'] font-semibold text-[17px] leading-[28px] text-[#101828]">
+    <div className="relative z-10 flex flex-col gap-2 px-5 pt-4 sm:pt-10 pb-4">
+      <h3 className="font-segoe font-semibold text-[17px] leading-[28px] text-[#101828]">
         {title}
       </h3>
-      <p className="font-['Segoe_UI'] font-normal text-[14px] leading-[26px] text-[#4A5565]">
+      <p className="font-segoe font-normal text-[14px] leading-[26px] text-[#2F2F2F] opacity-80">
         {desc}
       </p>
     </div>
@@ -233,27 +276,27 @@ const Card = ({ icon: Icon, title, desc, active, color, svg }) => (
 
 export default function ProjectPartnerSection() {
   const sliderRef = useRef(null);
-const [activeIndex, setActiveIndex] = useState(0);
-useEffect(() => {
-  if (!sliderRef.current) return;
+  const [activeIndex, setActiveIndex] = useState(0);
+  useEffect(() => {
+    if (!sliderRef.current) return;
 
-  const interval = setInterval(() => {
-    const slider = sliderRef.current;
-    const slideWidth = slider.offsetWidth;
+    const interval = setInterval(() => {
+      const slider = sliderRef.current;
+      const slideWidth = slider.offsetWidth;
 
-    let nextIndex = activeIndex + 1;
-    if (nextIndex >= cards.length) nextIndex = 0;
+      let nextIndex = activeIndex + 1;
+      if (nextIndex >= cards.length) nextIndex = 0;
 
-    slider.scrollTo({
-      left: slideWidth * nextIndex,
-      behavior: "smooth",
-    });
+      slider.scrollTo({
+        left: slideWidth * nextIndex,
+        behavior: "smooth",
+      });
 
-    setActiveIndex(nextIndex);
-  }, 3000); // ⏱ 3 seconds
+      setActiveIndex(nextIndex);
+    }, 3000); //  3 seconds
 
-  return () => clearInterval(interval);
-}, [activeIndex, cards.length]);
+    return () => clearInterval(interval);
+  }, [activeIndex, cards.length]);
 
   return (
     <div className="w-full bg-white px-1 sm:px-4 ">
@@ -269,49 +312,46 @@ useEffect(() => {
               across India
             </p>
 
-        {/* CARDS */}
-<div className="mt-10">
-
-  {/*MOBILE SLIDER */}
- <div
-  ref={sliderRef}
-  onScroll={(e) => {
-    const scrollLeft = e.target.scrollLeft;
-    const width = e.target.offsetWidth;
-    setActiveIndex(Math.round(scrollLeft / width));
-  }}
-  className="
+            {/* CARDS */}
+            <div className="mt-10">
+              {/*MOBILE SLIDER */}
+              <div
+                ref={sliderRef}
+                onScroll={(e) => {
+                  const scrollLeft = e.target.scrollLeft;
+                  const width = e.target.offsetWidth;
+                  setActiveIndex(Math.round(scrollLeft / width));
+                }}
+                className="
     flex sm:hidden
     overflow-x-auto
     snap-x snap-mandatory
     gap-4
     scrollbar-hide
   "
->
-  {cards.map((card, i) => (
-    <div key={i} className="min-w-full snap-center px-1">
-      <Card {...card} />
-    </div>
-  ))}
-</div>
+              >
+                {cards.map((card, i) => (
+                  <div key={i} className="min-w-full snap-center px-1">
+                    <Card {...card} />
+                  </div>
+                ))}
+              </div>
 
-  {/*  DOTS (Mobile Only) */}
-  <div className="flex sm:hidden justify-center gap-2 mb-4">
-    {cards.map((_, i) => (
-      <span
-        key={i}
-        className={`h-2 w-2 rounded-full transition-all duration-300 ${
-          activeIndex === i
-            ? "bg-[#5A1EDC] w-4"
-            : "bg-gray-300"
-        }`}
-      />
-    ))}
-  </div>
+              {/*  DOTS (Mobile Only) */}
+              <div className="flex sm:hidden justify-center gap-2 mb-4">
+                {cards.map((_, i) => (
+                  <span
+                    key={i}
+                    className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                      activeIndex === i ? "bg-[#5A1EDC] w-4" : "bg-gray-300"
+                    }`}
+                  />
+                ))}
+              </div>
 
-  {/* 💻 DESKTOP GRID (UNCHANGED) */}
-  <div
-    className="
+              {/* 💻 DESKTOP GRID (UNCHANGED) */}
+              <div
+                className="
       hidden sm:grid
       grid-cols-2
       gap-y-1
@@ -320,14 +360,12 @@ useEffect(() => {
       lg:gap-x-60
       xl:gap-x-40
     "
-  >
-    {cards.map((card, i) => (
-      <Card key={i} {...card} />
-    ))}
-  </div>
-
-</div>
-
+              >
+                {cards.map((card, i) => (
+                  <Card key={i} {...card} />
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* RIGHT IMAGES */}
@@ -390,7 +428,6 @@ useEffect(() => {
         }
       `}</style>
       </section>
-     
     </div>
   );
 }

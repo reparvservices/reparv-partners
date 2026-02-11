@@ -14,23 +14,24 @@ const ServicesSection = () => {
   const handleScroll = () => {
     if (!sliderRef.current) return;
     const index = Math.round(
-      sliderRef.current.scrollLeft / sliderRef.current.offsetWidth
+      sliderRef.current.scrollLeft / sliderRef.current.offsetWidth,
     );
     setActiveIndex(index);
   };
 
   return (
-    <section className="relative bg-[#5A1EDC] text-white py-10 lg:py-20 px-4 md:px-16 lg:px-24 overflow-hidden">
+    <section className="relative bg-[#EDE9FF] text-white py-10 lg:py-20 px-4 md:px-16 lg:px-24 overflow-hidden">
       {/* 🔥 BACKGROUND */}
       <div
         className="absolute inset-0"
         style={{
-          background: `
-            linear-gradient(106.52deg, rgba(0,153,102,0.5) 12.59%,
-            rgba(0,188,125,0) 61.68%,
-            rgba(0,166,62,0.5) 99.8%),
-            url(${backgroundimage})
-          `,
+          // background: `
+          //   linear-gradient(106.52deg, rgba(0,153,102,0.5) 12.59%,
+          //   rgba(0,188,125,0) 61.68%,
+          //   rgba(0,166,62,0.5) 99.8%),
+          //   url(${backgroundimage})
+          // `,
+          backgroundColor: "#EDE9FF",
           backgroundSize: "cover",
           backgroundPosition: "center",
           opacity: 0.3,
@@ -40,8 +41,10 @@ const ServicesSection = () => {
 
       {/* CONTENT */}
       <div className="relative z-10 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-2">Our Services</h2>
-        <p className="mb-10 text-sm md:text-base text-white/90">
+        <h2 className="text-3xl md:text-4xl font-bold mb-2 text-[#1F1B2E]">
+          Our Services
+        </h2>
+        <p className="mb-10 text-sm md:text-base text-[#6A7282]">
           Partnering across diverse project categories to serve every need
         </p>
 
@@ -67,7 +70,7 @@ const ServicesSection = () => {
                               <IconComponent />
                             </div>
                           </div>
-                          <span className="mt-2 text-[11px] text-white text-center">
+                          <span className="mt-2 text-[11px] text-[#1F1B2E] text-center">
                             {service.title}
                           </span>
                         </div>
@@ -103,7 +106,7 @@ const ServicesSection = () => {
                     <IconComponent />
                   </div>
                 </div>
-                <span className="mt-1 sm:mt-4 text-[11px] sm:text-[20px] font-medium text-white text-center">
+                <span className="mt-1 sm:mt-4 text-[11px] sm:text-[20px] font-medium text-[#1F1B2E] text-center">
                   {service.title}
                 </span>
               </div>
@@ -113,7 +116,7 @@ const ServicesSection = () => {
 
         {/* CTA */}
         <div className="mt-12 hidden sm:block">
-          <p className="text-sm text-white/80 mb-3">
+          <p className="text-sm text-[#6A7282] mb-3">
             Can’t find what you’re looking for?
           </p>
 

@@ -1,4 +1,7 @@
 import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
 export default function TestimonialsSection() {
   const testimonials = [
@@ -63,42 +66,45 @@ export default function TestimonialsSection() {
           <span
             key={i}
             className={`h-2 w-2 rounded-full transition-all ${
-              activeIndex === i
-                ? "bg-[#5E23DC] w-5"
-                : "bg-[#D0D5DD]"
+              activeIndex === i ? "bg-[#5E23DC] w-5" : "bg-[#D0D5DD]"
             }`}
           />
         ))}
       </div>
 
-      {/* DESKTOP + TABLET GRID (UNCHANGED) */}
-      <div className="hidden md:grid max-w-7xl mx-auto px-6 grid-cols-1 md:grid-cols-2 gap-10">
-        {testimonials.map((item, index) => (
-          <TestimonialCard key={index} item={item} />
-        ))}
-      </div>
-
       {/* MOBILE SLIDER */}
-      <div
-        ref={sliderRef}
-        onScroll={handleScroll}
-        className="
-          md:hidden
-          flex gap-6
-          overflow-x-auto
-          snap-x snap-mandatory
-          px-4
-          scrollbar-hide
-        "
-      >
-        {testimonials.map((item, index) => (
-          <div
-            key={index}
-            className="min-w-[95%] snap-center"
-          >
-            <TestimonialCard item={item} />
-          </div>
-        ))}
+      {/* TESTIMONIAL SWIPER */}
+      <div className="max-w-7xl mx-auto px-4 mt-12">
+        <Swiper
+          modules={[Autoplay]}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          speed={800}
+          loop={true}
+          centeredSlides={true}
+          slidesPerView={1.1}
+          spaceBetween={24}
+          breakpoints={{
+            640: { slidesPerView: 1.2 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 2.5 },
+            1280: { slidesPerView: 3 },
+          }}
+          className="testimonial-swiper"
+        >
+          {testimonials.map((item, index) => (
+            <SwiperSlide key={index}>
+              {({ isActive }) => (
+                <div
+                  className={`transition-all duration-500 ${
+                    isActive ? "scale-100 opacity-100" : "scale-90 opacity-60"
+                  }`}
+                >
+                  <TestimonialCard item={item} />
+                </div>
+              )}
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
       {/* BOTTOM CTA */}
@@ -108,17 +114,17 @@ export default function TestimonialsSection() {
         </p>
 
         <button
-       onClick={() => {
-    const el = document.getElementById("pricing");
-    if (!el) return;
+          onClick={() => {
+            const el = document.getElementById("pricing");
+            if (!el) return;
 
-    const y = el.getBoundingClientRect().top + window.pageYOffset;
+            const y = el.getBoundingClientRect().top + window.pageYOffset;
 
-    window.scrollTo({
-      top: y,
-      behavior: "smooth",
-    });
-  }}
+            window.scrollTo({
+              top: y,
+              behavior: "smooth",
+            });
+          }}
           className="
             mt-6 bg-[#5E23DC]
             text-white text-[15px] lg:text-lg
@@ -130,7 +136,14 @@ export default function TestimonialsSection() {
           "
         >
           Become a Partner Today
-          <svg width="20" height="20" fill="none" stroke="white" strokeWidth="2" viewBox="0 0 24 24">
+          <svg
+            width="20"
+            height="20"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
             <path d="M5 12h14M13 6l6 6-6 6" />
           </svg>
         </button>
@@ -144,11 +157,28 @@ const TestimonialCard = ({ item }) => (
   <div className="bg-white border border-[#EAECF0] rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] p-8 flex flex-col h-full">
     {/* QUOTE ICON */}
     <div className="w-10 h-10 bg-[#5E23DC47] rounded-lg flex items-center justify-center">
-   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16 3C15.4696 3 14.9609 3.21071 14.5858 3.58579C14.2107 3.96086 14 4.46957 14 5V11C14 11.5304 14.2107 12.0391 14.5858 12.4142C14.9609 12.7893 15.4696 13 16 13C16.2652 13 16.5196 13.1054 16.7071 13.2929C16.8946 13.4804 17 13.7348 17 14V15C17 15.5304 16.7893 16.0391 16.4142 16.4142C16.0391 16.7893 15.5304 17 15 17C14.7348 17 14.4804 17.1054 14.2929 17.2929C14.1054 17.4804 14 17.7348 14 18V20C14 20.2652 14.1054 20.5196 14.2929 20.7071C14.4804 20.8946 14.7348 21 15 21C16.5913 21 18.1174 20.3679 19.2426 19.2426C20.3679 18.1174 21 16.5913 21 15V5C21 4.46957 20.7893 3.96086 20.4142 3.58579C20.0391 3.21071 19.5304 3 19 3H16Z" stroke="#5E23DC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M5 3C4.46957 3 3.96086 3.21071 3.58579 3.58579C3.21071 3.96086 3 4.46957 3 5V11C3 11.5304 3.21071 12.0391 3.58579 12.4142C3.96086 12.7893 4.46957 13 5 13C5.26522 13 5.51957 13.1054 5.70711 13.2929C5.89464 13.4804 6 13.7348 6 14V15C6 15.5304 5.78929 16.0391 5.41421 16.4142C5.03914 16.7893 4.53043 17 4 17C3.73478 17 3.48043 17.1054 3.29289 17.2929C3.10536 17.4804 3 17.7348 3 18V20C3 20.2652 3.10536 20.5196 3.29289 20.7071C3.48043 20.8946 3.73478 21 4 21C5.5913 21 7.11742 20.3679 8.24264 19.2426C9.36786 18.1174 10 16.5913 10 15V5C10 4.46957 9.78929 3.96086 9.41421 3.58579C9.03914 3.21071 8.53043 3 8 3H5Z" stroke="#5E23DC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M16 3C15.4696 3 14.9609 3.21071 14.5858 3.58579C14.2107 3.96086 14 4.46957 14 5V11C14 11.5304 14.2107 12.0391 14.5858 12.4142C14.9609 12.7893 15.4696 13 16 13C16.2652 13 16.5196 13.1054 16.7071 13.2929C16.8946 13.4804 17 13.7348 17 14V15C17 15.5304 16.7893 16.0391 16.4142 16.4142C16.0391 16.7893 15.5304 17 15 17C14.7348 17 14.4804 17.1054 14.2929 17.2929C14.1054 17.4804 14 17.7348 14 18V20C14 20.2652 14.1054 20.5196 14.2929 20.7071C14.4804 20.8946 14.7348 21 15 21C16.5913 21 18.1174 20.3679 19.2426 19.2426C20.3679 18.1174 21 16.5913 21 15V5C21 4.46957 20.7893 3.96086 20.4142 3.58579C20.0391 3.21071 19.5304 3 19 3H16Z"
+          stroke="#5E23DC"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M5 3C4.46957 3 3.96086 3.21071 3.58579 3.58579C3.21071 3.96086 3 4.46957 3 5V11C3 11.5304 3.21071 12.0391 3.58579 12.4142C3.96086 12.7893 4.46957 13 5 13C5.26522 13 5.51957 13.1054 5.70711 13.2929C5.89464 13.4804 6 13.7348 6 14V15C6 15.5304 5.78929 16.0391 5.41421 16.4142C5.03914 16.7893 4.53043 17 4 17C3.73478 17 3.48043 17.1054 3.29289 17.2929C3.10536 17.4804 3 17.7348 3 18V20C3 20.2652 3.10536 20.5196 3.29289 20.7071C3.48043 20.8946 3.73478 21 4 21C5.5913 21 7.11742 20.3679 8.24264 19.2426C9.36786 18.1174 10 16.5913 10 15V5C10 4.46957 9.78929 3.96086 9.41421 3.58579C9.03914 3.21071 8.53043 3 8 3H5Z"
+          stroke="#5E23DC"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
     </div>
 
     {/* STARS */}
@@ -161,9 +191,7 @@ const TestimonialCard = ({ item }) => (
     </div>
 
     {/* TEXT */}
-    <p className="text-[#475467] text-[17px] leading-7 mt-4">
-      "{item.quote}"
-    </p>
+    <p className="text-[#475467] text-[17px] leading-7 mt-4">"{item.quote}"</p>
 
     <hr className="my-6 border-[#EAECF0]" />
 
@@ -178,7 +206,9 @@ const TestimonialCard = ({ item }) => (
       </div>
 
       <div className="bg-[#5E23DC47] px-3 py-1 rounded-xl text-center">
-        <h4 className="text-[#5E23DC] font-semibold text-lg">{item.projects}</h4>
+        <h4 className="text-[#5E23DC] font-semibold text-lg">
+          {item.projects}
+        </h4>
         <p className="text-[#5E23DC] text-xs">Projects</p>
       </div>
     </div>

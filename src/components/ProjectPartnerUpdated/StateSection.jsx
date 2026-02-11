@@ -88,7 +88,7 @@ const stats = [
 ];
 
 const benefits = [
-   {
+  {
     icon: landingPageIcon,
     title: "Personalized Landing Page",
     desc: "Get your personalized brand landing page and attract genuine clients backed by Reparv’s trusted brand.",
@@ -99,7 +99,7 @@ const benefits = [
     title: "Build Your Own Sales Team",
     desc: "Scale like a business—hire, manage, and grow your team with Reparv’s training and support.",
   },
- 
+
   {
     icon: techSupportIcon,
     title: "Complete Tech Support",
@@ -210,8 +210,7 @@ const StatsAndBenefits = () => {
   "
       >
         {benefits.map((item, idx) => (
-         <div key={idx} className="min-w-full snap-center overflow-visible">
-
+          <div key={idx} className="min-w-full snap-center overflow-visible">
             {/* CARD (unchanged) */}
             <div
               className={`
@@ -223,11 +222,11 @@ const StatsAndBenefits = () => {
         `}
             >
               {/* Popular Badge */}
-  {item.popular && (
-    <span className="absolute z-20 -top-1 left-1/2 -translate-x-1/2 bg-[#5E23DC] text-white px-3 py-1 text-xs font-medium rounded-full">
-      Most Popular
-    </span>
-  )}
+              {item.popular && (
+                <span className="absolute z-20 -top-1 left-1/2 -translate-x-1/2 bg-[#5E23DC] text-white px-3 py-1 text-xs font-medium rounded-full">
+                  Most Popular
+                </span>
+              )}
 
               <div className="flex flex-col items-center gap-3 text-center">
                 <img
@@ -259,9 +258,10 @@ const StatsAndBenefits = () => {
       </div>
       <div className="hidden sm:grid max-w-7xl mx-auto px-3 sm:px-4 pb-16 grid-cols-2 lg:grid-cols-3 gap-6">
         {benefits.map((item, idx) => (
-        <div
-  key={idx}
-  className={`
+          <div
+            key={idx}
+            className={`
+              group relative
     relative 
     bg-white 
     border ${item.popular ? "border-[#5E23DC]" : "border-gray-200"} 
@@ -279,33 +279,48 @@ const StatsAndBenefits = () => {
         : "hover:shadow-[0px_4px_18.6px_rgba(0,0,0,0.1),0px_1px_4px_rgba(12,12,13,0.05)]"
     }
   `}
->
-  {/* Popular Badge */}
-  {item.popular && (
-    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#5E23DC] text-white px-3 py-1 text-xs font-medium rounded-full">
-      Most Popular
-    </span>
-  )}
+          >
+            {/* Popular Badge */}
+            {item.popular && (
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#5E23DC] text-white px-3 py-1 text-xs font-medium rounded-full">
+                Most Popular
+              </span>
+            )}
 
-  {/* ICON + TITLE (ONE ROW) */}
-  <div className="flex items-center gap-4">
-    <img
-      src={item.icon}
-      alt={item.title}
-      className="w-12 h-12 sm:w-14 sm:h-14 object-contain"
-    />
+            {/* ICON + TITLE (ONE ROW) */}
+            <div className="flex items-center gap-4 relative">
+              {/* ICON SLOT (keeps layout fixed) */}
+              <div className="relative w-12 h-12">
+                {/* FLOATING ICON */}
+                <div
+                  className="
+        absolute inset-0
+        transition-all duration-300 ease-out
+        group-hover:w-[80px]
+        group-hover:h-[85px]
+        group-hover:-translate-y-12
+        group-hover:-translate-x-10
+        group-hover:z-30
+      "
+                >
+                  <img
+                    src={item.icon}
+                    alt={item.title}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
 
-    <h3 className="text-[16px] sm:text-lg font-semibold text-[#101828]">
-      {item.title}
-    </h3>
-  </div>
+              <h3 className="text-[16px] sm:text-lg font-semibold text-[#101828]">
+                {item.title}
+              </h3>
+            </div>
 
-  {/* Description */}
-  <p className="text-gray-500 text-center sm:text-left text-[12px] sm:text-sm leading-[1.625]">
-    {item.desc}
-  </p>
-</div>
-
+            {/* Description */}
+            <p className="text-gray-500 text-center sm:text-left text-[12px] sm:text-sm leading-[1.625]">
+              {item.desc}
+            </p>
+          </div>
         ))}
       </div>
     </div>
