@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import mobileView from "../../assets/joinmobile.png";
 
 const steps = [
@@ -18,6 +18,13 @@ const steps = [
     desc: "Download the app and turn on availability to start receiving job requests instantly.",
   },
 ];
+
+const scrollToPricing = () => {
+  const element = document.getElementById("pricing");
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
 
 const JoinStepsSection = () => {
   return (
@@ -82,6 +89,7 @@ const JoinStepsSection = () => {
 
           {/* CTA */}
           <button
+            onClick={scrollToPricing}
             className="
               mt-10
               bg-[#6D28D9]
@@ -106,6 +114,8 @@ const JoinStepsSection = () => {
       max-w-[670px]     /* max width matches Figma */
       aspect-[668/684]  /* exact Figma ratio */
       lg:-translate-x-10
+       sm:scale-110   /* scales 10% bigger */
+
     "
           >
             <img

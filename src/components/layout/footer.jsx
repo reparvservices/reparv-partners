@@ -169,13 +169,22 @@ function Footer({ footerRef }) {
               <FaRegCopyright /> {new Date().getFullYear()} reparv.in All Rights
               Reserved
             </span>
-            <Link to="/terms-and-conditions" className="cursor-pointer">
+            <Link
+              to="https://api.reparv.in/terms-and-conditions"
+              className="cursor-pointer"
+            >
               Terms & Conditions
             </Link>
-            <Link to="/privacy-policy" className="cursor-pointer">
+            <Link
+              to="https://api.reparv.in/privacy-policy"
+              className="cursor-pointer"
+            >
               Privacy Policy
             </Link>
-            <Link to="/cancellation-policy" className="cursor-pointer">
+            <Link
+              to="https://api.reparv.in/cancellation-policy"
+              className="cursor-pointer"
+            >
               Cancellation Policy
             </Link>
           </div>
@@ -347,13 +356,22 @@ function Footer({ footerRef }) {
             Reserved
           </span>
           <div className="flex text-[10px] w-full items-center justify-evenly">
-            <Link to="/terms-and-conditions" className="cursor-pointer">
+            <Link
+              to="https://api.reparv.in/terms-and-conditions"
+              className="cursor-pointer"
+            >
               Terms & Conditions
             </Link>
-            <Link to="/privacy-policy" className="cursor-pointer">
+            <Link
+              to="https://api.reparv.in/privacy-policy"
+              className="cursor-pointer"
+            >
               Privacy Policy
             </Link>
-            <Link to="/cancellation-policy" className="cursor-pointer">
+            <Link
+              to="https://api.reparv.in/cancellation-policy"
+              className="cursor-pointer"
+            >
               Cancellation Policy
             </Link>
           </div>

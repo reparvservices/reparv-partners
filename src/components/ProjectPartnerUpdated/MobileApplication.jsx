@@ -1,5 +1,5 @@
 import React from "react";
-import mobileAppImage from "../../assets/company/mobile.png";
+import mobileAppImage from "../../assets/company/mobile.svg";
 import { AiOutlineLineChart, AiOutlineWallet } from "react-icons/ai";
 import ios from "../../assets/company/apple.png";
 import android from "../../assets/company/android.png";
@@ -27,7 +27,7 @@ const MobileAppSection = () => {
         features designed for partners.
       </p>
       {/* Main Layout */}
-      <div className="relative w-full flex flex-col md:flex-row items-center justify-center gap-12">
+      <div className="relative w-full mt-10 flex flex-col md:flex-row items-center justify-center gap-12">
         {/* LEFT FEATURES (Desktop only) */}
         <div className="hidden md:flex flex-col lg:space-y-24 md:space-y-12 md:mr-8 text-left">
           <Feature
@@ -85,16 +85,17 @@ const MobileAppSection = () => {
             alt="Mobile App"
             className="
       relative
-      w-[260px]
+
       sm:w-[300px]
       md:w-[340px]
       lg:w-[400px]
+      scale-150  
       z-10
     "
           />
 
           {/* Growth Badge */}
-          <div className="absolute left-2 md:-left-12 bottom-[220px] bg-white text-[#5E23DC] px-3 py-2 rounded-xl shadow-lg z-20">
+          <div className="absolute left-[-45px] md:-left-12 bottom-[140px] bg-white text-[#5E23DC] px-3 py-2 rounded-xl shadow-lg z-20">
             <div className="flex items-center gap-2">
               <div className="w-9 h-9 bg-[#DBEAFE] rounded-full flex items-center justify-center">
                 <AiOutlineLineChart size={18} />
@@ -107,7 +108,7 @@ const MobileAppSection = () => {
           </div>
 
           {/* Earned Badge */}
-          <div className="absolute right-0 md:-right-12 bottom-[90px] bg-white text-[#5E23DC] px-3 py-2 rounded-xl shadow-lg z-20">
+          <div className="absolute right-[-50px] md:-right-12 bottom-[20px] bg-white text-[#5E23DC] px-3 py-2 rounded-xl shadow-lg z-20">
             <div className="flex items-center gap-2">
               <div className="w-9 h-9 bg-[#DBEAFE] rounded-full flex items-center justify-center">
                 <AiOutlineWallet size={18} />
@@ -313,7 +314,7 @@ const MobileAppSection = () => {
         />
       </div>
       {/* Store Buttons */}
-      <div className="flex gap-4 mt-12 flex-wrap justify-center">
+      <div className="flex gap-4 mt-20 flex-wrap justify-center">
         <img
           src={ios}
           alt="App Store"

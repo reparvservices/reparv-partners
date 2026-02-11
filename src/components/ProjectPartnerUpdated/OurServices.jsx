@@ -8,7 +8,7 @@ const ServicesSection = () => {
   const sliderRef = useRef(null);
 
   const visibleServices = showAll ? services : services.slice(0, 10);
-  const slidesCount = Math.ceil(services.length / 4);
+  const slidesCount = Math.ceil(services.length / 8);
 
   /* 🟣 UPDATE DOTS ON MANUAL SCROLL */
   const handleScroll = () => {
@@ -57,20 +57,21 @@ const ServicesSection = () => {
           >
             {Array.from({ length: slidesCount }).map((_, slideIdx) => (
               <div key={slideIdx} className="min-w-full snap-center px-2">
-                <div className="grid grid-cols-2 gap-4">
+                {/* 2 rows x 4 columns */}
+                <div className="grid grid-cols-4 grid-rows-2 gap-2 ">
                   {services
-                    .slice(slideIdx * 4, slideIdx * 4 + 4)
+                    .slice(slideIdx * 8, slideIdx * 8 + 8)
                     .map((service, idx) => {
                       const IconComponent = service.icon;
 
                       return (
                         <div key={idx} className="flex flex-col items-center">
-                          <div className="bg-white w-[90px] h-[70px] rounded-xl flex items-center justify-center">
+                          <div className="bg-white w-[70px] h-[60px] rounded-xl flex items-center justify-center">
                             <div className="w-[36px] h-[36px] [&>svg]:w-full [&>svg]:h-full">
                               <IconComponent />
                             </div>
                           </div>
-                          <span className="mt-2 text-[11px] text-[#1F1B2E] text-center">
+                          <span className="mt-1 text-[10px] text-[#1F1B2E] text-center">
                             {service.title}
                           </span>
                         </div>

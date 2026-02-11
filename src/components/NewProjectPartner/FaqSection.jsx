@@ -95,7 +95,7 @@ function FAQSection({ location = "Partners Project Partner Page" }) {
       </section>
 
       {/* FULL WIDTH CTA SECTION */}
-      <section className="w-full mt-20 px-4 md:px-20 mb-20">
+      <section className="w-full mt-20 px-2 sm:px-4 md:px-20 mb-20">
         <div className="w-full rounded-[32px] bg-gradient-to-r from-[#5E23DC] to-[#1C1C2E] py-14 px-6 md:px-16 text-center text-white">
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold">
             Still have questions?
@@ -105,17 +105,19 @@ function FAQSection({ location = "Partners Project Partner Page" }) {
             Our support team is here to help you get started
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
+          <div className="flex flex-row justify-center gap-6">
             <button
               onClick={() => setShowContactForm(true)}
-              className="px-8 py-4 rounded-2xl bg-gradient-to-r from-[#6D28FF] to-[#5E23DC] text-white font-medium text-lg shadow-lg hover:opacity-90 transition-all duration-300"
+              className="p-3 whitespace-nowrap
+ sm:px-8 sm:py-4 rounded-2xl bg-gradient-to-r from-[#6D28FF] to-[#5E23DC] text-white font-medium text-[16px] sm:text-lg shadow-lg hover:opacity-90 transition-all duration-300"
             >
               Contact Support
             </button>
 
             <button
               onClick={() => setShowScheduleForm(true)}
-              className="px-8 py-4 rounded-2xl bg-white text-[#5E23DC] font-medium text-lg shadow-md border border-white/30 hover:bg-gray-100 transition-all duration-300"
+              className="p-3 sm:px-8 whitespace-nowrap
+ sm:py-4 rounded-2xl bg-white text-[#5E23DC] font-medium text-[16px] sm:text-lg shadow-md border border-white/30 hover:bg-gray-100 transition-all duration-300"
             >
               Schedule a Demo
             </button>

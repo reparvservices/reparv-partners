@@ -72,16 +72,16 @@ const HeroSection = () => {
           </p>
 
           {/* Buttons */}
-          <div className="mt-6 xl:mt-8 flex flex-row gap-2 sm:gap-4 items-center">
+          <div className="mt-6 w-full xl:mt-8 flex flex-row gap-2 sm:gap-4 items-center">
             {/* JOIN AS PARTNER */}
             <button
               onClick={scrollToPricing}
               className="
+              w-full
       bg-[#5E23DC] text-white
       text-sm sm:text-base font-semibold
-      px-3 py-2.5 sm:px-8 sm:py-3
+      px-5 py-2.5 sm:px-8 sm:py-3
       rounded-lg
-      shadow-[0_8px_20px_rgba(94,35,220,0.35)]
       hover:bg-[#4b1cc0]
       transition-all active:scale-95
       flex items-center gap-2 justify-center
@@ -101,6 +101,7 @@ const HeroSection = () => {
             <button
               onClick={openVideo}
               className="
+               w-full
       group
       border border-[#5E23DC]
       text-[#5E23DC]

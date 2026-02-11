@@ -99,7 +99,7 @@ export default function TestimonialsSection() {
                     isActive ? "scale-100 opacity-100" : "scale-90 opacity-60"
                   }`}
                 >
-                  <TestimonialCard item={item} />
+                  <TestimonialCard item={item} isActive={isActive} />
                 </div>
               )}
             </SwiperSlide>
@@ -153,15 +153,18 @@ export default function TestimonialsSection() {
 }
 
 /* CARD COMPONENT */
-const TestimonialCard = ({ item }) => {
+const TestimonialCard = ({ item, isActive }) => {
   return (
     <div className="relative  max-w-full bg-white border border-[#EAECF0] rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] p-5">
       {/* TOP RIGHT PURPLE CORNER */}
-      <div className="absolute top-0 right-0 w-[68px] h-[61px] border-t-[6px] border-r-[6px] border-[#5E23DC] rounded-tr-2xl" />
+      {isActive && (
+        <div className="absolute top-0 right-0 w-[68px] h-[61px] border-t-[6px] border-r-[6px] border-[#5E23DC] rounded-tr-2xl" />
+      )}
 
       {/* BOTTOM LEFT PURPLE CORNER */}
-      <div className="absolute bottom-0 left-0 w-[68px] h-[61px] border-b-[6px] border-l-[6px] border-[#5E23DC] rounded-bl-2xl" />
-
+      {isActive && (
+        <div className="absolute bottom-0 left-0 w-[68px] h-[61px] border-b-[6px] border-l-[6px] border-[#5E23DC] rounded-bl-2xl" />
+      )}
       {/* QUOTE ICON */}
       <div className="w-10 h-10 bg-[#5E23DC47] rounded-lg flex items-center justify-center">
         <svg
@@ -209,7 +212,7 @@ const TestimonialCard = ({ item }) => {
       </p>
 
       {/* SEPARATOR */}
-      <div className="border-t border-[#EAECF0] my-6" />
+      <div className="border-t border-[#EAECF0] my-2" />
 
       {/* FOOTER */}
       <div className="flex items-center justify-between">
