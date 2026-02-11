@@ -41,7 +41,7 @@ export default function TrustedSection() {
 
       // Extract only paid users with Success status
       return data
-        .filter((user) => user.businessLogo !== null)
+        //.filter((user) => user.businessLogo !== null)
         .map((user) => ({
           id: user.id,
           name: user.fullname,
@@ -93,14 +93,12 @@ export default function TrustedSection() {
 
   return (
     <div className="w-full flex flex-col items-center justify-center ">
-      <section className="bg-[#5E23DC] mx-auto text-white w-[100%] lg:w-[90%] lg:rounded-[48px] overflow-hidden">
+      <section className="bg-[#5E23DC] mx-auto text-white w-full lg:w-[90%] lg:rounded-[48px] overflow-hidden">
         {/* Top Content */}
         <div
           className="
            max-w-7xl 
            mx-auto 
-           max-h-[550px] 
-           overflow-y-auto
            px-4 sm:px-6 lg:px-8 
            py-12 sm:py-16 lg:py-20
 "
@@ -123,66 +121,79 @@ export default function TrustedSection() {
               <div className="relative w-full max-w-5xl mx-auto py-6 overflow-visible">
                 <Swiper
                   modules={[Autoplay]}
-                  autoplay={{ delay: 0, disableOnInteraction: false }}
-                  speed={2500}
+                  autoplay={{ delay: 2500, disableOnInteraction: false }}
+                  speed={600}
                   loop
-                  centeredSlides
-                  grabCursor
-                  slidesPerView={4}
-                  spaceBetween={32}
+                  centeredSlides={true}
+                  slidesPerView={4.4}
+                  spaceBetween={4}
+                  grabCursor={true}
                   className="logo-swiper"
                   breakpoints={{
-                    0: { slidesPerView: 2.2 },
-                    640: { slidesPerView: 3.2 },
-                    1024: { slidesPerView: 4.2 },
+                    0: { slidesPerView: 1.6 },
+                    640: { slidesPerView: 2.5 },
+                    800: { slidesPerView: 3.5 },
+                    1024: { slidesPerView: 4.4 },
+                    1280: { slidesPerView: 5 },
                   }}
                 >
                   {partners.map((logo) => (
                     <SwiperSlide key={logo.id}>
-                      <button
-                        onClick={() => {
-                          setOpenModal(true);
-                          setCurrentProjectPartner(logo.id);
-                          setProjectPartners(logo.name);
-                        }}
-                        className="
-            w-[140px] h-[100px]
-            flex items-center justify-center
-            rounded-xl
-            transition
-          "
-                      >
-                        <img
-                          src={
-                            logo?.businessLogo
-                              ? `${URI}/${logo.businessLogo.replace(/^\/+/, "")}`
-                              : dlogo
-                          }
-                          alt={logo.name}
-                          className="w-full h-full object-contain"
-                        />
-                      </button>
+                      <div className="flex justify-center">
+                        <button
+                          onClick={() => {
+                            setOpenModal(true);
+                            setCurrentProjectPartner(logo.id);
+                            setProjectPartners(logo.name);
+                          }}
+                          className="logo-card"
+                        >
+                          <img
+                            src={
+                              logo?.businessLogo
+                                ? `${URI}/${logo.businessLogo.replace(/^\/+/, "")}`
+                                : dlogo
+                            }
+                            alt={logo.name}
+                            className="w-full h-full object-cover rounded-xl"
+                          />
+                        </button>
+                      </div>
                     </SwiperSlide>
                   ))}
                 </Swiper>
 
                 {/* Scoped styles */}
                 <style>{`
-  .logo-swiper {
-    padding: 40px 0;
-  }
+.logo-swiper {
+  padding: 50px 0;
+}
 
-  .logo-swiper .swiper-slide {
-    opacity: 0.4;
-    transform: scale(0.85);
-    transition: all 0.4s ease;
-  }
+.logo-swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  transition: all 0.4s ease;
+  opacity: 0.5;
+  transform: scale(0.9);
+}
 
-  .logo-swiper .swiper-slide-active {
-    opacity: 1;
-    transform: scale(1.55);
-    z-index: 10;
-  }
+.logo-swiper .swiper-slide-prev,
+.logo-swiper .swiper-slide-next {
+  opacity: 0.8;
+  transform: scale(0.9);
+}
+
+.logo-swiper .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1.4); /* 40% Bigger */
+  z-index: 10;
+}
+
+.logo-card {
+  width: 140px;
+  height: 140px;
+  transition: all 0.4s ease;
+}
 `}</style>
               </div>
             </div>
