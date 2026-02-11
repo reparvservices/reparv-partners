@@ -22,7 +22,7 @@ const steps = [
 const JoinStepsSection = () => {
   return (
     <section className="relative w-full bg-white overflow-hidden  lg:px-24 py-1 lg:py-24">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative mb-20">
         {/* LEFT CARD */}
         <div
           className="

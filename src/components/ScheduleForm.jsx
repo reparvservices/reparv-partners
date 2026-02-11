@@ -4,8 +4,8 @@ import ReactDOM from "react-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useAuth } from "../store/auth";
 
-const ScheduleForm = ({ onClose }) => {
-    const {URI}=useAuth();
+export const ScheduleForm = ({ onClose }) => {
+  const { URI } = useAuth();
   const [formData, setFormData] = useState({
     fullName: "",
     contact: "",
@@ -30,17 +30,14 @@ const ScheduleForm = ({ onClose }) => {
   const validate = () => {
     let temp = {};
 
-    if (!formData.fullName.trim())
-      temp.fullName = "Full name is required";
+    if (!formData.fullName.trim()) temp.fullName = "Full name is required";
 
     if (!/^\d{10}$/.test(formData.contact))
       temp.contact = "Contact must be exactly 10 digits";
 
-    if (!formData.date)
-      temp.date = "Date is required";
+    if (!formData.date) temp.date = "Date is required";
 
-    if (!formData.time)
-      temp.time = "Time is required";
+    if (!formData.time) temp.time = "Time is required";
 
     setErrors(temp);
     return Object.keys(temp).length === 0;
@@ -54,8 +51,8 @@ const ScheduleForm = ({ onClose }) => {
       setLoading(true);
       await axios.post(
         `${URI}/project-partner/profile/schedule`,
-        
-        formData
+
+        formData,
       );
 
       alert("Schedule request submitted successfully!");
@@ -78,12 +75,9 @@ const ScheduleForm = ({ onClose }) => {
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
       <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
-
         {/* Header */}
         <div className="bg-gradient-to-r from-[#5E23DC] to-[#8F3FFC] p-6 text-center">
-          <h2 className="text-2xl font-bold text-white">
-            Schedule a Meeting
-          </h2>
+          <h2 className="text-2xl font-bold text-white">Schedule a Meeting</h2>
           <p className="text-white/80 mt-1 text-sm">
             Choose a convenient date and time
           </p>
@@ -110,9 +104,7 @@ const ScheduleForm = ({ onClose }) => {
               className="w-full border border-gray-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-purple-400"
             />
             {errors.fullName && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.fullName}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
             )}
           </div>
 
@@ -128,9 +120,7 @@ const ScheduleForm = ({ onClose }) => {
               className="w-full border border-gray-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-purple-400"
             />
             {errors.contact && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.contact}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.contact}</p>
             )}
           </div>
 
@@ -144,9 +134,7 @@ const ScheduleForm = ({ onClose }) => {
               className="w-full border border-gray-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-purple-400"
             />
             {errors.date && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.date}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.date}</p>
             )}
           </div>
 
@@ -160,9 +148,7 @@ const ScheduleForm = ({ onClose }) => {
               className="w-full border border-gray-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-purple-400"
             />
             {errors.time && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.time}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.time}</p>
             )}
           </div>
 
@@ -188,7 +174,7 @@ const ScheduleForm = ({ onClose }) => {
         </form>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 };
 
