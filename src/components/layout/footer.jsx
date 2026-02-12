@@ -192,7 +192,7 @@ function Footer({ footerRef }) {
       </div>
 
       {/* Mobile footer */}
-      <div className="footer md:hidden w-full flex flex-col items-center justify-start gap-4 bg-[#5E23DC] !text-white py-8 px-6 mb-[70px]">
+      <div className="footer md:hidden w-full flex flex-col items-center justify-start gap-4 bg-[#5E23DC] !text-white py-8 px-6 ">
         <div className="footerContainer w-full flex flex-col items-start justify-between py-2">
           <div className="footer flex items-center justify-start ">
             <Link to="/">
