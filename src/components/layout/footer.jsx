@@ -13,7 +13,7 @@ function Footer({ footerRef }) {
   const usefulLinks = [
     { title: "EMI Calculator", url: "https://www.reparv.in/emi-calculator" },
     { title: "Cost Calculator", url: "https://www.reparv.in/cost-calculator" },
-    { title: "Verify 7/12", url: "https://www.reparv.in/verify-7/12" },
+    { title: "Verify 7/12 ", url: "https://www.reparv.in/verify-7/12" },
     { title: "RERA Properties", url: "https://www.reparv.in/rera-properties" },
     {
       title: "Visit Properties on Weekends",
