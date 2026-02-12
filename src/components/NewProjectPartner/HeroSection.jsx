@@ -77,7 +77,7 @@ const HeroSection = () => {
             <button
               onClick={scrollToPricing}
               className="
-              w-full
+              
       bg-[#5E23DC] text-white
       text-sm sm:text-base font-semibold
       px-5 py-2.5 sm:px-8 sm:py-3
@@ -101,7 +101,7 @@ const HeroSection = () => {
             <button
               onClick={openVideo}
               className="
-               w-full
+               
       group
       border border-[#5E23DC]
       text-[#5E23DC]

@@ -184,77 +184,31 @@ const cards = [
 const Card = ({ icon: Icon, title, desc, color, svg }) => (
   <div
     className="
+    mt-5 sm:mt-0
       group
       relative mb-10 rounded-2xl cursor-pointer
       bg-[#FCFBFF]
+      active:bg-[#5E23DC14]
       border border-[rgba(94,35,220,0.14)]
-
       transition-all duration-300 ease-out
-      hover:-translate-y-2
-      active:-translate-y-2
-
-      hover:shadow-[0px_1px_4px_0px_#0C0C0D0D,0px_4px_18.6px_0px_#5E23DC47]
-      active:shadow-[0px_1px_4px_0px_#0C0C0D0D,0px_4px_18.6px_0px_#5E23DC47]
+      hover:-translate-y-2 active:-translate-y-2
+      shadow-[0px_1px_4px_0px_#0C0C0D0D,0px_4px_18.6px_0px_#5E23DC47] sm:shadow-none sm:hover:shadow-[0px_1px_4px_0px_#0C0C0D0D,0px_4px_18.6px_0px_#5E23DC47]
 
       w-full sm:w-[300px] md:w-[320px] lg:w-[345px]
       min-h-[190px]
     "
   >
-    {/* 🔒 CLIPPED LAYER (ONLY FOR CORNERS) */}
+    {/* CLIPPED CORNERS */}
     <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-      {/* TOP RIGHT CORNER */}
-      <div
-        className="
-          absolute
-          top-[2px]
-          right-[2px]
-          w-[68px]
-          h-[61px]
-          border-t-[6px]
-          border-r-[6px]
-          border-[#5E23DC]
-          rounded-tr-2xl
+      {/* Top Right */}
+      <div className="absolute top-[2px] right-[2px] w-[68px] h-[61px] border-t-[6px] border-r-[6px] border-[#5E23DC] rounded-tr-2xl opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-active:opacity-100 transition-opacity duration-300" />
 
-          opacity-0
-          group-hover:opacity-100
-          group-active:opacity-100
-          transition-opacity
-          duration-300
-        "
-      />
-
-      {/* BOTTOM LEFT CORNER */}
-      <div
-        className="
-          absolute
-          bottom-[2px]
-          left-[2px]
-          w-[68px]
-          h-[61px]
-          border-b-[6px]
-          border-l-[6px]
-          border-[#5E23DC]
-          rounded-bl-2xl
-
-          opacity-0
-          group-hover:opacity-100
-          group-active:opacity-100
-          transition-opacity
-          duration-300
-        "
-      />
+      {/* Bottom Left */}
+      <div className="absolute bottom-[2px] left-[2px] w-[68px] h-[61px] border-b-[6px] border-l-[6px] border-[#5E23DC] rounded-bl-2xl opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-active:opacity-100 transition-opacity duration-300" />
     </div>
 
-    {/* ICON BADGE (NOT CLIPPED) */}
-    <div
-      className="
-        relative sm:absolute
-        top-5 left-5
-        sm:-top-6 sm:left-8
-        mb-3 sm:mb-0
-        z-10
-      "
-    >
+    {/* ICON */}
+    <div className="relative sm:absolute top-5 left-5 sm:-top-6 sm:left-8 mb-3 sm:mb-0 z-10">
       <div
         className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}
       >
