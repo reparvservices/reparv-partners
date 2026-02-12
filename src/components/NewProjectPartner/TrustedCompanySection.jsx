@@ -288,7 +288,7 @@ function Stat({ icon, value, label }) {
   return (
     <div className="flex items-center sm:items-start gap-4 sm:gap-2 justify-start sm:justify-center w-full">
       {/* ICON BOX (FIXED SIZE) */}
-      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#5E23DC] rounded-lg flex items-center justify-center flex-shrink-0">
+      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#5E23DC] rounded-lg flex items-center justify-center">
         <img
           src={icon}
           alt={label}
