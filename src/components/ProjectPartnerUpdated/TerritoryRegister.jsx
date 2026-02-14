@@ -3,10 +3,10 @@ import { useAuth } from "../../store/auth";
 import { handlePayment } from "../../utils/payment.js";
 
 const RegistrationForm = ({ plan }) => {
-  const { URI, setSuccessScreen,currentProjectPartner } = useAuth();
+  const { URI, setSuccessScreen, currentProjectPartner } = useAuth();
   const registrationPrice = plan?.totalPrice;
-
-  console.log(currentProjectPartner,"currentProjectPartner");
+  
+  console.log(currentProjectPartner, "currentProjectPartner");
   const [newPartner, setNewPartner] = useState({
     fullname: "",
     contact: "",
@@ -72,7 +72,10 @@ const RegistrationForm = ({ plan }) => {
     //     alert("Failed to load Razorpay. Please check your internet.");
     //     return;
     //   }
-  setNewPartner({...newPartner,projectpartnerid:currentProjectPartner || ""});
+    setNewPartner({
+      ...newPartner,
+      projectpartnerid: currentProjectPartner || "",
+    });
     try {
       const response = await fetch(`${URI}/admin/territorypartner/add`, {
         method: "POST",
@@ -213,7 +216,7 @@ const RegistrationForm = ({ plan }) => {
               label="Why are you interested?"
               value={newPartner.intrest}
               onChange={(v) => setNewPartner({ ...newPartner, intrest: v })}
-            options={[
+              options={[
                 "Passion for Real Estate Industry",
                 "Learning & Career Growth",
                 "Opportunity to Work with a Growing Company",
@@ -231,8 +234,8 @@ const RegistrationForm = ({ plan }) => {
                 Referral Code (Optional)
               </label>
               <input
-                type='text'
-                 value={newPartner.refrence}
+                type="text"
+                value={newPartner.refrence}
                 onChange={(v) => setNewPartner({ ...newPartner, refrence: v })}
                 className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-300 focus:border-purple-600 focus:ring-2 focus:ring-purple-200 transition"
               />
@@ -261,18 +264,37 @@ const Section = ({ title, children }) => (
   </div>
 );
 
-const Input = ({ label, value, onChange, type = "text" }) => (
-  <div>
-    <label className="text-xs font-medium text-gray-600">{label}</label>
-    <input
-      type={type}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      required
-      className="w-full mt-1 px-4 py-3 rounded-xl border border-gray-300 focus:border-purple-600 focus:ring-2 focus:ring-purple-200 transition"
-    />
-  </div>
-);
+const Input = ({ label, value, onChange, type = "text" }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const isPassword = type === "password";
+
+  return (
+    <div className="w-full">
+      <label className="text-xs font-medium text-gray-600">{label}</label>
+
+      <div className="relative">
+        <input
+          type={isPassword && showPassword ? "text" : type}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          required
+          className="w-full mt-1 px-4 py-3 pr-10 rounded-xl border border-gray-300 focus:border-purple-600 focus:ring-2 focus:ring-purple-200 transition"
+        />
+
+        {isPassword && (
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute right-3 top-[60%] -translate-y-1/2 text-gray-500 hover:text-[#8A38F5] transition"
+          >
+            {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const Select = ({ label, value, onChange, options }) => (
   <div>

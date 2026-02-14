@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../../store/auth";
 import { handlePayment } from "../../utils/payment.js";
 import axios from "axios";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const RegistrationForm = ({ plan }) => {
   const { URI, setSuccessScreen } = useAuth();
   const registrationPrice = plan?.totalPrice;
-
+  const [showPassword, setShowPassword] = useState(false);
   const [newPartner, setNewPartner] = useState({
     fullname: "",
     contact: "",
@@ -67,12 +68,12 @@ const RegistrationForm = ({ plan }) => {
         {
           username: newPartner.username,
           password: newPartner.password,
-        }
+        },
       );
 
       if (res.data.success) {
         alert(
-          "🎉 Success! Your free trial has started. Login details sent to your email."
+          "🎉 Success! Your free trial has started. Login details sent to your email.",
         );
       } else {
         alert(res.data.message || "Unable to start trial");
@@ -157,7 +158,7 @@ const RegistrationForm = ({ plan }) => {
         res.Id,
         "projectpartner",
         "id",
-        setSuccessScreen
+        setSuccessScreen,
       );
 
       setNewPartner({
@@ -341,16 +342,26 @@ const RegistrationForm = ({ plan }) => {
               className={inputClass}
             />
 
-            <input
-              type="password"
-              required
-              placeholder="Create Password"
-              value={newPartner.password}
-              onChange={(e) =>
-                setNewPartner({ ...newPartner, password: e.target.value })
-              }
-              className={inputClass}
-            />
+            <div className="relative w-full">
+              <input
+                type={showPassword ? "text" : "password"}
+                required
+                placeholder="Create Password"
+                value={newPartner.password}
+                onChange={(e) =>
+                  setNewPartner({ ...newPartner, password: e.target.value })
+                }
+                className={`${inputClass} pr-10`} // add right padding for icon
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#8A38F5] transition"
+              >
+                {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+              </button>
+            </div>
           </div>
           {/* INTENT */}
           <div className="space-y-4">

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import houseImage from "../../assets/company/house.png";
 import { useAuth } from "../../store/auth";
 import ReCAPTCHA from "react-google-recaptcha";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 export default function PartnerRegistrationModal({
   isOpen,
@@ -17,6 +18,7 @@ export default function PartnerRegistrationModal({
     setRole,
     projectPartner,
   } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
   console.log(currentProjectPartner, "currentProjectPartner");
 
   const [newPartner, setNewPartner] = useState({
@@ -263,16 +265,28 @@ export default function PartnerRegistrationModal({
             type="email"
             required
           />
-          <input
-            value={newPartner.password}
-            onChange={(e) =>
-              setNewPartner({ ...newPartner, password: e.target.value })
-            }
-            className="border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E23DC] transition sm:col-span-2"
-            placeholder="Password"
-            type="password"
-            required
-          />
+
+          <div className="relative sm:col-span-2">
+            <input
+              value={newPartner.password}
+              onChange={(e) =>
+                setNewPartner({ ...newPartner, password: e.target.value })
+              }
+              className="w-full border border-gray-300 px-4 py-3 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5E23DC] transition"
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              required
+            />
+
+            {/* Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#5E23DC] transition"
+            >
+              {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+            </button>
+          </div>
 
           {/* <div className="flex justify-center">
   <ReCAPTCHA
@@ -284,7 +298,6 @@ export default function PartnerRegistrationModal({
 {errors.captcha && (
   <p className="text-red-500 text-sm text-center">{errors.captcha}</p>
 )} */}
-
         </div>
 
         {/* CTA */}
@@ -298,6 +311,6 @@ export default function PartnerRegistrationModal({
         </div>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }
