@@ -207,6 +207,7 @@ const StatsAndBenefits = () => {
     gap-4
     px-3
     scrollbar-hide
+
   "
       >
         {benefits.map((item, idx) => (
@@ -214,11 +215,21 @@ const StatsAndBenefits = () => {
             {/* CARD (unchanged) */}
             <div
               className={`
+                mt-5 mb-5 sm:mb-0sm:mt-0 
           relative bg-white
+          hover:shadow-lg active:shadow-lg
           border ${item.popular ? "border-[#5E23DC]" : "border-gray-200"}
           rounded-2xl p-5
           flex flex-col gap-4
           shadow-md
+            active:scale-105 
+    active:shadow-lg
+     ${
+       item.popular
+         ? "shadow-[0px_4px_18.6px_rgba(94,35,220,0.28),0px_1px_4px_rgba(12,12,13,0.05)]"
+         : "hover:shadow-[0px_4px_18.6px_rgba(0,0,0,0.1),0px_1px_4px_rgba(12,12,13,0.05)]"
+     }
+    
         `}
             >
               {/* Popular Badge */}
