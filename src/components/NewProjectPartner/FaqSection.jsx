@@ -8,7 +8,7 @@ const URI = "https://api.reparv.in";
 
 function FAQSection({ location = "Partners Project Partner Page" }) {
   const [faqs, setFaqs] = useState([]);
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(1);
   const [showContactForm, setShowContactForm] = useState(false);
   const [showScheduleForm, setShowScheduleForm] = useState(false);
   const toggleFAQ = (index) => {
