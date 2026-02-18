@@ -29,7 +29,7 @@ export default function PartnerRegistrationStep2({
 
   const fetchStates = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/admin/states`, {
+      const response = await fetch(`https://aws-api.reparv.in/admin/states`, {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -44,7 +44,7 @@ export default function PartnerRegistrationStep2({
   const fetchCities = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/admin/cities/${form.state}`,
+        `https://aws-api.reparv.in/admin/cities/${form.state}`,
         { method: "GET", credentials: "include" },
       );
       const data = await response.json();

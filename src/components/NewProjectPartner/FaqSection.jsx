@@ -4,7 +4,7 @@ import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import ContactForm from "../ContactForm";
 import ScheduleForm from "../ScheduleForm";
 
-const URI = "http://localhost:3000";
+const URI = "https://aws-api.reparv.in";
 
 function FAQSection({ location = "Partners Project Partner Page" }) {
   const [faqs, setFaqs] = useState([]);

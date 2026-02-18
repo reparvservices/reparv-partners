@@ -35,7 +35,7 @@ export default function PartnerRegistrationStep1({
   const fetchPlans = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/admin/subscription/pricing/plans/Project%20Partner`,
+        `https://aws-api.reparv.in/admin/subscription/pricing/plans/Project%20Partner`,
         { headers: { Authorization: `Bearer ${auth?.token}` } },
       );
 
