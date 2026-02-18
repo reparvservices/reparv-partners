@@ -16,9 +16,11 @@ import { Link } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoLocationOutline } from "react-icons/io5";
 import Footer from "./footer";
+import PaymentSuccessModal from "../pricingPages/PaymentSuccessModal";
 
 function LayoutTwo() {
-  const { successScreen, URI } = useAuth();
+  const { successScreen, URI, paymentSuccessScreen, setPaymentSuccessScreen } =
+    useAuth();
   const location = useLocation();
   const [showSidebar, setShowSidebar] = useState(false);
   const getNavLinkClass = (path) => {
@@ -26,9 +28,9 @@ function LayoutTwo() {
   };
 
   return (
-   <div className="layout w-full flex flex-col bg-white z-20 overflow-hidden ">
-  {/* ========= DESKTOP NAVBAR ========= */}
-  <div className="w-full bg-white shadow-sm fixed top-0 left-0 z-50 sm:h-[72px]">
+    <div className="layout w-full flex flex-col bg-white z-20 overflow-hidden ">
+      {/* ========= DESKTOP NAVBAR ========= */}
+      <div className="w-full bg-white shadow-sm fixed top-0 left-0 z-50 sm:h-[72px]">
         <div className="max-w-[1350px] mx-auto px-6 py-2 flex items-center justify-between">
           {/* Left Logo */}
           <Link to="/" className="flex items-center">
@@ -103,7 +105,6 @@ function LayoutTwo() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-          
             <Link
               to="https://projectpartner.reparv.in/"
               className="

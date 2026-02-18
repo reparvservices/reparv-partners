@@ -2,37 +2,52 @@ import { createContext, useContext, useState } from "react";
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({children}) => {
-
-const [loading, setLoading] = useState(false);
-const [isActive, setIsActive] = useState(false);
-const [projectPartner,setProjectPartners]=useState([]);
-const [currentProjectPartner, setCurrentProjectPartner] = useState(null);
-const [successScreen, setSuccessScreen] = useState({
+export const AuthProvider = ({ children }) => {
+  const [loading, setLoading] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [projectPartner, setProjectPartners] = useState([]);
+  const [currentProjectPartner, setCurrentProjectPartner] = useState(null);
+  const [successScreen, setSuccessScreen] = useState({
     show: false,
     label: "Thank You For Registering!",
     description: "Our Representative will call you shortly",
-});
-const [showInquiryForm, setShowInquiryForm] = useState(false);
-const [role,setRole]=useState("sales");
-const URI = "https://api.reparv.in";
-//const URI="http://localhost:3000";
+  });
+  const [paymentSuccessScreen, setPaymentSuccessScreen] = useState(true);
+  const [showInquiryForm, setShowInquiryForm] = useState(false);
+  const [purchaseData, setPurchaseData] = useState(null);
+  const [role, setRole] = useState("sales");
+  const URI = "http://localhost:3000";
+  //const URI="http://localhost:3000";
 
-return <AuthContext.Provider
- value={
-    {  
-        isActive, setIsActive,
-        successScreen, setSuccessScreen,
-        showInquiryForm, setShowInquiryForm,
-        URI, loading, setLoading,currentProjectPartner, setCurrentProjectPartner,projectPartner,setProjectPartners,
-        role,setRole
-
-    }
-}>
-    {children}
-   </AuthContext.Provider>
-}
+  return (
+    <AuthContext.Provider
+      value={{
+        isActive,
+        setIsActive,
+        successScreen,
+        setSuccessScreen,
+        showInquiryForm,
+        setShowInquiryForm,
+        URI,
+        loading,
+        setLoading,
+        currentProjectPartner,
+        setCurrentProjectPartner,
+        projectPartner,
+        setProjectPartners,
+        role,
+        setRole,
+        paymentSuccessScreen,
+        setPaymentSuccessScreen,
+        purchaseData,
+        setPurchaseData,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 export const useAuth = () => {
-    return useContext(AuthContext)
-}
+  return useContext(AuthContext);
+};

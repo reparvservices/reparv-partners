@@ -21,6 +21,7 @@ import LayoutTwo from "./components/layout/Layout2";
 import NewProjectPartner from "./pages/newProjectPartner";
 import PartnerRegistrationPage from "./components/ProjectPartnerUpdated/PartnerRegistrationModal";
 import PartnersPage from "./components/ProjectPartnerUpdated/PartnersPage";
+import PartnerRegistration from "./pages/PartnerRegistration";
 
 function App() {
   return (
@@ -28,10 +29,10 @@ function App() {
       <ScrollToTop />
       <Routes>
         {/* Routes with default Layout */}
-        <Route path="" element={<LayoutTwo/>}>
+        <Route path="" element={<LayoutTwo />}>
           <Route path="/" element={<NewProjectPartner />} />
           <Route path="/home" element={<NewProjectPartner />} />
-           <Route path="/partners" element={<PartnersPage/>} />
+          <Route path="/partners" element={<PartnersPage />} />
           <Route path="/promoter" element={<Promoter />} />
           <Route path="/sales-partner" element={<SalesPartner />} />
           <Route path="/territory-partner" element={<TerritoryPartner />} />
@@ -46,6 +47,7 @@ function App() {
             element={<TermsAndConditions />}
           />
           <Route path="/cancellation-policy" element={<RefundPolicy />} />
+          <Route path="/subscribe" element={<PartnerRegistration />} />
         </Route>
 
         {/* Route with LayoutTwo */}

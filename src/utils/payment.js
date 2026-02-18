@@ -9,7 +9,10 @@ export const handlePayment = async (
   userId,
   databaseT,
   updatedId,
-  setSuccessScreen
+  setSuccessScreen,
+  setPurchaseData,
+  purchaseData,
+  navigate,
 ) => {
   // Step 1: Create Razorpay Order
   const res = await fetch(`${api}/api/payment/create-order`, {
@@ -21,7 +24,7 @@ export const handlePayment = async (
   });
 
   const order = await res.json();
-  console.log(order);
+  console.log(order, "order");
 
   // Step 2: Open Razorpay checkout
   const options = {
@@ -51,14 +54,25 @@ export const handlePayment = async (
       });
 
       const result = await verifyRes.json();
+      console.log(result, "ree");
 
       if (result.success) {
         //console.log(result);
-        setSuccessScreen({
-          show: true,
-          label: "Payment Successful!",
-          description: "Check Your Email for Username or Password",
-        });
+        setPurchaseData((prev) => ({
+          ...prev,
+          paymentDetails: {
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+          },
+          subscriptionDetails: result.data || result,
+        }));
+
+        navigate("/paymentSuccess");
+        // setSuccessScreen({
+        //   show: true,
+        //   label: "Payment Successful!",
+        //   description: "Check Your Email for Username or Password",
+        // });
       } else {
         alert("Payment verification failed!");
       }
