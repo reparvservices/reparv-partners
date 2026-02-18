@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   const [showInquiryForm, setShowInquiryForm] = useState(false);
   const [purchaseData, setPurchaseData] = useState(null);
   const [role, setRole] = useState("sales");
-  const URI = "https://aws-api.reparv.in";
+  const URI = "https://api.reparv.in";
   //const URI="https://aws-api.reparv.in";
 
   return (
