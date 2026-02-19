@@ -22,6 +22,7 @@ import NewProjectPartner from "./pages/newProjectPartner";
 import PartnerRegistrationPage from "./components/ProjectPartnerUpdated/PartnerRegistrationModal";
 import PartnersPage from "./components/ProjectPartnerUpdated/PartnersPage";
 import PartnerRegistration from "./pages/PartnerRegistration";
+import PaymentSuccessModal from "./components/pricingPages/PaymentSuccessModal";
 
 function App() {
   return (
@@ -46,8 +47,10 @@ function App() {
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
           />
+
           <Route path="/cancellation-policy" element={<RefundPolicy />} />
           <Route path="/subscribe" element={<PartnerRegistration />} />
+          <Route path="/paymentSuccess" element={<PaymentSuccessModal />} />
         </Route>
 
         {/* Route with LayoutTwo */}
