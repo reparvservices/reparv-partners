@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PartnerRegistrationStep1 from "../components/pricingPages/Step1";
 import PartnerRegistrationStep2 from "../components/pricingPages/Step2";
 import PartnerPaymentStep3 from "../components/pricingPages/Step3";
 import { useAuth } from "../store/auth";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function PartnerRegistration() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [couponState, setCouponState] = useState({});
   const [redeemConfirm, setRedeemConfirm] = useState(null);
+  const { id } = useParams();
+
   const { URI } = useAuth();
   const [user, setUser] = useState({
     fullname: "",
@@ -23,6 +26,14 @@ export default function PartnerRegistration() {
     refrence: "",
   });
 
+  useEffect(() => {
+    if (id) {
+      setSelectedPlan((prev) => ({
+        ...prev,
+        id: Number(id),
+      }));
+    }
+  }, [id]);
   const updateCouponState = (planId, newState) => {
     setCouponState((prev) => ({
       ...prev,
@@ -34,14 +45,18 @@ export default function PartnerRegistration() {
       window.alert("Enter a redeem code");
       return;
     }
-
+    let userId = localStorage.getItem("userId");
+    if (!userId) {
+      userId = Math.floor(1000 + Math.random() * 9000);
+      localStorage.setItem("userId", userId);
+    }
     updateCouponState(plan.id, { isApplying: true, couponMsg: "" });
 
     try {
       const res = await axios.post(
         `${URI}/projectpartner/subscription/validate`,
         {
-          user_id: 1234,
+          user_id: userId,
           code: code.trim(),
           planid: plan.id,
         },
@@ -77,8 +92,6 @@ export default function PartnerRegistration() {
 
     const updatedPlan = {
       ...selectedPlan,
-      totalPrice: discountedPrice,
-      billPrice: discountedPrice,
       discountApplied: discount,
     };
     console.log(updatedPlan, "update");
@@ -113,6 +126,7 @@ export default function PartnerRegistration() {
             nextStep={nextStep}
             setPlan={setSelectedPlan}
             selectedPlan={selectedPlan}
+            routePlanId={id}
             handleRedeem={handleRedeem}
             couponState={couponState}
             redeemConfirm={redeemConfirm}

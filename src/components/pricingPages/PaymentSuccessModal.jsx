@@ -12,61 +12,62 @@ import {
 import { useAuth } from "../../store/auth";
 import { useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
-import logo from "../../assets/reparvIcon.png";
+import logo from "../../assets/billlogo.png";
 
 function PaymentSuccessModal() {
   const { purchaseData } = useAuth();
-  //   const purchaseData = {
-  //     paymentDetails: {
-  //       razorpay_order_id: "order_SHgOh3LBxEoTNn",
-  //       razorpay_payment_id: "pay_SHgPJzm4d00aMN",
-  //     },
+  // const purchaseData = {
+  //   paymentDetails: {
+  //     razorpay_order_id: "order_SHgOh3LBxEoTNn",
+  //     razorpay_payment_id: "pay_SHgPJzm4d00aMN",
+  //   },
 
-  //     selectedPlan: {
-  //       id: 19,
-  //       planName: "Project Starter",
-  //       planDuration: "3 Months",
-  //       partnerType: "Project Partner",
+  //   selectedPlan: {
+  //     id: 19,
+  //     planName: "Project Starter",
+  //     planDuration: "3 Months",
+  //     partnerType: "Project Partner",
+  //     gst: 5000,
+  //     totalPrice: 1,
+  //     billPrice: 53097,
+  //     discount: 53097,
+  //     discountApplied: 53097,
+  //     redeemCode: "TESTTT",
 
-  //       totalPrice: 1,
-  //       billPrice: 1,
-  //       discount: 53097,
-  //       discountApplied: 53097,
-  //       redeemCode: "TESTTT",
+  //     startDate: "2026-02-17T18:30:00.000Z",
+  //     endDate: "2026-02-18T18:30:00.000Z",
+  //     status: "Active",
 
-  //       startDate: "2026-02-17T18:30:00.000Z",
-  //       endDate: "2026-02-18T18:30:00.000Z",
-  //       status: "Active",
+  //     highlight: "True",
 
-  //       highlight: "True",
+  //     features:
+  //       "Minimum 300 Leads, 15–20 Site Visits, Monthly Sales Training (1 Session), Common Relationship Manager, Marketing Material, 1 Social Media Post / Month, 1 Social Media Video Reel, Follow-up Tracker, Digital Broker System, Daily Work Tracker, Lead Management System, Digital Profile, Team Management Support, Personalised Landing Page, Business Community Access",
 
-  //       features:
-  //         "Minimum 300 Leads, 15–20 Site Visits, Monthly Sales Training (1 Session), Common Relationship Manager, Marketing Material, 1 Social Media Post / Month, 1 Social Media Video Reel, Follow-up Tracker, Digital Broker System, Daily Work Tracker, Lead Management System, Digital Profile, Team Management Support, Personalised Landing Page, Business Community Access",
+  //     firstImage: "/uploads/subscriptionBanners/1763894332884.jpg",
+  //     secondImage: null,
+  //     thirdImage: null,
 
-  //       firstImage: "/uploads/subscriptionBanners/1763894332884.jpg",
-  //       secondImage: null,
-  //       thirdImage: null,
+  //     created_at: "2025-11-23T10:38:52.000Z",
+  //     updated_at: "2026-01-30T22:11:53.000Z",
+  //   },
 
-  //       created_at: "2025-11-23T10:38:52.000Z",
-  //       updated_at: "2026-01-30T22:11:53.000Z",
-  //     },
+  //   subscriptionDetails: {
+  //     success: true,
+  //   },
 
-  //     subscriptionDetails: {
-  //       success: true,
-  //     },
-
-  //     userDetails: {
-  //       fullname: "TESTTS",
-  //       username: "9637295908eemake it objetct data",
-  //       email: "TEST@gmail.com",
-  //       contact: "7458963214",
-  //       city: "Gandhinagar",
-  //       state: "Gujarat",
-  //       intrest: "kbjf ,reh fjer",
-  //       password: "Kiran@2226012",
-  //       refrence: "",
-  //     },
-  //   };
+  //   userDetails: {
+  //     fullname: "TESTTS",
+  //     username: "9637295908eemake it objetct data",
+  //     email: "TEST@gmail.com",
+  //     contact: "7458963214",
+  //     city: "Gandhinagar",
+  //     state: "Gujarat",
+  //     intrest: "kbjf ,reh fjer",
+  //     password: "Kiran@2226012",
+  //     refrence: "",
+  //   },
+  // };
+  console.log(purchaseData, "pp");
 
   const navigate = useNavigate();
 
@@ -86,224 +87,328 @@ function PaymentSuccessModal() {
       minute: "2-digit",
     });
 
+  const formatINR = (num) =>
+    Number(num || 0).toLocaleString("en-IN", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
   const handleDownloadInvoice = () => {
-    const doc = new jsPDF();
+    const doc = new jsPDF("p", "mm", "a4");
     const pageWidth = doc.internal.pageSize.getWidth();
 
-    const primary = [94, 35, 220]; // #5E23DC
-    const darkGray = [40, 40, 40];
+    const purple = [124, 58, 237];
+    const lightPurple = [236, 233, 254];
+    const gray = [107, 114, 128];
+    const dark = [31, 41, 55];
+    const green = [34, 197, 94];
 
-    const { paymentDetails, selectedPlan, userDetails } = purchaseData;
+    const { selectedPlan, paymentDetails, userDetails } = purchaseData;
+
+    const formatINR = (num) =>
+      Number(num || 0).toLocaleString("en-IN", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+
+    const price = Number(selectedPlan?.totalPrice);
+    const gst = Math.round(price * 0.18);
+    const subtotal = price;
+    const discount = Number(selectedPlan.discountApplied || 0);
+    const total = subtotal + gst - discount;
 
     let y = 20;
 
-    /* ================= HEADER ================= */
+    /* ================= HEADER LEFT ================= */
 
-    // Add Logo (Left Side)
-
-    doc.addImage(logo, "PNG", 20, y - 10, 18, 18);
-
-    // Reparv Text
-    doc.setFontSize(22);
-    doc.setTextColor(...primary);
-    doc.setFont("helvetica", "bold");
-    doc.text("Reparv", 42, y);
+    doc.addImage(logo, "PNG", 20, y - 5, 28, 14);
 
     doc.setFontSize(10);
-    doc.setTextColor(100);
-    doc.setFont("helvetica", "normal");
-    doc.text("Partner Network", 42, y + 6);
+    doc.setTextColor(...gray);
+    doc.text("Reparv Technologies Pvt Ltd", 20, y + 15);
+    doc.text(
+      "Plot No. 11, Third Bus Stop, Gorle Layout,Trimurti Nagar,",
+      20,
+      y + 20,
+    );
+    doc.text("Nagpur, Maharashtra, India, 440022", 20, y + 25);
 
-    // Invoice Title
-    doc.setFontSize(26);
-    doc.setTextColor(...darkGray);
+    /* ================= HEADER RIGHT ================= */
+
+    doc.setFontSize(30);
+    doc.setTextColor(...dark);
     doc.setFont("helvetica", "bold");
-    doc.text("INVOICE", pageWidth - 65, y);
+    doc.text("INVOICE", pageWidth - 60, y + 5);
 
-    // Accent Line
-    doc.setDrawColor(...primary);
-    doc.setLineWidth(2);
-    doc.line(20, y + 12, pageWidth - 20, y + 12);
-
-    y += 28;
-
-    /* ================= BILL TO ================= */
-
-    doc.setFontSize(11);
-    doc.setTextColor(...primary);
-    doc.setFont("helvetica", "bold");
-    doc.text("Invoice To:", 20, y);
+    // PAID badge
+    doc.setFillColor(220, 252, 231);
+    doc.roundedRect(pageWidth - 55, y + 12, 30, 8, 4, 4, "F");
+    doc.setFontSize(10);
+    doc.setTextColor(...green);
+    doc.text("PAID", pageWidth - 46, y + 18);
 
     doc.setFontSize(10);
-    doc.setTextColor(0);
+    doc.setTextColor(...gray);
     doc.setFont("helvetica", "normal");
+    doc.text(`Invoice #: INV-${Date.now()}`, pageWidth - 70, y + 30);
+    doc.text(
+      `Date: ${new Date().toLocaleDateString("en-IN")}`,
+      pageWidth - 70,
+      y + 36,
+    );
+    doc.text(
+      `Transaction ID: ${paymentDetails.razorpay_payment_id}`,
+      pageWidth - 70,
+      y + 42,
+    );
+
+    y += 55;
+    doc.setDrawColor(230);
+    doc.line(20, y, pageWidth - 20, y);
+
+    y += 15;
+
+    /* ================= BILL SECTION ================= */
+
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(...gray);
+    doc.text("BILL TO", 20, y);
+    doc.text("BILLING ADDRESS", 110, y);
 
     y += 8;
-    doc.text(userDetails.fullname, 20, y);
-    y += 6;
-    doc.text(`${userDetails.city}, ${userDetails.state}`, 20, y);
-    y += 6;
-    doc.text(userDetails.email, 20, y);
-    y += 6;
-    doc.text(userDetails.contact, 20, y);
 
-    // Right Side Invoice Info
-    doc.text(
-      `Invoice #: ${paymentDetails.razorpay_payment_id}`,
-      pageWidth - 85,
-      y - 18,
-    );
-    doc.text(
-      `Order ID: ${paymentDetails.razorpay_order_id}`,
-      pageWidth - 85,
-      y - 12,
-    );
-    doc.text(`Status: ${selectedPlan.status}`, pageWidth - 85, y - 6);
-
-    y += 18;
-
-    /* ================= PLAN DETAILS TABLE ================= */
-
-    doc.setFillColor(...primary);
-    doc.rect(20, y, pageWidth - 40, 10, "F");
-
-    doc.setTextColor(255);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(10);
-
-    doc.text("Plan", 25, y + 7);
-    doc.text("Duration", 80, y + 7);
-    doc.text("Partner Type", 115, y + 7);
-    doc.text("Amount", pageWidth - 40, y + 7);
-
-    y += 10;
-
-    doc.setTextColor(0);
     doc.setFont("helvetica", "normal");
-    doc.rect(20, y, pageWidth - 40, 14);
+    doc.setTextColor(...dark);
 
-    doc.text(selectedPlan.planName, 25, y + 9);
-    doc.text(selectedPlan.planDuration, 80, y + 9);
-    doc.text(selectedPlan.partnerType, 115, y + 9);
+    doc.setFontSize(12);
+    doc.text(userDetails.fullname, 20, y);
 
-    // 🔥 Styled Price (Bold + Bigger)
-    doc.setFont("courier", "bold");
-    doc.setFontSize(14);
-    doc.setTextColor(...primary);
-    doc.text(`₹ ${selectedPlan.totalPrice}`, pageWidth - 40, y + 9);
+    doc.setFontSize(10);
+    doc.setTextColor(...gray);
+    doc.text(userDetails.email, 20, y + 6);
+    doc.text(userDetails.contact, 20, y + 12);
+
+    doc.setTextColor(...dark);
+    doc.text(`${userDetails.city}, ${userDetails.state}`, 110, y);
 
     y += 25;
 
-    /* ================= PRICE BREAKDOWN ================= */
+    /* ================= TABLE LAYOUT SYSTEM ================= */
 
+    const tableLeft = 20;
+    const tableRight = pageWidth - 20;
+    const tableWidth = tableRight - tableLeft;
+
+    const col = {
+      description: tableLeft + 10,
+      duration: tableLeft + 120,
+      price: tableLeft + 150,
+      qty: tableLeft + 175,
+      gst: tableLeft + 195,
+      total: tableRight - 10,
+    };
+
+    const headerHeight = 14;
+    const rowHeight = 26;
+
+    /* ================= TABLE HEADER ================= */
+
+    doc.setFillColor(240, 240, 255);
+    doc.rect(15, y, pageWidth - 30, 10, "F");
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    doc.setTextColor(...gray);
+
+    doc.text("PLAN DESCRIPTION", 18, y + 7);
+    doc.text("DURATION", 95, y + 7);
+    doc.text("PRICE", 115, y + 7);
+    doc.text("QTY", 135, y + 7);
+    doc.text("GST (18%)", 150, y + 7);
+    doc.text("TOTAL", 175, y + 7);
+
+    y += 12;
+
+    /* ================= TABLE ROW ================= */
+    const rowTop = y;
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(...dark);
+
+    doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
-    doc.setTextColor(0);
+    doc.setTextColor(...dark);
+    doc.text(selectedPlan.planName, 18, rowTop + 6);
+
     doc.setFont("helvetica", "normal");
-
-    // Bill Price
-    doc.text("Bill Price :", pageWidth - 90, y);
-    doc.setFont("helvetica", "bold");
-    doc.text(`Rs. ${selectedPlan.billPrice}`, pageWidth - 45, y);
-
-    y += 7;
-
-    // Discount
-    doc.setFont("helvetica", "normal");
-    doc.text("Discount :", pageWidth - 90, y);
-    doc.setFont("helvetica", "bold");
-    doc.text(`Rs. ${selectedPlan.discountApplied}`, pageWidth - 45, y);
-
-    y += 10;
-
-    // TOTAL (Highlighted)
-    doc.setFillColor(...primary);
-    doc.rect(pageWidth - 100, y - 6, 80, 14, "F");
-
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(255);
-    doc.setFontSize(12);
+    doc.setFontSize(9);
+    doc.setTextColor(...gray);
     doc.text(
-      `Total Paid : Rs. ${selectedPlan.totalPrice}`,
-      pageWidth - 95,
-      y + 3,
+      "Full access to dashboard & lead management",
+
+      18,
+      rowTop + 12,
     );
 
-    /* ================= SUBSCRIPTION INFO ================= */
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.setTextColor(...dark);
+    doc.text(selectedPlan.planDuration, 95, y + 3);
+    doc.text(`Rs.${subtotal}`, 115, y + 3);
+    doc.text("1", 135, y + 3);
+    doc.text(`Rs.${gst}`, 150, y + 3);
+    doc.text(`Rs.${subtotal + gst}`, 175, y + 3);
+
+    y += 15;
+
+    doc.setDrawColor(230);
+    doc.line(15, y, pageWidth - 15, y);
+
+    y += 15;
+
+    // /* ================= SEPARATOR ================= */
+
+    // doc.setDrawColor(230);
+    // doc.setLineWidth(0.5);
+    // doc.line(tableLeft, y, tableRight, y);
+
+    // y += 18;
+
+    /* ================= TOTAL SUMMARY (FIGMA MATCH) ================= */
+
+    const summaryLabelX = tableRight - 85;
+    const summaryValueX = tableRight - 10;
 
     doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
-    doc.setTextColor(0);
+    doc.setTextColor(...gray);
 
-    doc.text(
-      `Start Date: ${new Date(selectedPlan.startDate).toLocaleDateString()}`,
-      20,
-      y,
-    );
+    doc.text("Subtotal", summaryLabelX, y);
+    doc.text(`Rs.${formatINR(subtotal)}`, summaryValueX, y, {
+      align: "right",
+    });
 
-    y += 6;
-    doc.text(
-      `End Date: ${new Date(selectedPlan.endDate).toLocaleDateString()}`,
-      20,
-      y,
-    );
+    y += 8;
+
+    doc.text("GST (18%)", summaryLabelX, y);
+    doc.text(`Rs.${formatINR(gst)}`, summaryValueX, y, { align: "right" });
+
+    y += 8;
+
+    doc.setTextColor(...green);
+    doc.text("Promotional Discount", summaryLabelX, y);
+    doc.text(`- Rs.${formatINR(discount)}`, summaryValueX, y, {
+      align: "right",
+    });
+
+    y += 12;
+
+    /* Divider above total */
+    doc.setDrawColor(230);
+    doc.line(summaryLabelX - 5, y, tableRight, y);
+
+    y += 10;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.setTextColor(...purple);
+
+    doc.text("Total Amount", summaryLabelX - 5, y);
+    doc.text(`Rs.${formatINR(total)}`, summaryValueX, y, {
+      align: "right",
+    });
+
+    y += 10;
+
+    /* ================= PAYMENT ================= */
+
+    doc.setDrawColor(230);
+    doc.line(20, y, pageWidth - 20, y);
 
     y += 15;
 
-    /* ================= FOOTER ================= */
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(...dark);
+    doc.setFontSize(11);
+    doc.text("Payment Method", 20, y);
 
-    doc.setTextColor(120);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(120, 120, 120);
+
+    doc.text(`Gateway: Razorpay`, 20, y + 12);
+    doc.text(
+      `Transaction ID: ${paymentDetails?.razorpay_payment_id}`,
+      20,
+      y + 18,
+    );
+    doc.text(`Status: Successful`, 20, y + 24);
+    doc.text(`Date: ${new Date().toLocaleString("en-IN")}`, 20, y + 30);
+    doc.setTextColor(...gray);
+    doc.text(
+      `Renewal Date: ${new Date(selectedPlan.endDate).toLocaleDateString(
+        "en-IN",
+      )}`,
+      pageWidth - 70,
+      y,
+    );
+
+    y += 30;
+
+    /* ================= TERMS ================= */
+
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(...dark);
+    doc.text("Terms & Conditions", 20, y + 8);
+
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(...gray);
     doc.setFontSize(9);
-    doc.text("Thank you for choosing Reparv.", 20, y);
-
-    y += 15;
-    doc.setDrawColor(...primary);
-    doc.line(20, y, 70, y);
-    doc.text("Authorised Signature", 25, y + 6);
-
-    /* ================= SAVE ================= */
+    doc.text(
+      "This is a system generated invoice and does not require a physical signature.",
+      20,
+      y + 12,
+    );
+    doc.text("Subscriptions are non-refundable once activated.", 20, y + 16);
 
     doc.save(`Invoice_${paymentDetails.razorpay_payment_id}.pdf`);
   };
 
   return (
-    <div className="min-h-screen mt-10 bg-[#f5f6fa] flex flex-col items-center py-16 px-4">
+    <div className="min-h-screen mt-6 md:mt-10 bg-[#f5f6fa] flex flex-col items-center py-10 md:py-16 px-4">
       {/* Success Card */}
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-md p-10">
+      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-md p-5 sm:p-6 md:p-10">
         {/* Success Icon */}
-        <div className="flex justify-center mb-6">
-          <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center">
-            <Check className="w-10 h-10 text-green-600" strokeWidth={3} />
+        <div className="flex justify-center mb-5 md:mb-6">
+          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-green-100 flex items-center justify-center">
+            <Check
+              className="w-8 h-8 md:w-10 md:h-10 text-green-600"
+              strokeWidth={3}
+            />
           </div>
         </div>
 
-        <h2 className="text-2xl md:text-3xl font-semibold text-center text-gray-900 mb-4">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center text-gray-900 mb-3 md:mb-4">
           Payment Successful!
         </h2>
 
-        <p className="text-gray-500 text-center max-w-xl mx-auto mb-8">
+        <p className="text-gray-500 text-sm sm:text-base text-center max-w-xl mx-auto mb-6 md:mb-8 px-2">
           Your subscription has been confirmed. Welcome to the Reparv Partner
           Network. A receipt has been sent to your email.
         </p>
 
         {/* Subscription Details */}
-        <div className="bg-[#f7f8fa] rounded-xl p-6 mb-6 text-sm">
-          <div className="flex justify-between mb-4">
-            <span className="text-gray-500">Plan Subscription</span>
-            <span className="font-semibold text-gray-900">
-              {selectedPlan.planName} ({selectedPlan.planDuration})
-            </span>
-          </div>
+        <div className="bg-[#f7f8fa] rounded-xl p-4 md:p-6 mb-6 text-sm">
+          <ResponsiveRow
+            label="Plan Subscription"
+            value={`${selectedPlan.planName} (${selectedPlan.planDuration})`}
+          />
 
-          <div className="flex justify-between mb-4">
-            <span className="text-gray-500">Amount Paid</span>
-            <span className="font-semibold text-gray-900">
-              ₹{selectedPlan.totalPrice}
-            </span>
-          </div>
+          <ResponsiveRow
+            label="Amount Paid"
+            value={`₹${selectedPlan.totalPrice}`}
+          />
 
-          <div className="flex justify-between mb-4 items-center">
+          <div className="flex flex-col sm:flex-row sm:justify-between mb-4 gap-1 sm:gap-0">
             <span className="text-gray-500">Payment Method</span>
-            <span className="font-semibold text-gray-900 flex items-center gap-2">
+            <span className="font-semibold text-gray-900 flex items-center gap-2 break-words">
               Online Payment
               <CreditCardIcon className="w-4 h-4 text-gray-400" />
             </span>
@@ -311,24 +416,20 @@ function PaymentSuccessModal() {
 
           <hr className="my-4" />
 
-          <div className="flex justify-between mb-4">
-            <span className="text-gray-500">Transaction ID</span>
-            <span className="font-medium text-gray-900">
-              {paymentDetails?.razorpay_payment_id}
-            </span>
-          </div>
+          <ResponsiveRow
+            label="Transaction ID"
+            value={paymentDetails?.razorpay_payment_id}
+          />
 
-          <div className="flex justify-between">
-            <span className="text-gray-500">Subscription Start</span>
-            <span className="font-medium text-gray-900">
-              {formatDate(selectedPlan.startDate)}
-            </span>
-          </div>
+          <ResponsiveRow
+            label="Subscription Start"
+            value={formatDate(selectedPlan.startDate)}
+          />
         </div>
 
         {/* User Details */}
-        <div className="bg-[#f7f8fa] rounded-xl p-6 mb-8 text-sm">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-[#f7f8fa] rounded-xl p-4 md:p-6 mb-8 text-sm">
+          <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-4">
             Registered User Details
           </h3>
 
@@ -340,18 +441,15 @@ function PaymentSuccessModal() {
             ["City", userDetails?.city],
             ["State", userDetails?.state],
           ].map(([label, value], index) => (
-            <div key={index} className="flex justify-between mb-4 last:mb-0">
-              <span className="text-gray-500">{label}</span>
-              <span className="font-semibold text-gray-900">{value}</span>
-            </div>
+            <ResponsiveRow key={index} label={label} value={value} />
           ))}
         </div>
 
         {/* Button */}
         <div className="flex justify-center mb-6">
           <button
-            onClick={() => navigate("/partner-dashboard")}
-            className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-8 py-3 rounded-lg font-medium shadow hover:opacity-95 transition"
+            onClick={() => navigate("https://projectpartner.reparv.in/")}
+            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 md:px-8 py-3 rounded-lg font-medium shadow hover:opacity-95 transition"
           >
             Go to Partner Dashboard
             <ArrowRight className="w-4 h-4" />
@@ -359,7 +457,7 @@ function PaymentSuccessModal() {
         </div>
 
         {/* Links */}
-        <div className="flex justify-center gap-6 text-gray-400 text-sm">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-gray-400 text-sm">
           <button
             onClick={handleDownloadInvoice}
             className="flex items-center gap-2 hover:text-gray-600"
@@ -377,5 +475,14 @@ function PaymentSuccessModal() {
     </div>
   );
 }
+
+const ResponsiveRow = ({ label, value }) => (
+  <div className="flex flex-col sm:flex-row sm:justify-between mb-4 gap-1 sm:gap-0">
+    <span className="text-gray-500">{label}</span>
+    <span className="font-semibold text-gray-900 break-words text-left sm:text-right">
+      {value}
+    </span>
+  </div>
+);
 
 export default PaymentSuccessModal;

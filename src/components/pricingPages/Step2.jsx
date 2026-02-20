@@ -129,6 +129,12 @@ export default function PartnerRegistrationStep2({
   };
 
   const passwordStrength = getPasswordStrength(form.password);
+  const baseAmount = Number(selectedPlan?.totalPrice || 0);
+  const originalAmount = Number(selectedPlan?.totalPrice || 0);
+  const discountAmount = Number(selectedPlan?.discountApplied || 0);
+  const gstAmount = Math.round(originalAmount * 0.18);
+  const subtotalWithGST = originalAmount + gstAmount;
+  const totalWithGST = Math.max(subtotalWithGST - discountAmount, 0);
 
   return (
     <div className="min-h-screen bg-[#F8F7FC] overflow-x-hidden">
@@ -305,19 +311,25 @@ export default function PartnerRegistrationStep2({
 
             <SummaryRow
               label="Base Plan"
-              value={`₹${formatIndianNumber(selectedPlan?.totalPrice)}`}
-            />
-            <SummaryRow label="Onboarding Fee" value="₹0.00" />
-            <SummaryRow
-              label="GST (18%)"
-              value={`₹${formatIndianNumber(selectedPlan?.gst || 0)}`}
+              value={`₹${formatIndianNumber(originalAmount)}`}
             />
 
+            <SummaryRow
+              label="GST (18%)"
+              value={`₹${formatIndianNumber(gstAmount)}`}
+            />
+
+            {discountAmount > 0 && (
+              <SummaryRow
+                label="Discount"
+                value={`- ₹${formatIndianNumber(discountAmount)}`}
+              />
+            )}
             <div className="border-t my-5"></div>
 
             <div className="flex justify-between text-xl font-bold text-gray-900">
               <span>Total due today</span>
-              <span>₹{formatIndianNumber(selectedPlan?.totalPrice)}</span>
+              <span>₹{formatIndianNumber(totalWithGST)}</span>
             </div>
 
             <div className="bg-gray-50 border rounded-lg p-4 mt-6 text-sm text-gray-600 flex items-start gap-2">

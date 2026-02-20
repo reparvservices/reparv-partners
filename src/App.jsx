@@ -49,7 +49,7 @@ function App() {
           />
 
           <Route path="/cancellation-policy" element={<RefundPolicy />} />
-          <Route path="/subscribe" element={<PartnerRegistration />} />
+          <Route path="/subscribe/:id" element={<PartnerRegistration />} />
           <Route path="/paymentSuccess" element={<PaymentSuccessModal />} />
         </Route>
 

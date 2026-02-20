@@ -31,7 +31,7 @@ export const handlePayment = async (
     key: razorpayKey,
     amount: order.amount,
     currency: order.currency,
-    name: "Reparv",
+    name: "Reparv Project Partner",
     description: `${page} Registration`,
     order_id: order.id,
     handler: async (response) => {

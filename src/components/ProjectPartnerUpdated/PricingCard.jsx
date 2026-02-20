@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function PricingCard({
   plan,
@@ -12,6 +13,7 @@ export default function PricingCard({
   couponMsg,
   handleRedeem,
 }) {
+  const navigate = useNavigate();
   return (
     <div
       className={`
@@ -50,7 +52,7 @@ export default function PricingCard({
 
       {/* COUPON SECTION */}
       {plan.totalPrice !== "0" && (
-        <div className="mt-5">
+        <div className="mt-5 hidden">
           <div className="flex items-center gap-2">
             <input
               type="text"
@@ -86,7 +88,12 @@ export default function PricingCard({
 
       {/* CTA BUTTON */}
       <button
-        onClick={() => onChoose(plan)}
+        onClick={() => {
+          console.log(plan, "plansbs");
+
+          // onChoose(plan);
+          navigate(`/subscribe/${plan?.id}`);
+        }}
         className={`mt-6 w-full py-3 rounded-xl transition font-medium ${plan.buttonClass}`}
       >
         {plan.buttonText}

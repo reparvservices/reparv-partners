@@ -15,6 +15,7 @@ export default function PartnerRegistrationStep1({
   nextStep,
   setPlan,
   selectedPlan,
+  routePlanId,
   handleRedeem,
   couponState,
   redeemConfirm,
@@ -72,9 +73,37 @@ export default function PartnerRegistrationStep1({
     }
   };
 
+  useEffect(() => {
+    if (!routePlanId || !plans?.length) return;
+
+    let matchedPlan = null;
+
+    // 🔥 Case 1: Free Trial
+    if (routePlanId === "free-trial") {
+      matchedPlan = plans.find(
+        (plan) => plan.id?.toLowerCase() === "free-trial",
+      );
+    }
+    // 🔥 Case 2: Numeric Plan ID
+    else if (!isNaN(routePlanId)) {
+      matchedPlan = plans.find((plan) => plan.id === Number(routePlanId));
+    }
+
+    if (matchedPlan) {
+      setPlan(matchedPlan);
+    }
+  }, [routePlanId, plans]);
+
   const currentPlan = selectedPlan;
   const currentCoupon = couponState?.[currentPlan?.id] || {};
+  const originalAmount = Number(selectedPlan?.totalPrice || 0);
+  const discountAmount = Number(selectedPlan?.discountApplied || 0);
 
+  const taxableAmount = Math.max(originalAmount - discountAmount, 0);
+
+  const gstAmount = Math.round(originalAmount * 0.18);
+
+  const totalWithGST = Math.max(originalAmount + gstAmount - discountAmount, 0);
   return (
     <div className="min-h-screen bg-[#F8F7FC]">
       {/* Header */}
@@ -230,16 +259,27 @@ export default function PartnerRegistrationStep1({
             <div className="space-y-4 text-sm">
               <SummaryRow
                 label="Selected Plan"
-                value={`₹${formatIndianNumber(currentPlan?.totalPrice)}`}
+                value={`₹${formatIndianNumber(originalAmount)}`}
               />
-              <SummaryRow label="Taxes (est.)" value="₹0.00" />
+
+              {discountAmount > 0 && (
+                <SummaryRow
+                  label="Discount"
+                  value={`- ₹${formatIndianNumber(discountAmount)}`}
+                />
+              )}
+
+              <SummaryRow
+                label="GST (18%)"
+                value={`₹${formatIndianNumber(gstAmount)}`}
+              />
             </div>
 
             <div className="border-t my-6"></div>
 
             <div className="flex justify-between font-bold text-xl">
               <span>Total due today</span>
-              <span>₹{formatIndianNumber(currentPlan?.totalPrice)}</span>
+              <span>₹{formatIndianNumber(totalWithGST.toFixed(0))}</span>
             </div>
 
             {/* Promo Code: stack on mobile */}

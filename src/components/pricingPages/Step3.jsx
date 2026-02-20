@@ -11,8 +11,17 @@ export default function PartnerPaymentStep3({
 }) {
   const { URI, setSuccessScreen, setPurchaseData, purchaseData } = useAuth();
   const planPrice = parseFloat(selectedPlan?.totalPrice) || 0;
+
+  const originalAmount = Number(selectedPlan?.totalPrice || 0);
+  const discountAmount = Number(selectedPlan?.discountApplied || 0);
+  console.log(selectedPlan, "3");
+  const gstAmount = Number((originalAmount * 0.18).toFixed(2));
+  const taxableAmount = Number(gstAmount + originalAmount).toFixed(2);
+  const subtotalWithGST = Number(originalAmount + gstAmount).toFixed(2);
+  const totalWithGST = Math.max(subtotalWithGST - discountAmount, 0);
+  const registrationPrice = totalWithGST === 0 ? 1 : totalWithGST;
   const navigate = useNavigate();
-  const registrationPrice = planPrice === 0 ? 1 : planPrice;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const scriptLoaded = await loadRazorpayScript();
@@ -254,7 +263,7 @@ export default function PartnerPaymentStep3({
             <div className="bg-purple-900 text-white p-6">
               <p className="text-sm opacity-80">Total Amount Due</p>
               <h3 className="text-3xl font-bold mt-2">
-                ₹{selectedPlan?.totalPrice || 0}
+                ₹{registrationPrice.toFixed(2)}
               </h3>
               <p className="text-xs mt-2 opacity-80">
                 {/* Offer valid for 14:32 mins */}
@@ -262,42 +271,44 @@ export default function PartnerPaymentStep3({
             </div>
 
             <div className="p-6 space-y-4 text-sm text-gray-700">
+              {/* Original Price */}
               <div className="flex justify-between">
-                <span>Subtotal (Enterprise)</span>
-                <span>₹{selectedPlan?.totalPrice || 0}</span>
+                <span>Base Plan</span>
+                <span>₹{originalAmount}</span>
               </div>
 
+              {/* Discount */}
+              {discountAmount > 0 && (
+                <div className="flex justify-between text-green-600">
+                  <span>Discount</span>
+                  <span>- ₹{discountAmount}</span>
+                </div>
+              )}
+
+              {/* Taxable */}
+              <div className="flex justify-between">
+                <span>Taxable Amount</span>
+                <span>₹{taxableAmount}</span>
+              </div>
+
+              {/* GST */}
               <div className="flex justify-between">
                 <span>GST (18%)</span>
-                <span>₹{selectedPlan?.gst || 0}</span>
+                <span>₹{gstAmount}</span>
               </div>
 
-              <div className="flex justify-between text-green-600">
-                <span>Promo (WELCOME50)</span>
-                <span>- ₹0.00</span>
-              </div>
-
+              {/* Final */}
               <div className="border-t pt-4 flex justify-between font-semibold">
                 <span>Payable Amount</span>
-                <span>₹{selectedPlan?.totalPrice || 0}</span>
+                <span>₹{registrationPrice}</span>
               </div>
 
               <button
                 onClick={handleSubmit}
                 className="w-full mt-4 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold shadow-md hover:opacity-95 transition"
               >
-                Pay ₹{selectedPlan?.totalPrice || 0} →
+                Pay ₹{registrationPrice} →
               </button>
-
-              {/* <div className="flex justify-center space-x-6 text-gray-400 text-sm mt-3">
-                <span>Apple Pay</span>
-                <span>G Pay</span>
-              </div> */}
-
-              <p className="text-xs text-gray-400 text-center mt-4">
-                By confirming payment, you agree to our Terms of Service and
-                authorize recurring billing.
-              </p>
             </div>
           </div>
         </div>
